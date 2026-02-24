@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  # which zsh
-  # command -v zsh | sudo tee -a /etc/shells
-  # chsh -s $(command -v zsh)
+  # .bashrc
+  # if [[ $- == i ]]; then
+    # export SHELL=$(which zsh)
+    # exec zsh -l
+  # fi
 
   programs.zsh = {
     enable = true;
@@ -20,6 +22,9 @@
       vm-start = "sudo systemctl start libvirtd";
       vm-stop = "sudo systemctl stop --now libvirtd*";
     };
+
+    initExtra = ''
+    '';
 
     oh-my-zsh = {
       enable = true;
