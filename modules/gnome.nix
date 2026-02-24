@@ -19,7 +19,7 @@
       };
 
       "org/gnome/shell/extensions/clipboard-indicator" = {
-        history-size = 30;
+        history-size = 50;
         display-mode = 0;
         preview-size = 30;
       };
