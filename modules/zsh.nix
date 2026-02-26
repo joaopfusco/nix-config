@@ -20,7 +20,7 @@
       home-update = "home-manager switch --flake .#joaop";
       vm-status = "systemctl status libvirtd";
       vm-start = "sudo systemctl start libvirtd";
-      vm-stop = "sudo systemctl stop --now libvirtd*";
+      vm-stop = "sudo systemctl stop 'libvirtd*'";
     };
 
     initExtra = ''
