@@ -25,7 +25,7 @@
 
       git_status = {
         conflicted = "🏳";
-        ahead = "🏎💨";
+        ahead = "🚗💨";
         behind = "😰";
         staged = "[++\\($count\\)](green)";
       };
