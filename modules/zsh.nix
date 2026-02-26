@@ -2,9 +2,9 @@
 
 {
   # .bashrc
-  # if [[ $- == i ]]; then
-    # export SHELL=$(which zsh)
-    # exec zsh -l
+  # if [[ $- == *i* ]]; then
+  #   export SHELL=$(which zsh)
+  #   exec zsh -l
   # fi
 
   programs.zsh = {
