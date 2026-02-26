@@ -32,7 +32,7 @@
 
       nix_shell = {
         symbol = "❄️ ";
-        format = "via [$symbol$state( \\($name\\))]($style) ";
+        format = "via [$symbol $state( \\($name\\))]($style) ";
       };
       
       cmd_duration = {
