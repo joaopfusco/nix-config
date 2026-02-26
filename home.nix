@@ -3,8 +3,9 @@
 {
   imports = [
     # ./modules/gnome.nix
+    # ./modules/git.nix
     ./modules/zsh.nix
-    ./modules/git.nix
+    ./modules/starship.nix
     ./modules/direnv.nix
     ./modules/mise.nix
   ];
@@ -18,10 +19,8 @@
 
   home.packages = with pkgs; [
     home-manager
-    wget
-    curl
-    neofetch
-    azure-cli
+    fastfetch
+    # azure-cli
   ];
 
   nix.gc = {
