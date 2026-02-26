@@ -8,6 +8,7 @@
     ./modules/starship.nix
     ./modules/direnv.nix
     ./modules/mise.nix
+    ./modules/neovim.nix
   ];
 
   # Mudar quando tiver em ambiente sem gnome
