@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # .bashrc
-  # alias zsh="exec zsh -l"
-  # alias bash="exec bash -l"
+  # Bluefin: chsh -s $(which zsh) # nao executar no host, apenas na distobox
 
   programs.zsh = {
     enable = true;
