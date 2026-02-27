@@ -7,7 +7,6 @@
     ./modules/starship.nix
     ./modules/direnv.nix
     ./modules/mise.nix
-    ./modules/neovim.nix
   ];
 
   home.username = "joaop";
