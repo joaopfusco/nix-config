@@ -39,6 +39,8 @@
         min_time = 2000; # Mostra apenas se o comando levar mais de 2 segundos
         format = "took [$duration]($style) ";
       };
+
+      nodejs.symbol = "🟢 ";
     };
   };
 }
