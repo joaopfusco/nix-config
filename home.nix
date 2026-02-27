@@ -21,6 +21,7 @@
   home.packages = with pkgs; [
     home-manager
     fastfetch
+    uv
     # azure-cli
   ];
 
