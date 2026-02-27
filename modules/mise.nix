@@ -10,6 +10,7 @@
   };
 
   home.sessionPath = [
+    "$HOME/.local/share/mise/shims"
     "$HOME/.dotnet/tools"
   ];
 }
