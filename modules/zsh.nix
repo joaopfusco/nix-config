@@ -2,9 +2,14 @@
 
 {
   # .bashrc
+  # alias zsh="exec zsh -l"
+  # alias bash="exec bash -l"
   # if [[ $- == *i* ]]; then
-  #   export SHELL=$(which zsh)
-  #   exec zsh -l
+  #     ZSH_BIN=$(which zsh 2>/dev/null)
+  #     if [[ -n "$ZSH_BIN" && $(ps -p $PPID -o comm=) != *"zsh"* ]]; then
+  #         export SHELL="$ZSH_BIN"
+  #         exec "$ZSH_BIN" -l
+  #     fi
   # fi
 
   programs.zsh = {
