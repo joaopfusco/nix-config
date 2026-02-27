@@ -2,7 +2,6 @@
 
 {
   imports = [
-    # ./modules/gnome.nix
     # ./modules/git.nix
     ./modules/zsh.nix
     ./modules/starship.nix
@@ -10,9 +9,6 @@
     ./modules/mise.nix
     ./modules/neovim.nix
   ];
-
-  # Mudar quando tiver em ambiente sem gnome
-  # features.gnome.enable = true;
 
   home.username = "joaop";
   home.homeDirectory = "/home/joaop";
