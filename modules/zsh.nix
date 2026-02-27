@@ -23,7 +23,7 @@
       vm-stop = "sudo systemctl stop 'libvirtd*'";
     };
 
-    initExtra = ''
+    initContent = ''
     '';
 
     oh-my-zsh = {
