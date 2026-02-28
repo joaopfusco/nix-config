@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  # Bluefin: chsh -s $(which zsh) # nao executar no host, apenas na distobox
+  # # nao executar no host, apenas em distobox
+  # echo "$(which zsh)" | sudo tee -a /etc/shells
+  # chsh -s $(which zsh)
 
   programs.zsh = {
     enable = true;

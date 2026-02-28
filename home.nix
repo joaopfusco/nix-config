@@ -11,6 +11,7 @@
 
   home.username = "joaop";
   home.homeDirectory = "/home/joaop";
+  # home.homeDirectory = "/var/home/joaop/box"; # para distobox
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
