@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # ./modules/git.nix
+    ./modules/git.nix
     ./modules/zsh.nix
     ./modules/starship.nix
     ./modules/direnv.nix
@@ -10,8 +10,7 @@
   ];
 
   home.username = "joaop";
-  home.homeDirectory = "/home/joaop";
-  # home.homeDirectory = "/var/home/joaop/box"; # para distobox
+  home.homeDirectory = "/var/home/joaop/box";
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
