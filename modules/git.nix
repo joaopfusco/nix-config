@@ -8,9 +8,9 @@
         name = "joaopfusco";
         email = "joaopedrofusco@gmail.com";
       };
-    };
-    credential = {
-      helper = "store";
+      credential = {
+        helper = "store";
+      };
     };
   };
 
