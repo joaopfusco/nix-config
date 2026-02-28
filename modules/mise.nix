@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # echo 'export PATH="/home/joaop/.local/share/mise/shims:$PATH"' >> ~/.profile
+  # echo 'export PATH="/var/home/joaop/box/.local/share/mise/shims:$PATH"' >> ~/.profile
   # dotnet tool install --global dotnet-ef
 
   programs.mise = {
