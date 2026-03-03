@@ -15,7 +15,7 @@
       ll = "ls -l";
       la = "ls -la";
       cls = "clear";
-      home-update = "home-manager switch --flake .#joaop";
+      home-switch = "home-manager switch --flake .#joaop";
       vm-status = "systemctl status libvirtd";
       vm-start = "sudo systemctl start libvirtd";
       vm-stop = "sudo systemctl stop 'libvirtd*'";

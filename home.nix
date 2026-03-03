@@ -3,10 +3,11 @@
 {
   imports = [
     # ./modules/git.nix
-    # ./modules/zsh.nix
+    ./modules/zsh.nix
     ./modules/bash.nix
     ./modules/starship.nix
     ./modules/direnv.nix
+    ./modules/alacritty.nix
   ];
 
   home.username = "joaop";
@@ -18,6 +19,8 @@
     fastfetch
     uv
   ];
+
+  targets.genericLinux.enable = true;
 
   nix.gc = {
     automatic = true;
