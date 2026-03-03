@@ -28,6 +28,19 @@
         ];
       };
 
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "appmenu:minimize,maximize,close";
+      };
+
+      "org/gnome/desktop/background" = {
+        picture-uri = "file://${./wallpapers/crown.jpg}";
+        picture-uri-dark = "file://${./wallpapers/crown.jpg}";
+      };
+
+      "org/gnome/desktop/screensaver" = {
+        picture-uri = "file://${./wallpapers/crown.jpg}";
+      };
+
       "org/gnome/shell/extensions/clipboard-indicator" = {
         history-size = 50;
         display-mode = 0;
