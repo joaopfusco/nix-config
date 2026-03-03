@@ -22,6 +22,7 @@
     # Basic utilities
     home-manager
     fastfetch
+    papirus-icon-theme
 
     # GUI applications
     alacritty

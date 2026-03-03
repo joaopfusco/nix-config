@@ -4,6 +4,14 @@
   options.features.gnome.enable = lib.mkEnableOption "Configurações e Extensões do GNOME";
 
   config = lib.mkIf config.features.gnome.enable {
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+    };
+
     home.packages = with pkgs; [
       gnome-tweaks
       gnome-extension-manager
