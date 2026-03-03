@@ -51,3 +51,47 @@ home-manager switch --flake .#joaop
 ```
 
 ---
+
+## 🚀 Setup Inicial (Nova Instalação)
+
+Para configurar uma nova máquina (PC físico ou VM) do zero utilizando este repositório privado via SSH, siga os passos abaixo:
+
+### 1. Gerar e Adicionar a Chave SSH no GitHub
+Como o repositório é privado, você precisa de uma chave SSH para cloná-lo. No terminal do sistema recém-instalado, abra um shell com o Git e gere a chave:
+
+```bash
+# Inicie um shell temporário com Git
+nix-shell -p git
+
+# Gere uma nova chave SSH (pressione Enter para aceitar os caminhos padrões)
+ssh-keygen -t ed25519 -C "joaopedrofusco@gmail.com"
+
+# Exiba a chave pública gerada
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copie todo o texto da chave exibida na tela. Acesse o GitHub pelo navegador, vá em Settings > SSH and GPG keys > New SSH key, cole a chave e salve.
+
+### 2. Clonar o Repositório
+Com a chave autorizada no GitHub, clone o repositório utilizando a URL SSH:
+
+```bash
+# Clone o repositório
+git clone git@github.com:joaopfusco/nixos-config.git
+
+# Entre no diretório
+cd nixos-config
+```
+
+### 3. Executar o Script de Configuração
+O script automatizado irá copiar as configurações de hardware da máquina atual, adicioná-las ao Git e realizar o primeiro build do Flake:
+
+```bash
+# Dê permissão de execução ao script
+chmod +x setup.sh
+
+# Execute o instalador
+./setup.sh
+```
+
+---

@@ -15,12 +15,6 @@ cp /etc/nixos/hardware-configuration.nix "hosts/$HOSTNAME/"
 echo "📦 Rastreando o novo hardware config no Git..."
 git add "hosts/$HOSTNAME/hardware-configuration.nix"
 
-GITHUB_USER="joaopfusco"
-REPO_NAME="nixos-config"
-
-echo "🔐 Alterando a URL do remote para SSH..."
-git remote set-url origin "git@github.com:$GITHUB_USER/$REPO_NAME.git"
-
 # 5. Aplica a configuração do sistema usando o seu Flake
 echo "🚀 Iniciando o NixOS Rebuild para o host: $HOSTNAME..."
 sudo nixos-rebuild switch --flake .#$HOSTNAME
