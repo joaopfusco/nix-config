@@ -3,10 +3,10 @@
 {
   imports = [
     # ./modules/git.nix
-    ./modules/zsh.nix
+    # ./modules/zsh.nix
+    ./modules/bash.nix
     ./modules/starship.nix
     ./modules/direnv.nix
-    ./modules/mise.nix
   ];
 
   home.username = "joaop";
