@@ -7,7 +7,7 @@
     ./modules/zsh.nix
     ./modules/starship.nix
     ./modules/direnv.nix
-    ./modules/mise.nix
+    ./modules/dev.nix
     ./modules/pwas.nix
     ./modules/alacritty.nix
   ];
