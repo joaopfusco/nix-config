@@ -21,6 +21,8 @@
 
   # Enable all firmware to support a wide range of hardware.
   hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
+  services.power-profiles-daemon.enable = true;
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
@@ -125,7 +127,7 @@
   };
 
   # Enable Flatpak support
-  services.flatpak.enable = true; 
+  services.flatpak.enable = true;
   # Run flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
   # Docker
