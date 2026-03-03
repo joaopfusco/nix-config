@@ -157,6 +157,20 @@
     gst_all_1.gst-libav
   ];
 
+  # Enable nix-ld to allow running dynamically linked binaries from the Nix store
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Basic libraries and dependencies
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    nss
+    openssl
+    curl
+    expat
+  ];
+
   # Automatically optimize the Nix store to save disk space
   nix.optimise.automatic = true;
   nix.gc = {
