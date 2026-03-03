@@ -122,12 +122,16 @@
   # Docker
   virtualisation.docker.enable = true;
 
+  # VMs
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "Joao Pedro Fusco";
-    extraGroups = [ "networkmanager" "wheel" "docker" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
   };
 
   # Allow unfree packages
@@ -147,6 +151,8 @@
     wget
     curl
     git
+    distrobox
+    distroshelf
 
     # Media codecs (GStreamer)
     gst_all_1.gstreamer
