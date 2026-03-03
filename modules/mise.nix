@@ -14,7 +14,6 @@
       };
       settings = {
         experimental = true;
-        shims = true;
       };
     };
   };
