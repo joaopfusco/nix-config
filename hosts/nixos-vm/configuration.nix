@@ -5,13 +5,14 @@
 { config, pkgs, lib, host, username, ... }:
 
 {
-  # Bootloader.
+  # Bootloader
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;
   boot.loader.grub.devices = [ "/dev/vda" ];
   boot.loader.grub.useOSProber = true;
 
+  # Set your hostname
   networking.hostName = host;
 
   # Enable networking
@@ -20,6 +21,10 @@
 
   # Enable all firmware to support a wide range of hardware.
   hardware.enableAllFirmware = true;
+
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   # Enable graphics and hardware acceleration
   hardware.graphics = {
