@@ -22,6 +22,10 @@
     uv
   ];
 
+  home.sessionVariables = {
+    NIX_PATH = "nixpkgs=${pkgs.path}";
+  };
+
   targets.genericLinux.enable = true;
 
   nix.gc = {
