@@ -3,6 +3,7 @@
 {
   imports = [
     # ./modules/git.nix
+    # ./modules/flatpak.nix
     ./modules/zsh.nix
     ./modules/bash.nix
     ./modules/starship.nix
