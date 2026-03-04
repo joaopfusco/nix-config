@@ -4,6 +4,7 @@
   imports = [
     # ./modules/git.nix
     # ./modules/flatpak.nix
+    ./modules/gnome.nix
     ./modules/zsh.nix
     ./modules/bash.nix
     ./modules/starship.nix
@@ -27,6 +28,8 @@
   };
 
   targets.genericLinux.enable = true;
+
+  features.gnome.enable = true;
 
   nix.gc = {
     automatic = true;
