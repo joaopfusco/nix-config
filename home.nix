@@ -8,6 +8,7 @@
     ./modules/bash.nix
     ./modules/starship.nix
     ./modules/direnv.nix
+    ./modules/dev.nix
     ./modules/alacritty.nix
   ];
 
