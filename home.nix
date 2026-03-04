@@ -2,6 +2,7 @@
 
 {
   imports = [
+    # ./modules/cinnamon.nix
     # ./modules/git.nix
     # ./modules/flatpak.nix
     ./modules/gnome.nix
@@ -30,6 +31,7 @@
   targets.genericLinux.enable = true;
 
   features.gnome.enable = true;
+  # features.cinnamon.enable = true;
 
   nix.gc = {
     automatic = true;
