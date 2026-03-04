@@ -54,6 +54,7 @@
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
         ];
       };
 
@@ -73,6 +74,12 @@
         binding = "<Super>i";
         command = "gnome-control-center";
         name = "Open GNOME Control Center";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+        binding = "<Super>c";
+        command = "code --new-window /home/joaop/nixos-config/";
+        name = "Open NixOS Config";
       };
     };
   };

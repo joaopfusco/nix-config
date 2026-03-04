@@ -22,12 +22,12 @@
       home-switch = "home-manager switch --flake .#joaop";
 
       # NixOS aliases
-      os-switch = "sudo nixos-rebuild switch --flake .#$(hostname)";
-      os-update = "nix flake update && sudo nixos-rebuild switch --flake .#$(hostname)";
-      os-test = "sudo nixos-rebuild test --flake .#$(hostname)";
-      os-gens = "sudo nixos-rebuild list-generations";
-      os-rollback = "sudo nixos-rebuild switch --rollback";
-      os-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";
+      nixos-switch = "sudo nixos-rebuild switch --flake .#$(hostname)";
+      nixos-upgrade = "nix flake update && sudo nixos-rebuild switch --flake .#$(hostname)";
+      nixos-test = "sudo nixos-rebuild test --flake .#$(hostname)";
+      nixos-gens = "sudo nixos-rebuild list-generations";
+      nixos-rollback = "sudo nixos-rebuild switch --rollback";
+      nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";
     };
 
     initContent = ''
