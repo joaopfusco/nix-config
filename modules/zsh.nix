@@ -12,24 +12,14 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
-      cls = "clear";
-      home-switch = "home-manager switch --flake .#joaop";
-      vm-status = "systemctl status libvirtd";
-      vm-start = "sudo systemctl start libvirtd";
-      vm-stop = "sudo systemctl stop 'libvirtd*'";
-    };
-
+    
     initContent = ''
+      [ -f ~/.aliases.nix ] && source ~/.aliases.nix
     '';
 
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "z" ];
-      # theme = "robbyrussell";
     };
   };
 }
