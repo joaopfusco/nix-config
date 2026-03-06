@@ -6,7 +6,6 @@ in
 {
   imports = [
     # ./modules/git.nix
-    # ./modules/flatpak.nix
     ./modules/cinnamon.nix
     ./modules/gnome.nix
     ./modules/zsh.nix
