@@ -140,6 +140,10 @@
     description = "Joao Pedro Fusco";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
   };
+
+  # Enable Flatpak support
+  services.flatpak.enable = true;
+  # Run flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   
   # Install Firefox
   programs.firefox.enable = true;
