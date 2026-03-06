@@ -13,7 +13,7 @@
       "org.libreoffice.LibreOffice"
       "com.obsproject.Studio"
       "us.zoom.Zoom"
-      "org.gnome.alacarte" 
+      "page.codeberg.libre_menu_editor.LibreMenuEditor" 
       "org.videolan.VLC"
     ];
 

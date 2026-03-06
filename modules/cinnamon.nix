@@ -6,7 +6,7 @@
   config = lib.mkIf config.features.cinnamon.enable {
     home.packages = with pkgs; [
       dconf-editor
-      diodon
+      copyq
     ];
 
     dconf.settings = {
@@ -52,8 +52,8 @@
 
       "org/cinnamon/desktop/keybindings/custom-keybindings/custom4" = {
         binding = [ "<Super>j" ];
-        command = "diodon";
-        name = "Open Diodon History";
+        command = "copyq --start-server show";
+        name = "Open CopyQ History";
       };
     };
   };
