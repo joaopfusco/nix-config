@@ -1,15 +1,9 @@
 { config, pkgs, lib, ... }:
 
-let
-  desktop = "gnome";
-in
 {
   imports = [
     # ./modules/git.nix
-    ./modules/cinnamon.nix
-    ./modules/gnome.nix
     ./modules/zsh.nix
-    ./modules/bash.nix
     ./modules/starship.nix
     ./modules/direnv.nix
     ./modules/dev.nix
@@ -31,9 +25,6 @@ in
   };
 
   targets.genericLinux.enable = true;
-
-  features.gnome.enable = desktop == "gnome";
-  features.cinnamon.enable = desktop == "cinnamon";
 
   nix.gc = {
     automatic = true;
