@@ -34,9 +34,6 @@
     zoom-us
     vlc
 
-    # Development tools
-    uv
-
     # Development GUI applications
     vscode
     antigravity
