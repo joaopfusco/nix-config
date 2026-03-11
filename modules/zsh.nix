@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
   programs.zsh = {
@@ -19,7 +19,7 @@
       flake-update = "nix flake update";
 
       # Home aliases
-      home-switch = "home-manager switch --flake .#joaop";
+      home-switch = "home-manager switch --flake .#${username}";
 
       # NixOS aliases
       nixos-switch = "sudo nixos-rebuild switch --flake .#$(hostname)";
