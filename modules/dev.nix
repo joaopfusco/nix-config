@@ -2,12 +2,16 @@
 
 {
   home.packages = with pkgs; [
-    # Compiladores e Runtimes
+    # Linguagens de Programação
+    python312
+    nodejs_24
+    go_1_25
+
+    # C e Make
     gcc
     gnumake
-    python3
-    nodejs
-    go
+
+    # Rust
     rustup
 
     # .NET SDKs e Runtimes
@@ -22,8 +26,9 @@
     ])
     dotnet-ef
 
-    # Ferramenta para criar ambientes rápidos
-    nix-init
-    nixpkgs-fmt
+    # Ferramentas
+    uv
+    # nix-init
+    # nixpkgs-fmt
   ];
 }
