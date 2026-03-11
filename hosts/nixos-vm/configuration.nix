@@ -64,7 +64,7 @@
   #   prime = {
   #     offload = {
   #       enable = true;
-  #       enableOffloadCmd = true;
+  #       enableOffloadCmd = true; # nvidia-offload <nome-do-programa> to use nvidia
   #     };
 
   #     # Run 'nix-shell -p lshw --run "sudo lshw -c display"'.
