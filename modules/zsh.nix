@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
   # nao executar no host, apenas em distobox
@@ -17,7 +17,7 @@
       ll = "ls -l";
       la = "ls -la";
       cls = "clear";
-      home-switch = "home-manager switch --flake .#joaop";
+      home-switch = "home-manager switch --flake .#${username}";
       vm-status = "systemctl status libvirtd";
       vm-start = "sudo systemctl start libvirtd";
       vm-stop = "sudo systemctl stop 'libvirtd*'";

@@ -12,13 +12,15 @@
   outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
+      username = "joaop";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
     in {
-      homeConfigurations."joaop" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit username; };
         modules = [ ./home.nix ];
       };
     };

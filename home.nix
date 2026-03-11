@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   imports = [
@@ -10,8 +10,8 @@
     ./modules/alacritty.nix
   ];
 
-  home.username = "joaop";
-  home.homeDirectory = "/home/joaop";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
