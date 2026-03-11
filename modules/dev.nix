@@ -26,7 +26,8 @@
     # ])
     # dotnet-ef
 
-    # Ferramenta para criar ambientes rápidos
+    # Ferramentas
+    uv
     # nix-init
     # nixpkgs-fmt
   ];
