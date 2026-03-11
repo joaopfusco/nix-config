@@ -13,12 +13,11 @@
     # .NET SDKs e Runtimes
     # Obs.: Requires a global.json file in the project to specify the SDK version
     # dotnet new globaljson --sdk-version 8.0.xxx
-    # (with dotnetCorePackages; combinePackages [ 
-    #   sdk_8_0
-    #   sdk_9_0
-    #   sdk_10_0
-    # ])
-    # dotnet-ef
+    (with dotnetCorePackages; combinePackages [ 
+      sdk_8_0
+      sdk_9_0
+    ])
+    dotnet-ef
 
     # Ferramentas
     uv
@@ -26,7 +25,7 @@
     # nixpkgs-fmt
   ];
 
-  # home.sessionPath = [
-  #   "/home/joaop/.dotnet/tools"
-  # ];
+  home.sessionPath = [
+    "/home/joaop/.dotnet/tools"
+  ];
 }
