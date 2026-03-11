@@ -17,7 +17,7 @@
       sdk_8_0
       sdk_9_0
     ])
-    dotnet-ef
+    dotnet-ef # or dotnet tool install --global dotnet-ef
 
     # Ferramentas
     uv
