@@ -7,22 +7,16 @@
     nodejs_24 # v24
     go_1_25 # v1.25.7
 
-    # C e Make
-    # gcc
-    # gnumake
-
     # Rust
     # rustup
 
     # .NET SDKs e Runtimes
+    # Obs.: Requires a global.json file in the project to specify the SDK version
+    # dotnet new globaljson --sdk-version 8.0.xxx
     # (with dotnetCorePackages; combinePackages [ 
+    #   sdk_8_0
     #   sdk_9_0
-    #   runtime_9_0
-    #   aspnetcore_9_0
-
     #   sdk_10_0
-    #   runtime_10_0
-    #   aspnetcore_10_0
     # ])
     # dotnet-ef
 
@@ -31,4 +25,8 @@
     # nix-init
     # nixpkgs-fmt
   ];
+
+  # home.sessionPath = [
+  #   "/home/joaop/.dotnet/tools"
+  # ];
 }
