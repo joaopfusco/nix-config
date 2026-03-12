@@ -21,8 +21,6 @@
 
     # Ferramentas
     uv
-    # nix-init
-    # nixpkgs-fmt
   ];
 
   home.sessionPath = [
