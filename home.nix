@@ -7,7 +7,7 @@
     ./modules/starship.nix
     ./modules/direnv.nix
     ./modules/dev.nix
-    ./modules/alacritty.nix
+    ./modules/kitty.nix
   ];
 
   home.username = username;
