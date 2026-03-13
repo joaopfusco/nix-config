@@ -9,8 +9,8 @@
 
       window_padding_width = 10;
       remember_window_size = "no";
-      initial_window_width = "1000";
-      initial_window_height = "650";
+      initial_window_width = "1100";
+      initial_window_height = "700";
       confirm_os_window_close = 0;
 
       # font_family = "FiraCode Nerd Font";
