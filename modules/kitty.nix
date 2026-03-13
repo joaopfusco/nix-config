@@ -27,6 +27,7 @@
     keybindings = {
       "ctrl+c" = "copy_or_interrupt";
       "ctrl+v" = "paste_from_clipboard";
+      "ctrl+backspace" = "send_text all \\x17";
     };
 
     themeFile = "Catppuccin-Mocha"; 
