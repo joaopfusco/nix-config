@@ -24,6 +24,6 @@
   ];
 
   home.sessionPath = [
-    "/home/joaop/.dotnet/tools"
+    "$HOME/.dotnet/tools"
   ];
 }
