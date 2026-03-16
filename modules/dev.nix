@@ -23,8 +23,8 @@
     uv
   ];
 
-  # Configurações de ambiente para .NET SDKs e Runtimes
   # home.sessionPath = [
-  #   "$HOME/.dotnet/tools"
+  #   "$HOME/.cargo/bin" # ou echo '. "$HOME/.cargo/env"' >> ~/.profile
+  #   "$HOME/.dotnet/tools" # ou echo 'export PATH="$HOME/.dotnet/tools:$PATH"' >> ~/.profile
   # ];
 }
