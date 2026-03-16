@@ -23,7 +23,7 @@
     uv
   ];
 
-  # Melhor não usar o sessionPath
+  # Ou home.sessionPath ou ~/.profile
   # home.sessionPath = [
   #   "$HOME/.cargo/bin"
   #   "$HOME/.dotnet/tools"
