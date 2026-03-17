@@ -11,6 +11,7 @@
     # rustup
 
     # Ferramentas
+    nixfmt
     uv
   ];
 
