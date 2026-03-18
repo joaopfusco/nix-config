@@ -24,7 +24,6 @@
       "page.codeberg.libre_menu_editor.LibreMenuEditor"
       "com.ranfdev.DistroShelf"
       "us.zoom.Zoom"
-      "com.brave.Browser"
     ];
 
     update.auto.enable = true;
