@@ -15,6 +15,7 @@
     }];
 
     packages = [
+      "com.mattjakeman.ExtensionManager"
       "com.github.tchx84.Flatseal"
       "org.videolan.VLC"
       "com.discordapp.Discord"
