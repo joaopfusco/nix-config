@@ -7,8 +7,11 @@
     nodejs_24 # v24
     go_1_25 # v1.25.7
 
-    # Rust - Obs.: Melhor instlar via script do site oficial
-    # rustup
+    # Rust
+    cargo
+    rustc
+    rustfmt
+    clippy
 
     # Ferramentas
     nixfmt
