@@ -2,12 +2,13 @@
 
 {
   imports = [
-    # ./modules/git.nix
-    ./modules/zsh.nix
-    ./modules/starship.nix
-    ./modules/direnv.nix
+    ./modules/apps.nix
     ./modules/dev.nix
+    ./modules/direnv.nix
+    # ./modules/git.nix
     ./modules/kitty.nix
+    ./modules/starship.nix
+    ./modules/zsh.nix
   ];
 
   home.username = username;
