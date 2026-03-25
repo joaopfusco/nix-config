@@ -16,10 +16,6 @@
     # Ferramentas
     nixfmt
     uv
+    terraform
   ];
-
-  # Ou home.sessionPath ou ~/.profile
-  # home.sessionPath = [
-  #   "$HOME/.cargo/bin"
-  # ];
 }
