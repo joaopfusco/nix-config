@@ -20,6 +20,7 @@
     # Dev tools
     uv
     terraform
+    azure-cli
 
     # Others
     fastfetch
