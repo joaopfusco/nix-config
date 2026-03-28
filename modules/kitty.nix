@@ -23,12 +23,7 @@
       
       background_opacity = "0.95";
     };
-
-    keybindings = {
-      "ctrl+c" = "copy_or_interrupt";
-      "ctrl+v" = "paste_from_clipboard";
-    };
-
+    
     themeFile = "Catppuccin-Mocha"; 
   };
 }
