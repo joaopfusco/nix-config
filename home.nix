@@ -5,7 +5,6 @@
     # ./modules/git.nix
     ./modules/pkgs.nix
     ./modules/direnv.nix
-    ./modules/kitty.nix
     ./modules/starship.nix
     ./modules/zsh.nix
   ];
