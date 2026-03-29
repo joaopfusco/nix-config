@@ -6,9 +6,14 @@
     home-manager
     nixfmt
 
-    # Programming languages
+    # Python
+    uv
     python312
+
+    # Node
     nodejs_24
+
+    # Go
     go_1_25
 
     # Rust
@@ -18,7 +23,6 @@
     clippy
 
     # Dev tools
-    uv
     terraform
     azure-cli
 

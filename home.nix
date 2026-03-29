@@ -2,8 +2,8 @@
 
 {
   imports = [
-    # ./modules/git.nix
     ./modules/pkgs.nix
+    ./modules/git.nix
     ./modules/direnv.nix
     ./modules/starship.nix
     ./modules/zsh.nix
