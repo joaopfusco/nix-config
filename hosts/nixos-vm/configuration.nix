@@ -180,7 +180,13 @@
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-libav
-  ];
+  ] ++ (lib.optionals config.services.xserver.desktopManager.gnome.enable [
+    gnome-tweaks
+    gnome-extension-manager
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.appindicator
+    gnomeExtensions.dash-to-dock
+  ]);
 
   # Automatically optimize the Nix store to save disk space
   nix.optimise.automatic = true;

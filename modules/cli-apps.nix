@@ -2,16 +2,15 @@
 
 {
   import = [
+    # Generic modules
     ./git.nix
-    ./direnv.nix
     ./zsh.nix
-    ./gnome.nix
+    ./direnv.nix
   ];
 
   home.packages = with pkgs; [
     # System utilities
     fastfetch
-    papirus-icon-theme
 
     # Nix tools
     home-manager
@@ -38,17 +37,5 @@
     # Dev tools
     terraform
     azure-cli
-
-    # GUI applications
-    vlc
-    libreoffice
-    alacarte
-    obs-studio
-    google-chrome
-
-    # Development GUI applications
-    vscode
-    dbeaver-bin
-    postman 
   ];
 }

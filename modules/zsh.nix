@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, host, ... }:
 
 {
   programs.zsh = {
@@ -14,17 +14,18 @@
       ll = "ls -l";
       la = "ls -la";
       cls = "clear";
+      py="python";
 
       # Flake aliases
       flake-update = "nix flake update";
 
       # Home aliases
-      home-switch = "home-manager switch --flake .#${username}";
+      home-switch = "home-manager switch --flake .#${username}@${host}";
 
       # NixOS aliases
-      nixos-switch = "sudo nixos-rebuild switch --flake .#$(hostname)";
-      nixos-upgrade = "nix flake update && sudo nixos-rebuild switch --flake .#$(hostname)";
-      nixos-test = "sudo nixos-rebuild test --flake .#$(hostname)";
+      nixos-switch = "sudo nixos-rebuild switch --flake .#${host}";
+      nixos-upgrade = "nix flake update && sudo nixos-rebuild switch --flake .#${host}";
+      nixos-test = "sudo nixos-rebuild test --flake .#${host}";
       nixos-gens = "sudo nixos-rebuild list-generations";
       nixos-rollback = "sudo nixos-rebuild switch --rollback";
       nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";

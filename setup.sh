@@ -23,27 +23,61 @@ if [ ! -d "hosts/$HOSTNAME" ]; then
   mkdir -p "hosts/$HOSTNAME"
 fi
 
-# 2. Lida com o hardware-configuration.nix (O local sempre manda)
-echo "⚙️  Copiando hardware-configuration.nix do sistema local (/etc/nixos/)..."
-cp /etc/nixos/hardware-configuration.nix "hosts/$HOSTNAME/"
-git add "hosts/$HOSTNAME/hardware-configuration.nix"
+# Detecta se o sistema é NixOS ou Standalone (Ubuntu, Fedora, WSL, etc)
+if [ -f "/etc/nixos/hardware-configuration.nix" ]; then
+  echo "❄️  NixOS detectado! Copiando arquivos do sistema..."
 
-# 3. Lida com o configuration.nix (Preserva o do repositório, se existir)
-if [ ! -f "hosts/$HOSTNAME/configuration.nix" ]; then
-  echo "📄 configuration.nix não encontrado no repositório. Copiando do sistema local..."
-  cp /etc/nixos/configuration.nix "hosts/$HOSTNAME/"
-  git add "hosts/$HOSTNAME/configuration.nix"
+  # 2. Lida com o hardware-configuration.nix (O local sempre manda)
+  echo "⚙️  Copiando hardware-configuration.nix do sistema local (/etc/nixos/)..."
+  cp /etc/nixos/hardware-configuration.nix "hosts/$HOSTNAME/"
+  git add "hosts/$HOSTNAME/hardware-configuration.nix"
+
+  # 3. Lida com o configuration.nix (Preserva o do repositório, se existir)
+  if [ ! -f "hosts/$HOSTNAME/configuration.nix" ]; then
+    echo "📄 configuration.nix não encontrado no repositório. Copiando do sistema local..."
+    cp /etc/nixos/configuration.nix "hosts/$HOSTNAME/"
+    git add "hosts/$HOSTNAME/configuration.nix"
+  else
+    echo "📄 configuration.nix já existe no repositório. A versão do Git será mantida."
+  fi
+
 else
-  echo "📄 configuration.nix já existe no repositório. A versão do Git será mantida."
+  echo "🐧 Sistema não-NixOS detectado (Standalone). Ignorando configurações de hardware..."
 fi
 
-# 4. Aplica a configuração do sistema
-echo "🚀 Iniciando o NixOS Rebuild para o host: $HOSTNAME..."
-sudo nixos-rebuild switch --flake .#$HOSTNAME
+# 4. Cria um home.nix base se não existir
+if [ ! -f "hosts/$HOSTNAME/home.nix" ]; then
+  echo "🏠 home.nix não encontrado. Criando um template básico..."
+  
+  # Usamos 'cat <<EOF' para escrever o conteúdo dentro do arquivo novo
+  cat <<EOF > "hosts/$HOSTNAME/home.nix"
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    
+  ];
+}
+EOF
+  
+  git add "hosts/$HOSTNAME/home.nix"
+else
+  echo "🏠 home.nix já existe no repositório. A versão do Git será mantida."
+fi
 
 # 5. Ativa a trava de segurança para o futuro
 touch "$LOCKFILE"
 
+# 6. Exibe as instruções finais
 echo ""
-echo "✅ Sistema configurado com sucesso!"
+echo "✅ Arquivos gerados e configurados com sucesso para o host: $HOSTNAME!"
 echo "🔒 Trava de segurança ativada. O setup não rodará novamente para este host."
+echo ""
+echo "🚀 Para aplicar a configuração, copie e cole UM dos comandos abaixo no terminal:"
+echo ""
+echo "👉 Se esta máquina for NixOS:"
+echo "   sudo nixos-rebuild switch --flake .#$HOSTNAME"
+echo ""
+echo "👉 Se esta máquina for Standalone (Ubuntu, Fedora, WSL, etc):"
+echo "   home-manager switch --flake .#joaop@$HOSTNAME"
+echo ""
