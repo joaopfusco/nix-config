@@ -3,7 +3,7 @@
 # Para o script se qualquer comando falhar
 set -e
 
-read -p "Qual é o nome deste host (ex: nixos, nixos-vm)? " HOSTNAME
+read -p "Qual é o nome deste host? " HOSTNAME
 
 # Variável para o arquivo de trava de segurança
 LOCKFILE="$HOME/.config/nixos-config-setup-$HOSTNAME.lock"
