@@ -28,6 +28,7 @@
     clippy
 
     # Dev tools
+    distrobox
     terraform
     azure-cli
   ];

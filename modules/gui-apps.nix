@@ -14,5 +14,6 @@
     vscode
     dbeaver-bin
     postman
+    distroshelf
   ];
 }

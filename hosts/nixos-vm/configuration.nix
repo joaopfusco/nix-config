@@ -170,9 +170,6 @@
     wget
     curl
     git
-    distrobox
-    distroshelf
-
     # Media codecs (GStreamer)
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-base
