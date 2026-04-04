@@ -117,8 +117,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    variant = "alt-intl";
-    options  = "grp:win_space_toggle";
+    variant = "intl";
   };
 
   # Configure console keymap
