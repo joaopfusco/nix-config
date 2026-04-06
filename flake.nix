@@ -18,7 +18,7 @@
       system = "x86_64-linux";
 
       commonHomeManager = {
-        nix.registry.nixpkgs.flake = self; # nix shell nixpkgs#pkg or nix shell nixpkgs#unstable.pkg 
+        nix.registry.pkgs.flake = self; # nix shell pkgs#pkg or nix shell pkgs#unstable.pkg 
         home.username = username;
         home.homeDirectory = "/home/${username}";
         home.stateVersion = stateVersion;
@@ -60,7 +60,7 @@
           modules = [
             { 
               nixpkgs.pkgs = pkgs;
-              nix.registry.nixpkgs.flake = self; # nix shell nixpkgs#pkg or nix shell nixpkgs#unstable.pkg 
+              nix.registry.pkgs.flake = self; # nix shell pkgs#pkg or nix shell pkgs#unstable.pkg 
             }
             ./hosts/${host}/hardware-configuration.nix
             ./hosts/${host}/configuration.nix
