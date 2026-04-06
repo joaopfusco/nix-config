@@ -72,6 +72,12 @@
     pulse.enable = true;
   };
 
+  # Increase inotify limits to allow more files to be watched
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 524288;
+    "fs.inotify.max_user_instances" = 512;
+  };
+
   # Automatically optimize the Nix store to save disk space
   nix.optimise.automatic = true;
   nix.gc = {
