@@ -18,13 +18,13 @@
       system = "x86_64-linux";
 
       commonHomeManager = {
-        nix.registry.unstable.flake = nixpkgs-unstable; # nix shell unstable#pkg
-        nix.registry.nixpkgs.flake = nixpkgs; # nix shell nixpkgs#pkg
+        nix.registry.nixpkgs.flake = self; # nix shell nixpkgs#pkg or nix shell nixpkgs#unstable.pkg 
         home.username = username;
         home.homeDirectory = "/home/${username}";
         home.stateVersion = stateVersion;
       };
 
+      # All hosts
       allHosts = builtins.attrNames (
         nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir ./hosts)
       );
@@ -37,6 +37,7 @@
       # Standalone hosts (e.g. Ubuntu)
       standaloneHosts = allHosts;
 
+      # Overlay to add unstable packages under pkgs.unstable
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit system;
@@ -52,14 +53,14 @@
         overlays = [ overlay-unstable ];
       };
     in {
+      legacyPackages.${system} = pkgs;
       nixosConfigurations = nixpkgs.lib.genAttrs nixosHosts (host:
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit host username inputs; };
           modules = [
             { 
               nixpkgs.pkgs = pkgs;
-              nix.registry.unstable.flake = nixpkgs-unstable; # nix shell unstable#pkg
-              nix.registry.nixpkgs.flake = nixpkgs; # nix shell nixpkgs#pkg
+              nix.registry.nixpkgs.flake = self; # nix shell nixpkgs#pkg or nix shell nixpkgs#unstable.pkg 
             }
             ./hosts/${host}/hardware-configuration.nix
             ./hosts/${host}/configuration.nix
