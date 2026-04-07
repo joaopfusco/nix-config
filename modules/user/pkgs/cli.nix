@@ -8,7 +8,6 @@
     # Nix tools
     home-manager
     nixfmt
-    any-nix-shell
 
     # Python
     uv

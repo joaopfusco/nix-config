@@ -40,8 +40,6 @@
 
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
-
-      ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
     '';
 
     oh-my-zsh = {
