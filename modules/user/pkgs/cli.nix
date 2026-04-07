@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -9,10 +9,6 @@
     home-manager
     nixfmt
     any-nix-shell
-
-    # C/C++
-    gcc
-    gdb
 
     # Python
     uv
@@ -33,8 +29,19 @@
 
     # Dev tools
     gnumake
-    distrobox
     terraform
     azure-cli
+  ]
+
+  # Linux
+  ++ lib.optionals stdenv.isLinux [
+    gcc
+    gdb
+    distrobox
+  ] 
+  
+  # macOS (Darwin)
+  ++ lib.optionals stdenv.isDarwin [
+    
   ];
 }

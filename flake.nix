@@ -34,9 +34,6 @@
         host: builtins.pathExists (./hosts + "/${host}/configuration.nix")
       ) allHosts;
 
-      # Standalone hosts (e.g. Ubuntu)
-      standaloneHosts = allHosts;
-
       # Overlay to add unstable packages under pkgs.unstable
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
@@ -89,6 +86,6 @@
             commonHomeManager
           ];
         };
-      }) standaloneHosts);
+      }) allHosts);
     };
 }
