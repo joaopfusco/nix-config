@@ -13,7 +13,7 @@
     
     # Modules
     # ../../modules/system/hardware/intel-nvidia.nix
-    ../../modules/system/desktop/gnome.nix
+    ../../modules/system/desktop/kde.nix
     ../../modules/system/system.nix
     ../../modules/system/user.nix
     ../../modules/system/pkgs.nix
