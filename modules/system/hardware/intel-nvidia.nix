@@ -1,28 +1,18 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
+  imports = [
+    ./nvidia.nix
+  ];
+
   # Enable thermald (Intel CPUs)
   services.thermald.enable = true;
 
   # NVIDIA GPU drivers
   services.switcherooControl.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    # Modesetting is critical for Wayland support
-    modesetting.enable = true;
-
     # Enable power management features for NVIDIA GPUs, including fine-grained power management.
-    powerManagement.enable = true;
     powerManagement.finegrained = true;
-
-    # Enable the NVIDIA settings menu (nvidia-settings)
-    nvidiaSettings = true;
-
-    # Using the proprietary NVIDIA driver
-    open = false;
-
-    # Select the driver package version
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     # Enable NVIDIA Prime for hybrid graphics setups (e.g., laptops with both integrated and discrete GPUs)
     prime = {

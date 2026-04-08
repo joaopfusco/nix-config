@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   # NVIDIA GPU drivers
@@ -7,7 +7,7 @@
     # Modesetting is critical for Wayland support
     modesetting.enable = true;
 
-    # Enable power management features for NVIDIA GPUs, including fine-grained power management.
+    # Enable power management features for NVIDIA GPUs
     powerManagement.enable = true;
 
     # Enable the NVIDIA settings menu (nvidia-settings)
