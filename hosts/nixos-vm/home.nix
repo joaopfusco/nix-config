@@ -7,6 +7,7 @@
     ../../modules/user/git.nix
     ../../modules/user/zsh.nix
     ../../modules/user/direnv.nix
+    ../../modules/user/kitty.nix
   ];
 
   # Ignoring any other definition and using this one

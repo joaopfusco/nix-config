@@ -6,6 +6,7 @@
     ../../modules/user/git.nix
     ../../modules/user/zsh.nix
     ../../modules/user/direnv.nix
+    ../../modules/user/kitty.nix
   ];
 
   home.sessionVariables = {
