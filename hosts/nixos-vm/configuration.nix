@@ -10,6 +10,7 @@
     # inputs.nixos-hardware.nixosModules.common-pc-laptop
     # inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     # inputs.nixos-hardware.nixosModules.common-cpu-intel
+    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     
     # Modules
     # ../../modules/system/hardware/intel-nvidia.nix
