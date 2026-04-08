@@ -20,9 +20,9 @@
       enable_audio_bell = false;
       update_check_interval = 0;
       
-      background_opacity = "0.95";
+      background_opacity = "1.0";
     };
     
-    themeFile = "Catppuccin-Mocha"; 
+    themeFile = "Dracula";
   };
 }
