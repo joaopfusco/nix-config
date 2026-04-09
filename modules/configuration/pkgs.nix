@@ -36,6 +36,7 @@
     # GUI applications
     vlc
     libreoffice
+    google-chrome
   ];
 
   # Enable Flatpak support
