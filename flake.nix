@@ -16,10 +16,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nixos-wsl, ... }@inputs:
     let
       username = "joaop";
       homeStateVersion = "25.11";
@@ -66,6 +71,11 @@
         host: builtins.pathExists (./hosts + "/${host}/configuration.nix")
       ) allHosts;
 
+      # WSL hosts
+      wslHosts = builtins.filter (
+        host: builtins.pathExists (./hosts + "/${host}/wsl-configuration.nix")
+      ) allHosts;
+
       # MacOS hosts
       darwinHosts = builtins.filter (
         host: builtins.pathExists (./hosts + "/${host}/darwin-configuration.nix")
@@ -75,16 +85,15 @@
       legacyPackages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ] (system: mkPkgs system);
 
       # NixOS configurations
-      nixosConfigurations = nixpkgs.lib.genAttrs nixosHosts (host:
+      nixosConfigurations = nixpkgs.lib.genAttrs (nixosHosts ++ wslHosts) (host:
         let 
+          isWsl = builtins.pathExists (./hosts + "/${host}/wsl-configuration.nix");
           system = getHostSystem host;
           pkgs = mkPkgs system;
         in nixpkgs.lib.nixosSystem {
           specialArgs = { inherit host username inputs; };
           modules = [
             { nixpkgs.pkgs = pkgs; }
-            ./hosts/${host}/hardware-configuration.nix
-            ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -97,7 +106,13 @@
                 ];
               };
             }
-          ];
+          ] ++ (if isWsl then [
+            nixos-wsl.nixosModules.default
+            ./hosts/${host}/wsl-configuration.nix
+          ] else [
+            ./hosts/${host}/hardware-configuration.nix
+            ./hosts/${host}/configuration.nix
+          ]);
         }
       );
 
