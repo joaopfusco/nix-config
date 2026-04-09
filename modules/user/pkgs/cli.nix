@@ -51,6 +51,6 @@
   ];
 
   home.sessionPath = [
-    "$HOME/.dotnet/tools"
+    "${config.home.homeDirectory}/.dotnet/tools"
   ];
 }
