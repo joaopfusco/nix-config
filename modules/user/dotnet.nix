@@ -5,6 +5,21 @@ let
     sdk_8_0
     sdk_9_0
   ]);
+  deps = (
+    ps:
+    with ps;
+    [
+      rustup
+      zlib
+      openssl.dev
+      pkg-config
+      stdenv.cc
+      cmake
+      mono
+      msbuild
+    ]
+    ++ [ dotnet-stack ]
+  );
 in
 {
   home.packages = with pkgs; [
@@ -12,11 +27,19 @@ in
     dotnet-ef
   ];
 
-  home.sessionVariables = {
-    DOTNET_ROOT = "${dotnet-stack}";
+  programs.vscode = {
+    package =
+      (pkgs.vscode.overrideAttrs (prevAttrs: {
+        nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
+        postFixup =
+          prevAttrs.postFixup
+          + ''
+            wrapProgram $out/bin/code \
+              --set DOTNET_ROOT "${dotnet-stack}" \
+              --prefix PATH : "~/.dotnet/tools"
+          '';
+      })).fhsWithPackages
+        (ps: deps ps);
+    extensions = [ pkgs.vscode-extensions.sonarsource.sonarlint-vscode ];
   };
-
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.dotnet/tools"
-  ];
 }
