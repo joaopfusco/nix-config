@@ -5,7 +5,6 @@
     # GUI applications
     vlc
     libreoffice
-    alacarte
     obs-studio
     google-chrome
     vscode
