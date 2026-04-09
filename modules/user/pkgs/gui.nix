@@ -5,11 +5,11 @@
     # GUI applications
     vlc
     libreoffice
-    obs-studio
     google-chrome
     vscode
+    obs-studio
     dbeaver-bin
-    postman
     distroshelf
+    postman
   ];
 }
