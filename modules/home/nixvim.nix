@@ -13,6 +13,10 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    opts = {
+      shell = "${pkgs.zsh}/bin/zsh";
+    };
+
     colorschemes.catppuccin = {
       enable = true;
       settings.flavour = "mocha";
