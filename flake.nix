@@ -20,10 +20,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, darwin, nixos-wsl, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, darwin, nixos-wsl, nixvim, ... }@inputs:
     let
       username = "joaop";
       homeStateVersion = "25.11";
