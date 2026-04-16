@@ -30,7 +30,6 @@
     gnumake
     terraform
     azure-cli
-    ripgrep
   ]
 
   # Linux
