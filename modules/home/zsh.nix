@@ -14,6 +14,7 @@
       ll = "ls -l";
       la = "ls -la";
       cls = "clear";
+      ins="echo $IN_NIX_SHELL";
       py="python";
 
       # Flake aliases
