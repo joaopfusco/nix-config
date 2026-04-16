@@ -26,10 +26,11 @@
     rustfmt
     clippy
 
-    # Dev tools
+    # Others
     gnumake
     terraform
     azure-cli
+    ripgrep
   ]
 
   # Linux
