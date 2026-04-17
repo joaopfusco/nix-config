@@ -9,10 +9,6 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    extraPackages = with pkgs; [
-      stylua
-    ];
-
     # homeStateVersion <= 25.11
     withRuby = false;
     withPython3 = false;
