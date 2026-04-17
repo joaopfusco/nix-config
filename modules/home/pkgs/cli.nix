@@ -27,6 +27,7 @@
     clippy
 
     # Others
+    lazygit
     gnumake
     terraform
     azure-cli
