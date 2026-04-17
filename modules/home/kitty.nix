@@ -1,26 +1,17 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
-
   programs.kitty = {
     enable = true;
-    themeFile = "Catppuccin-Mocha";
-    
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      size = 11;
-    };
     
     settings = {
       shell = "${pkgs.zsh}/bin/zsh --login";
+      font_size = 11;
 
       # Window and Appearance
       window_padding_width = 15;
       confirm_os_window_close = 0;
-      background_opacity = "0.95";
+      background_opacity = "0.90";
       hide_window_decorations = "yes";
 
       # Cursor and Scroll
@@ -36,11 +27,6 @@
 
       # Ligatures
       disable_ligatures = "never";
-      
-      # URL Handling
-      url_color = "#89b4fa";
-      url_style = "curly";
-      open_url_with = "default";
     };
   };
 }
