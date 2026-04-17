@@ -10,13 +10,7 @@
     vimdiffAlias = true;
 
     extraPackages = with pkgs; [
-      fd
-      fzf
-      ripgrep
       stylua
-      statix
-      nixd
-      alejandra
     ];
 
     # homeStateVersion <= 25.11
@@ -28,5 +22,5 @@
   git clone https://github.com/LazyVim/starter ~/nix-config/modules/home/nvim
   rm -rf ~/nix-config/modules/home/nvim/.git
   */
-  xdg.configFile."nvim".source = ./nvim;
+  # xdg.configFile."nvim".source = ./nvim;
 }

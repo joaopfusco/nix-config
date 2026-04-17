@@ -8,6 +8,9 @@
     # Nix tools
     home-manager
     nixfmt
+    alejandra
+    nixd
+    statix
 
     # Python
     uv
@@ -27,6 +30,9 @@
     clippy
 
     # Others
+    fd
+    fzf
+    ripgrep
     lazygit
     gnumake
     terraform
