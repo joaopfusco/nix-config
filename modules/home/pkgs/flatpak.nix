@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -10,14 +10,14 @@
 
     remotes = [
       {
-        name = "flathub";
+        name = "flathub-user";
         location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       }
     ];
 
     packages = [
-      { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
-      { appId = "io.github.flattool.Warehouse"; origin = "flathub"; }
+      { appId = "com.github.tchx84.Flatseal"; origin = "flathub-user"; }
+      { appId = "io.github.flattool.Warehouse"; origin = "flathub-user"; }
     ];
 
     uninstallUnmanaged = true;
