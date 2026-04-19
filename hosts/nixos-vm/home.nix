@@ -8,7 +8,7 @@
     ../../modules/home/zsh.nix
     ../../modules/home/direnv.nix
     ../../modules/home/kitty.nix
-    ../../modules/home/neovim.nix
+    ../../modules/home/vim.nix
     ../../modules/home/dotnet/complete.nix
   ];
 
