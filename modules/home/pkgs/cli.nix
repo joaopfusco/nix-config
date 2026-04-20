@@ -30,6 +30,7 @@
     clippy
 
     # Others
+    btop
     fd
     fzf
     ripgrep
