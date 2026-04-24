@@ -7,7 +7,7 @@
 
     settings = {
       shell = "${pkgs.zsh}/bin/zsh --login";
-      font_size = 11;
+      font_size = 12;
 
       # Window and Appearance
       window_padding_width = 15;
