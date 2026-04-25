@@ -13,11 +13,11 @@
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     
     # Modules
-    # ../../modules/configuration/hardware/intel-nvidia.nix
-    ../../modules/configuration/desktop/kde.nix
-    ../../modules/configuration/system.nix
-    ../../modules/configuration/user.nix
-    ../../modules/configuration/pkgs.nix
+    # ../../modules/nixos/hardware/intel-nvidia.nix
+    ../../modules/nixos/desktop/gnome.nix
+    ../../modules/nixos/system.nix
+    ../../modules/nixos/user.nix
+    ../../modules/nixos/pkgs.nix
   ];
 
   # Bootloader
