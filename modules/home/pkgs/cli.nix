@@ -39,6 +39,7 @@
     gnumake
     terraform
     azure-cli
+    claude-code
   ]
 
   # Linux
