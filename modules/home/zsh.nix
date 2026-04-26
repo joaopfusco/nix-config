@@ -8,7 +8,7 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    
+
     shellAliases = {
       # Common aliases
       ll = "ls -l";
@@ -16,6 +16,7 @@
       cls = "clear";
       ins="echo $IN_NIX_SHELL";
       py="python";
+      zed="zeditor";
 
       # Flake aliases
       flake-update = "nix flake update";
