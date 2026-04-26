@@ -9,6 +9,7 @@
     ../../modules/home/kitty.nix
     ../../modules/home/vim.nix
     ../../modules/home/dotnet/minimal.nix
+    ../../modules/home/zed.nix
   ];
 
   home.sessionVariables = {
