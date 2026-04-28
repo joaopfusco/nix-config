@@ -19,6 +19,14 @@
         Nix = {
           format_on_save = "off";
         };
+        CSharp = {
+          format_on_save = "off";
+          language_servers = [
+            "roslyn"
+            "!omnisharp"
+            "..."
+          ];
+        };
       };
 
       terminal = {
