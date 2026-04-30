@@ -16,9 +16,6 @@
 
     userSettings = {
       languages = {
-        Nix = {
-          format_on_save = "off";
-        };
         CSharp = {
           format_on_save = "off";
           language_servers = [
@@ -36,7 +33,11 @@
       };
 
       file_types = {
-        "Shell Script" = [ "envrc" ".envrc" "*.envrc" ];
+        "Shell Script" = [
+          "envrc"
+          ".envrc"
+          "*.envrc"
+        ];
       };
 
       ui_font_size = 16;
