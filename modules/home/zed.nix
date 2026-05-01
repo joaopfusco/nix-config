@@ -43,11 +43,7 @@
       ui_font_size = 16;
       buffer_font_size = 15;
 
-      theme = {
-        mode = "system";
-        light = "One Light";
-        dark = "One Dark";
-      };
+      theme = "One Dark";
     };
 
     userKeymaps = [
