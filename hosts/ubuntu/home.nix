@@ -16,7 +16,6 @@
     ../../modules/home/vim.nix
     ../../modules/home/dotnet/complete.nix
     ../../modules/home/zed.nix
-    ../../modules/home/dbeaver.nix
   ];
 
   home.sessionVariables = {
