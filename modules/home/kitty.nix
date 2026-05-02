@@ -1,12 +1,15 @@
 { pkgs, ... }:
 
 {
+  home.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
+
   programs.kitty = {
     enable = true;
     themeFile = "Catppuccin-Mocha";
 
     settings = {
       shell = "${pkgs.zsh}/bin/zsh --login";
+      font_family = "JetBrainsMono Nerd Font";
       font_size = 12;
 
       # Window and Appearance
