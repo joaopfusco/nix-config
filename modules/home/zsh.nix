@@ -1,4 +1,10 @@
-{ config, pkgs, username, host, ... }:
+{
+  config,
+  pkgs,
+  username,
+  host,
+  ...
+}:
 
 {
   programs.zsh = {
@@ -14,9 +20,9 @@
       ll = "ls -l";
       la = "ls -la";
       cls = "clear";
-      ins="echo $IN_NIX_SHELL";
-      py="python";
-      zed="zeditor";
+      ins = "echo $IN_NIX_SHELL";
+      py = "python";
+      zed = "zeditor";
 
       # Flake aliases
       flake-update = "nix flake update";
@@ -31,6 +37,12 @@
       nixos-gens = "sudo nixos-rebuild list-generations";
       nixos-rollback = "sudo nixos-rebuild switch --rollback";
       nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";
+
+      # Darwin aliases
+      darwin-switch = "darwin-rebuild switch --flake .#${host}";
+      darwin-upgrade = "nix flake update && darwin-rebuild switch --flake .#${host}";
+      darwin-gens = "darwin-rebuild --list-generations";
+      darwin-rollback = "darwin-rebuild rollback";
     };
 
     initContent = ''
@@ -46,7 +58,11 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "z" "docker" ];
+      plugins = [
+        "git"
+        "z"
+        "docker"
+      ];
       theme = "robbyrussell";
     };
   };

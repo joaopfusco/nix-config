@@ -65,7 +65,7 @@
         };
 
       commonHomeManager =
-        { host, system }:
+        { system }:
         {
           nix.registry.pkgs.flake = self;
           home = {
@@ -125,7 +125,7 @@
               home-manager.users.${username} = {
                 imports = [
                   ./hosts/${host}/home.nix
-                  (commonHomeManager { inherit host system; })
+                  (commonHomeManager { inherit system; })
                 ];
               };
             }
@@ -165,7 +165,7 @@
               home-manager.users.${username} = {
                 imports = [
                   ./hosts/${host}/home.nix
-                  (commonHomeManager { inherit host system; })
+                  (commonHomeManager { inherit system; })
                 ];
               };
             }
@@ -187,7 +187,7 @@
               extraSpecialArgs = { inherit host username inputs; };
               modules = [
                 ./hosts/${host}/home.nix
-                (commonHomeManager { inherit host system; })
+                (commonHomeManager { inherit system; })
               ];
             };
         }) allHosts
