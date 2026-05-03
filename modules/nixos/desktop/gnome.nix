@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Enable the X11 windowing system.
@@ -22,10 +22,10 @@
 
   # Reset GNOME settings to default values
   /*
-  gsettings reset org.gnome.desktop.interface icon-theme
-  gsettings reset org.gnome.desktop.interface gtk-theme
-  gsettings reset org.gnome.desktop.interface font-name
-  gsettings reset org.gnome.desktop.interface monospace-font-name
-  gsettings reset org.gnome.desktop.interface cursor-theme
+    gsettings reset org.gnome.desktop.interface icon-theme
+    gsettings reset org.gnome.desktop.interface gtk-theme
+    gsettings reset org.gnome.desktop.interface font-name
+    gsettings reset org.gnome.desktop.interface monospace-font-name
+    gsettings reset org.gnome.desktop.interface cursor-theme
   */
 }
