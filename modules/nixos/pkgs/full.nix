@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+  imports = [
+    ./base.nix
+  ];
+
   # Install Firefox
   programs.firefox.enable = true;
-
-  # Install Zsh
-  programs.zsh.enable = true;
 
   # Docker
   virtualisation.docker.enable = true;
@@ -18,15 +19,14 @@
   };
   virtualisation.spiceUSBRedirection.enable = true;
 
+  # Enable Flatpak support
+  services.flatpak.enable = true;
+  # Run flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Basic utilities
-    wget
-    curl
     distrobox
-
-    # Media codecs (GStreamer)
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-base
     gst_all_1.gst-plugins-good
@@ -34,8 +34,4 @@
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-libav
   ];
-
-  # Enable Flatpak support
-  services.flatpak.enable = true;
-  # Run flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }

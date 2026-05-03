@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    ./minimal.nix
+    ./base.nix
   ];
 
   home.packages = [

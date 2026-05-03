@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -11,13 +11,13 @@
     # inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     # inputs.nixos-hardware.nixosModules.common-cpu-intel
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-    
+
     # Modules
     # ../../modules/nixos/hardware/intel-nvidia.nix
     ../../modules/nixos/desktop/gnome.nix
-    ../../modules/nixos/system.nix
+    ../../modules/nixos/system/full.nix
+    ../../modules/nixos/pkgs/full.nix
     ../../modules/nixos/user.nix
-    ../../modules/nixos/pkgs.nix
   ];
 
   # Bootloader

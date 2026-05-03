@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  username,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -14,7 +8,7 @@
     ../../modules/home/direnv.nix
     ../../modules/home/kitty.nix
     ../../modules/home/vim.nix
-    ../../modules/home/dotnet/complete.nix
+    ../../modules/home/dotnet/full.nix
     ../../modules/home/zed.nix
   ];
 
