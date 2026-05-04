@@ -32,6 +32,7 @@
       "obs"
       "dbeaver-community"
       "postman"
+      "orbstack"
 
       # Optional
       # "rectangle"  # Tiling-like window management
