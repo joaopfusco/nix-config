@@ -1,14 +1,16 @@
 { pkgs, ... }:
-
+let
+  customKitty = if pkgs.stdenv.isDarwin then pkgs.emptyDirectory else pkgs.kitty;
+in
 {
-  home.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
-
   programs.kitty = {
     enable = true;
+    package = customKitty;
+
     themeFile = "Catppuccin-Mocha";
 
     settings = {
-      shell = "${pkgs.zsh}/bin/zsh --login";
+      shell = "zsh --login";
       font_family = "JetBrainsMono Nerd Font";
       font_size = 12;
 

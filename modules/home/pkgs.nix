@@ -17,13 +17,13 @@
 
       # Python
       uv
-      python312
+      python3
 
       # Node
-      nodejs_24
+      nodejs
 
       # Go
-      go_1_25
+      go
       gopls
 
       # Rust
@@ -49,6 +49,7 @@
     ++ lib.optionals stdenv.isLinux [
       gcc
       gdb
+      nerd-fonts.jetbrains-mono
     ]
 
     # macOS (Darwin)
