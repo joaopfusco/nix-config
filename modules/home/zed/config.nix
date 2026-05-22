@@ -12,8 +12,11 @@
       "sql"
       "make"
       "nix"
+      "csharp"
+      "docker"
       "dockerfile"
       "git-firefly"
+      "material-icon-theme"
     ];
 
     userSettings = {
@@ -44,6 +47,7 @@
       buffer_font_size = 15;
 
       theme = "One Dark";
+      icon_theme = "Material Icon Theme";
     };
 
     userKeymaps = [
