@@ -21,7 +21,6 @@
       cls = "clear";
       ins = "echo $IN_NIX_SHELL";
       py = "python3";
-      zed = "zeditor";
 
       # Flake aliases
       flake-update = "nix flake update";

@@ -9,6 +9,7 @@
     claude-code
     devenv
     uv
+    python3
     nodejs
   ];
 }
