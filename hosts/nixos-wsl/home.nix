@@ -7,8 +7,7 @@
     ../../modules/home/git.nix
     ../../modules/home/zsh.nix
     ../../modules/home/direnv.nix
-    ../../modules/home/dotnet/full.nix
-    ../../modules/home/zed
+    ../../modules/home/dotnet
   ];
 
   # Ignoring any other definition and using this one

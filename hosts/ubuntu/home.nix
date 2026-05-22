@@ -1,25 +1,13 @@
-{ pkgs, ... }:
-
+{ ... }:
 {
   imports = [
+    ../../modules/home/config.nix
     ../../modules/home/nix.nix
     ../../modules/home/pkgs/cli.nix
     ../../modules/home/git.nix
     ../../modules/home/zsh.nix
     ../../modules/home/direnv.nix
-    ../../modules/home/dotnet/base.nix
-    ../../modules/home/zed
+    ../../modules/home/dotnet/minimal.nix
+    ../../modules/home/zed/config.nix
   ];
-
-  home.sessionVariables = {
-    NIX_PATH = "nixpkgs=${pkgs.path}";
-  };
-
-  targets.genericLinux.enable = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
 }

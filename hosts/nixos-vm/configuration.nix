@@ -14,8 +14,8 @@
     # Modules
     # ../../modules/nixos/hardware/intel-nvidia.nix
     ../../modules/nixos/desktop/gnome.nix
-    ../../modules/nixos/system/full.nix
-    ../../modules/nixos/pkgs/full.nix
+    ../../modules/nixos/system
+    ../../modules/nixos/pkgs
     ../../modules/nixos/user.nix
     ../../modules/nixos/ld.nix
   ];

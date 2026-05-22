@@ -8,7 +8,7 @@
     ../../modules/home/git.nix
     ../../modules/home/zsh.nix
     ../../modules/home/direnv.nix
-    ../../modules/home/dotnet/full.nix
+    ../../modules/home/dotnet
     ../../modules/home/zed
   ];
 

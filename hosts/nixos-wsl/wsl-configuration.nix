@@ -6,8 +6,8 @@
 
 {
   imports = [
-    ../../modules/nixos/system/base.nix
-    ../../modules/nixos/pkgs/base.nix
+    ../../modules/nixos/system/minimal.nix
+    ../../modules/nixos/pkgs/minimal.nix
     ../../modules/nixos/user.nix
     ../../modules/nixos/ld.nix
   ];

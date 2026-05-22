@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./base.nix
+    ./minimal.nix
   ];
 
   # Install Firefox
