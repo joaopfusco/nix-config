@@ -42,6 +42,13 @@
       username = "joaop";
       homeStateVersion = "25.11";
 
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
       getHostSystem =
         host:
         let
@@ -70,7 +77,7 @@
         };
 
       commonHomeManager =
-        { system }:
+        { pkgs }:
         {
           imports = [ inputs.nix-index-database.homeModules.nix-index ];
           nix.registry.pkgs.flake = self;
@@ -79,7 +86,7 @@
           home = {
             username = username;
             homeDirectory =
-              if nixpkgs.lib.hasInfix "darwin" system then "/Users/${username}" else "/home/${username}";
+              if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
             stateVersion = homeStateVersion;
           };
         };
@@ -106,12 +113,7 @@
     in
     {
       # Legacy packages for ad-hoc use (e.g. nix shell pkgs#<pkg> or nix shell pkgs#stable.<pkg>)
-      legacyPackages = nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-        "aarch64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ] (system: mkPkgs system);
+      legacyPackages = nixpkgs.lib.genAttrs systems mkPkgs;
 
       # NixOS configurations
       nixosConfigurations = nixpkgs.lib.genAttrs (nixosHosts ++ wslHosts) (
@@ -133,7 +135,7 @@
               home-manager.users.${username} = {
                 imports = [
                   ./hosts/${host}/home.nix
-                  (commonHomeManager { inherit system; })
+                  (commonHomeManager { inherit pkgs; })
                 ];
               };
             }
@@ -173,7 +175,7 @@
               home-manager.users.${username} = {
                 imports = [
                   ./hosts/${host}/home.nix
-                  (commonHomeManager { inherit system; })
+                  (commonHomeManager { inherit pkgs; })
                 ];
               };
             }
@@ -195,7 +197,7 @@
               extraSpecialArgs = { inherit host username inputs; };
               modules = [
                 ./hosts/${host}/home.nix
-                (commonHomeManager { inherit system; })
+                (commonHomeManager { inherit pkgs; })
               ];
             };
         }) allHosts
