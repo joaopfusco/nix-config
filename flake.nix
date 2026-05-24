@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +28,6 @@
       nixpkgs-stable,
       home-manager,
       darwin,
-      nixos-wsl,
       ...
     }@inputs:
     let
@@ -94,11 +88,6 @@
         nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir ./hosts)
       );
 
-      # WSL hosts
-      wslHosts = builtins.filter (
-        host: builtins.pathExists (./hosts + "/${host}/wsl-configuration.nix")
-      ) allHosts;
-
       # MacOS hosts
       darwinHosts = builtins.filter (
         host: builtins.pathExists (./hosts + "/${host}/darwin-configuration.nix")
@@ -107,35 +96,6 @@
     {
       # Legacy packages for ad-hoc use (e.g. nix shell pkgs#<pkg> or nix shell pkgs#stable.<pkg>)
       legacyPackages = nixpkgs.lib.genAttrs systems mkPkgs;
-
-      # NixOS configurations
-      nixosConfigurations = nixpkgs.lib.genAttrs wslHosts (
-        host:
-        let
-          system = getHostSystem host;
-          pkgs = mkPkgs system;
-        in
-        nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit host username inputs; };
-          modules = [
-            { nixpkgs.pkgs = pkgs; }
-            nixos-wsl.nixosModules.default
-            ./hosts/${host}/wsl-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit host username inputs; };
-              home-manager.users.${username} = {
-                imports = [
-                  ./hosts/${host}/home.nix
-                  (commonHomeManager { inherit pkgs; })
-                ];
-              };
-            }
-          ];
-        }
-      );
 
       # Darwin configurations
       darwinConfigurations = nixpkgs.lib.genAttrs darwinHosts (
