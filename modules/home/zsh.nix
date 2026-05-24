@@ -22,9 +22,6 @@
       ins = "echo $IN_NIX_SHELL";
       py = "python3";
 
-      # Flake aliases
-      flake-update = "nix flake update";
-
       # Home aliases
       home-switch = "home-manager switch --flake .#${username}@${host}";
 

@@ -22,18 +22,6 @@
 
 ---
 
-## 🛠 Comandos Principais
-
-| Ação                             | Comando                                                                    |
-|----------------------------------|----------------------------------------------------------------------------|
-| Build & Switch                   | `nixos-rebuild switch --flake .#nixos-vm`                                  |
-| Build sem restart                | `nixos-rebuild build --flake .#nixos-vm && result/bin/switch-to-configuration switch` |
-| Testar (dry-run)                 | `nixos-rebuild test --flake .#nixos-vm`                                    |
-| Aplicar Home Manager             | `home-manager switch --flake .#joaop@nixos-vm`                                       |
-| Atualizar Flake Lock             | `nix flake update`                                                         |
-
----
-
 ## 🔄 Atualização e Gerenciamento
 
 ```bash
@@ -43,11 +31,11 @@ git pull origin main
 # Atualize inputs do Flake
 nix flake update
 
-# Rebuild e switch do sistema (sudo)
-sudo nixos-rebuild switch --flake .#nixos-vm
-
 # Reaplique configurações do usuário (Home Manager)
-home-manager switch --flake .#joaop@nixos-vm
+home-manager switch --flake .#joaop@ubuntu
+
+# Reaplique configurações do macOS (Darwin)
+darwin-rebuild switch --flake .#macbook
 ```
 
 ---
@@ -83,15 +71,17 @@ git clone git@github.com:joaopfusco/nix-config.git
 cd nix-config
 ```
 
-### 3. Executar o Script de Configuração
-O script automatizado irá copiar as configurações de hardware da máquina atual, adicioná-las ao Git e realizar o primeiro build do Flake:
+### 3. Executar o comando de switch
+Execute o comando abaixo para aplicar as configurações do Flake:
 
 ```bash
-# Dê permissão de execução ao script
-chmod +x setup.sh
+# Linux
+home-manager switch --flake .#{username}@{hostname}
+```
 
-# Execute o instalador
-./setup.sh
+```bash
+# macOS
+darwin-rebuild switch --flake .#{hostname}
 ```
 
 ---
