@@ -28,14 +28,6 @@
       # Home aliases
       home-switch = "home-manager switch --flake .#${username}@${host}";
 
-      # NixOS aliases
-      nixos-switch = "sudo nixos-rebuild switch --flake .#${host}";
-      nixos-upgrade = "nix flake update && sudo nixos-rebuild switch --flake .#${host}";
-      nixos-test = "sudo nixos-rebuild test --flake .#${host}";
-      nixos-gens = "sudo nixos-rebuild list-generations";
-      nixos-rollback = "sudo nixos-rebuild switch --rollback";
-      nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";
-
       # Darwin aliases
       darwin-switch = "darwin-rebuild switch --flake .#${host}";
       darwin-upgrade = "nix flake update && darwin-rebuild switch --flake .#${host}";
