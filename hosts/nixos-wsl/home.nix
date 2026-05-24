@@ -3,11 +3,12 @@
 {
   imports = [
     ../../modules/home/nix.nix
-    ../../modules/home/pkgs/cli.nix
+    ../../modules/home/pkgs.nix
     ../../modules/home/git.nix
     ../../modules/home/zsh.nix
     ../../modules/home/direnv.nix
     ../../modules/home/dotnet
+    ../../modules/home/zed.nix
   ];
 
   # Ignoring any other definition and using this one

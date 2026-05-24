@@ -24,8 +24,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs =
@@ -96,11 +94,6 @@
         nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir ./hosts)
       );
 
-      # NixOS hosts
-      nixosHosts = builtins.filter (
-        host: builtins.pathExists (./hosts + "/${host}/configuration.nix")
-      ) allHosts;
-
       # WSL hosts
       wslHosts = builtins.filter (
         host: builtins.pathExists (./hosts + "/${host}/wsl-configuration.nix")
@@ -116,10 +109,9 @@
       legacyPackages = nixpkgs.lib.genAttrs systems mkPkgs;
 
       # NixOS configurations
-      nixosConfigurations = nixpkgs.lib.genAttrs (nixosHosts ++ wslHosts) (
+      nixosConfigurations = nixpkgs.lib.genAttrs wslHosts (
         host:
         let
-          isWsl = builtins.pathExists (./hosts + "/${host}/wsl-configuration.nix");
           system = getHostSystem host;
           pkgs = mkPkgs system;
         in
@@ -127,6 +119,8 @@
           specialArgs = { inherit host username inputs; };
           modules = [
             { nixpkgs.pkgs = pkgs; }
+            nixos-wsl.nixosModules.default
+            ./hosts/${host}/wsl-configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -139,19 +133,7 @@
                 ];
               };
             }
-          ]
-          ++ (
-            if isWsl then
-              [
-                nixos-wsl.nixosModules.default
-                ./hosts/${host}/wsl-configuration.nix
-              ]
-            else
-              [
-                ./hosts/${host}/hardware-configuration.nix
-                ./hosts/${host}/configuration.nix
-              ]
-          );
+          ];
         }
       );
 
@@ -183,7 +165,7 @@
         }
       );
 
-      # Home Manager configurations for non-NixOS hosts
+      # Home Manager configurations
       homeConfigurations = builtins.listToAttrs (
         map (host: {
           name = "${username}@${host}";

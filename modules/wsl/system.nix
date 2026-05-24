@@ -1,6 +1,13 @@
-{ host, ... }:
+{ host, username, ... }:
 
 {
+  # Enable WSL
+  wsl = {
+    enable = true;
+    defaultUser = username;
+    interop.register = true;
+  };
+
   # Enable Flakes
   nix.settings.experimental-features = [
     "nix-command"
