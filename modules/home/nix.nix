@@ -6,7 +6,6 @@
     nixfmt
     alejandra
     nixd
-    nil
     statix
   ];
 }

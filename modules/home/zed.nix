@@ -21,6 +21,12 @@
 
     userSettings = {
       languages = {
+        Nix = {
+          language_servers = [
+            "nixd"
+            "!nil"
+          ];
+        };
         JSON = {
           format_on_save = "off";
         };
