@@ -1,9 +1,10 @@
-{ username, pkgs, ... }:
+{ username, ... }:
 
 {
   users.users.${username} = {
     name = username;
     home = "/Users/${username}";
-    shell = pkgs.zsh;
   };
+
+  system.primaryUser = username;
 }

@@ -1,6 +1,5 @@
 {
   host,
-  username,
   ...
 }:
 
@@ -15,9 +14,6 @@
   networking.hostName = host;
   networking.localHostName = host;
   networking.computerName = host;
-
-  # Primary user
-  system.primaryUser = username;
 
   # Set time zone
   time.timeZone = "America/Sao_Paulo";

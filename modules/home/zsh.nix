@@ -1,13 +1,20 @@
 {
+  pkgs,
   config,
   username,
   host,
   ...
 }:
 
+let
+  zshPackage = if pkgs.stdenv.isDarwin
+    then pkgs.emptyDirectory
+    else pkgs.zsh;
+in
 {
   programs.zsh = {
     enable = true;
+    package = zshPackage;
     dotDir = "${config.xdg.configHome}/zsh";
 
     enableCompletion = true;
