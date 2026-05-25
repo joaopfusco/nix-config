@@ -10,11 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +22,6 @@
       nixpkgs,
       nixpkgs-stable,
       home-manager,
-      darwin,
       ...
     }@inputs:
     let
@@ -68,62 +62,45 @@
           ];
         };
 
-      commonHomeManager =
+      homeManagerModule =
         { pkgs }:
         {
-          imports = [ inputs.nix-index-database.homeModules.nix-index ];
+          imports = [
+            inputs.nix-index-database.homeModules.nix-index
+          ];
+
           nix.registry.pkgs.flake = self;
+
+          targets.genericLinux.enable = pkgs.stdenv.hostPlatform.isLinux;
+
           programs.nix-index-database.comma.enable = true;
           programs.nix-index.enable = true;
+
           home = {
             username = username;
             homeDirectory =
               if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
             stateVersion = homeStateVersion;
+            sessionVariables = {
+              NIX_PATH = "nixpkgs=${pkgs.path}";
+            };
+          };
+
+          nix.gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 7d";
           };
         };
 
-      # All hosts
-      allHosts = builtins.attrNames (
+      # Hosts
+      hosts = builtins.attrNames (
         nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir ./hosts)
       );
-
-      # MacOS hosts
-      darwinHosts = builtins.filter (
-        host: builtins.pathExists (./hosts + "/${host}/darwin-configuration.nix")
-      ) allHosts;
     in
     {
       # Legacy packages for ad-hoc use (e.g. nix shell pkgs#<pkg> or nix shell pkgs#stable.<pkg>)
       legacyPackages = nixpkgs.lib.genAttrs systems mkPkgs;
-
-      # Darwin configurations
-      darwinConfigurations = nixpkgs.lib.genAttrs darwinHosts (
-        host:
-        let
-          system = getHostSystem host;
-          pkgs = mkPkgs system;
-        in
-        darwin.lib.darwinSystem {
-          specialArgs = { inherit host username inputs; };
-          modules = [
-            { nixpkgs.pkgs = pkgs; }
-            ./hosts/${host}/darwin-configuration.nix
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit host username inputs; };
-              home-manager.users.${username} = {
-                imports = [
-                  ./hosts/${host}/home.nix
-                  (commonHomeManager { inherit pkgs; })
-                ];
-              };
-            }
-          ];
-        }
-      );
 
       # Home Manager configurations
       homeConfigurations = builtins.listToAttrs (
@@ -139,10 +116,10 @@
               extraSpecialArgs = { inherit host username inputs; };
               modules = [
                 ./hosts/${host}/home.nix
-                (commonHomeManager { inherit pkgs; })
+                (homeManagerModule { inherit pkgs; })
               ];
             };
-        }) allHosts
+        }) hosts
       );
     };
 }

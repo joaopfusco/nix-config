@@ -1,13 +1,12 @@
 { ... }:
-
 {
   imports = [
-    ../../modules/home/nix.nix
-    ../../modules/home/pkgs.nix
-    ../../modules/home/git.nix
-    ../../modules/home/zsh.nix
-    ../../modules/home/direnv.nix
-    ../../modules/home/dotnet/minimal.nix
-    ../../modules/home/zed.nix
+    ../../modules/nix.nix
+    ../../modules/pkgs.nix
+    ../../modules/git.nix
+    ../../modules/zsh.nix
+    ../../modules/direnv.nix
+    ../../modules/dotnet/minimal.nix
+    ../../modules/zed.nix
   ];
 }

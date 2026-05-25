@@ -7,9 +7,7 @@
 }:
 
 let
-  zshPackage = if pkgs.stdenv.isDarwin
-    then pkgs.emptyDirectory
-    else pkgs.zsh;
+  zshPackage = if pkgs.stdenv.isDarwin then pkgs.emptyDirectory else pkgs.zsh;
 in
 {
   programs.zsh = {
@@ -31,12 +29,6 @@ in
 
       # Home aliases
       home-switch = "home-manager switch --flake .#${username}@${host}";
-
-      # Darwin aliases
-      darwin-switch = "darwin-rebuild switch --flake .#${host}";
-      darwin-upgrade = "nix flake update && darwin-rebuild switch --flake .#${host}";
-      darwin-gens = "darwin-rebuild --list-generations";
-      darwin-rollback = "darwin-rebuild rollback";
     };
 
     initContent = ''
