@@ -20,6 +20,8 @@
     ];
 
     userSettings = {
+      soft_wrap = "editor_width";
+
       autosave = {
         after_delay = {
           milliseconds = 1000;
