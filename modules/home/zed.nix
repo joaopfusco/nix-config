@@ -1,10 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   programs.zed-editor = {
     enable = true;
     # mutableUserSettings = false; # only nix can modify
     # mutableUserKeymaps = false; # only nix can modify
-    package = lib.mkDefault pkgs.emptyDirectory;
+    package = pkgs.emptyDirectory;
 
     extensions = [
       "html"
