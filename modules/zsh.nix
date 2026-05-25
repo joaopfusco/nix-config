@@ -29,6 +29,10 @@ in
 
       # Home aliases
       home-switch = "home-manager switch --flake .#${username}@${host}";
+
+      # Determinate Nix aliases
+      dnix-upgrade = "sudo determinate-nixd upgrade";
+      dnix-version = "determinate-nixd version";
     };
 
     initContent = ''
