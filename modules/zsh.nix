@@ -7,7 +7,10 @@
 }:
 
 let
-  zshPackage = if pkgs.stdenv.isDarwin then pkgs.emptyDirectory else pkgs.zsh;
+  zshPackage =
+    if pkgs.stdenv.isLinux
+    then pkgs.zsh
+    else pkgs.emptyDirectory;
 in
 {
   programs.zsh = {

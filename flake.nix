@@ -79,7 +79,9 @@
           home = {
             username = username;
             homeDirectory =
-              if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
+              if pkgs.stdenv.hostPlatform.isLinux
+              then "/home/${username}"
+              else "/Users/${username}";
             stateVersion = homeStateVersion;
             sessionVariables = {
               NIX_PATH = "nixpkgs=${pkgs.path}";
