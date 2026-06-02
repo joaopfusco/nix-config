@@ -20,6 +20,14 @@
     ];
 
     userSettings = {
+      file_finder = {
+        include_ignored = "all";
+      };
+
+      search = {
+        include_ignored = true;
+      };
+
       soft_wrap = "editor_width";
 
       autosave = {
