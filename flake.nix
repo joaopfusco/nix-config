@@ -9,11 +9,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -65,23 +60,12 @@
       homeManagerModule =
         { pkgs }:
         {
-          imports = [
-            inputs.nix-index-database.homeModules.nix-index
-          ];
-
           nix.registry.pkgs.flake = self;
-
           targets.genericLinux.enable = pkgs.stdenv.hostPlatform.isLinux;
-
-          programs.nix-index-database.comma.enable = true;
-          programs.nix-index.enable = true;
-
           home = {
             username = username;
             homeDirectory =
-              if pkgs.stdenv.hostPlatform.isLinux
-              then "/home/${username}"
-              else "/Users/${username}";
+              if pkgs.stdenv.hostPlatform.isLinux then "/home/${username}" else "/Users/${username}";
             stateVersion = homeStateVersion;
             sessionVariables = {
               NIX_PATH = "nixpkgs=${pkgs.path}";
