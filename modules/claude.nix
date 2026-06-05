@@ -8,6 +8,7 @@
       autoMemoryEnabled = true;
 
       extraKnownMarketplaces = {
+        # in case it is not included by default run:
         # claude plugin marketplace add anthropics/claude-plugins-official
         claude-plugins-official = {
           source = {
@@ -39,15 +40,15 @@
   };
 
   home.packages = with pkgs; [
-      # python
-      pyright
-      # node
-      typescript-language-server
-      # go
-      gopls
-      # rust
-      rust-analyzer
-      # dotnet
-      csharp-ls
-    ];
+    # python
+    pyright
+    # node
+    typescript-language-server
+    # go
+    gopls
+    # rust
+    rust-analyzer
+    # dotnet
+    csharp-ls
+  ];
 }
