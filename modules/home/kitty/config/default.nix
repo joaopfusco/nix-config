@@ -1,0 +1,33 @@
+{ pkgs, lib, ... }:
+{
+  programs.kitty = {
+    enable = true;
+    package = lib.mkDefault pkgs.emptyDirectory;
+
+    themeFile = "adwaita_dark";
+
+    settings = {
+      # X11 gives window decorations; 0.34+ can use wayland
+      linux_display_server = "x11";
+
+      shell = "zsh --login";
+      shell_integration = "enabled";
+
+      window_padding_width = 4;
+
+      scrollback_lines = 10000;
+      confirm_os_window_close = 0;
+      strip_trailing_spaces = "smart";
+
+      cursor_shape = "beam";
+      cursor_blink_interval = 0;
+
+      enable_audio_bell = "no";
+      update_check_interval = 0;
+      disable_ligatures = "never";
+
+      input_delay = 3;
+      repaint_delay = 10;
+    };
+  };
+}
