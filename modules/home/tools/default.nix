@@ -4,6 +4,5 @@
     fastfetch
     gnumake
     terraform
-    azure-cli
   ];
 }

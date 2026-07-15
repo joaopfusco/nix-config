@@ -8,11 +8,11 @@
     ../../modules/home/lsps
     ../../modules/home/direnv
     ../../modules/home/git
-    ../../modules/home/gh/config
-    ../../modules/home/kitty/config
-    ../../modules/home/claude/config
+    ../../modules/home/gh
+    ../../modules/home/claude-code/config
     ../../modules/home/dotnet/config
     ../../modules/home/zsh/config
+    ../../modules/home/kitty/config
     ../../modules/home/zed/config
   ];
 }
