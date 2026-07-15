@@ -4,7 +4,7 @@
     enable = true;
     package = lib.mkDefault null;
 
-    themeFile = "adwaita_dark";
+    themeFile = "tokyo_night_night";
 
     settings = {
       # X11 gives window decorations; 0.34+ can use wayland
