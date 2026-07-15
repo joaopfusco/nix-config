@@ -3,12 +3,13 @@
   imports = [
     ../../modules/nix
     ../../modules/tools
+    ../../modules/gh
+    ../../modules/git
+    ../../modules/direnv
     ../../modules/python
     ../../modules/node
-    ../../modules/lsps
-    ../../modules/direnv
-    ../../modules/git
-    ../../modules/gh
+    ../../modules/rust/config
+    ../../modules/go/config
     ../../modules/claude-code/config
     ../../modules/dotnet/config
     ../../modules/zsh/config

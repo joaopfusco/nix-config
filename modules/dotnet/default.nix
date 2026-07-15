@@ -17,7 +17,8 @@ in
 
   home.packages = [
     dotnet-stack
-    pkgs.dotnet-ef
+    pkgs.dotnet-ef # dotnet tool install --global dotnet-ef
+    pkgs.csharp-ls # dotnet tool install --global csharp-ls
   ];
 
   home.sessionVariables = {

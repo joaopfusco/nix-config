@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   imports = [ ./config ];
-  home.packages = with pkgs; [
-    python3
-    uv
+  home.packages = [
+    pkgs.cargo
+    pkgs.rustc
   ];
 }
