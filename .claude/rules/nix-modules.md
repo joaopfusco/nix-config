@@ -1,14 +1,13 @@
 ---
 paths:
-  - "modules/home/**"
-  - "modules/nixos/**"
+  - "modules/**"
 ---
 
-# Módulos (`modules/home/`, `modules/nixos/`)
+# Módulos (`modules/`)
 
 ## `package = null` vs `pkgs.emptyDirectory`
 
-Ao escrever um `modules/home/<app>/config/default.nix` config-only (sem instalar o
+Ao escrever um `modules/<app>/config/default.nix` config-only (sem instalar o
 binário), o valor de `programs.<app>.package` depende do módulo real do Home Manager —
 não assumir por hábito:
 
@@ -51,17 +50,12 @@ caso, não "nix é sempre melhor":
 **Nix:**
 - `direnv`, `gh` — baixo risco, sem vantagem de curadoria do apt/Homebrew pra esses;
   `gh` especificamente saiu do Homebrew pra consolidar fontes de pacote.
-- `azure-cli` — nix **só em hosts NixOS** (não há alternativa lá). Em perfis standalone
-  fica no apt de propósito: é o repositório apt oficial da Microsoft, atualiza rápido
-  acompanhando a API do Azure, e o pacote do nixpkgs (deps/extensions Python pesadas) é um
-  ponto fraco conhecido. Não existe módulo `programs.azure-cli` do Home Manager — é uma
-  entrada simples em `home.packages` (`modules/home/azure-cli/default.nix`).
 
 ## `zed` — symlink out-of-store
 
 A config do zed usa `config.lib.file.mkOutOfStoreSymlink`, não
 `programs.zed-editor.userSettings`/`userKeymaps`: `xdg.configFile."zed/settings.json"` e
-`keymap.json` apontam direto pros arquivos JSON simples em `modules/home/zed/config/`
+`keymap.json` apontam direto pros arquivos JSON simples em `modules/zed/config/`
 (edição live, sem `home-manager switch`, versionado por construção). Por isso,
 `programs.zed-editor.extensions` **não é usado** — essa option escreve em
 `settings.json` via `home.activation` mesmo com `userSettings` vazio, o que colide com o

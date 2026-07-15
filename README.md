@@ -1,41 +1,25 @@
 # ❄️ nix-config
 
-Configuração pessoal em Nix Flakes, cobrindo dois cenários:
-
-- **`hosts/`** — máquinas onde o NixOS é dono do sistema operacional inteiro. Cada host
-  importa `modules/nixos/*` (sistema) e embute o Home Manager como módulo do próprio NixOS
-  (um único `nixos-rebuild switch` aplica os dois).
-- **`home/`** — perfis standalone do Home Manager, para quando o Nix não é dono do SO
-  (qualquer distro Linux não-NixOS, ou macOS sem nix-darwin). Aplicados via
-  `home-manager switch`, sem tocar no sistema.
-
-Os dois lados compartilham os mesmos módulos de usuário (`modules/home/*`).
+Configuração pessoal em Nix Flakes, usando **Home Manager standalone** (Nix não é dono
+do sistema operacional — funciona em qualquer distro Linux ou macOS).
 
 ## Estrutura
 
 ```
 nix-config/
 ├── flake.nix
-├── hosts/                    # máquinas NixOS
-│   └── <nome-do-host>/
-│       ├── configuration.nix
-│       ├── hardware-configuration.nix
-│       └── home.nix
-├── home/                     # perfis standalone (só Home Manager)
-│   └── <perfil>/home.nix     # ex.: qualquer distro Linux não-NixOS, macOS sem nix-darwin
-└── modules/
-    ├── nixos/                # módulos de sistema — só existem dentro de um host NixOS
-    │   └── <assunto>.nix     # um arquivo por concern (rede, locale, hardware, etc.)
-    └── home/                 # módulos de usuário — compartilhados por hosts/ e home/
-        └── <app>/            # um módulo por app/ferramenta (ver convenção abaixo)
+├── home/                      # perfis standalone
+│   └── <perfil>/home.nix      # ex.: linux, macos
+└── modules/                   # módulos de usuário, compartilhados por todos os perfis
+    └── <app>/                 # um módulo por app/ferramenta (ver convenção abaixo)
 ```
 
-Os nomes de host/perfil correspondem 1:1 aos nomes das pastas em `hosts/` e `home/`
+Os nomes de perfil correspondem 1:1 aos nomes das pastas em `home/`
 (descobertos automaticamente pelo `flake.nix` — não precisam ser listados em lugar nenhum).
 
 ### Convenção `config/` + `default.nix`
 
-Cada módulo de `modules/home/<app>/` que instala um app **e** gerencia a config dele segue o
+Cada módulo de `modules/<app>/` que instala um app **e** gerencia a config dele segue o
 mesmo padrão:
 
 - `config/` — só a configuração (`programs.<app>.package = lib.mkDefault pkgs.emptyDirectory;`
@@ -45,9 +29,7 @@ mesmo padrão:
   "completa": instala e configura.
 
 Cada `home.nix` escolhe, módulo por módulo, qual variante importar
-(`../../modules/home/<app>` vs `../../modules/home/<app>/config`). Nos hosts NixOS isso não
-faz tanta diferença (lá o Nix já é dono do sistema todo, então normalmente vale a pena usar
-sempre a variante completa); nos perfis standalone é onde essa escolha importa de verdade.
+(`../../modules/<app>` vs `../../modules/<app>/config`).
 
 Módulos que são só uma lista de pacotes, sem config nenhuma pra separar, não têm `config/` —
 só um `default.nix` direto.
@@ -71,18 +53,6 @@ cd nix-config
 
 ## Setup inicial (nova instalação)
 
-### Máquina NixOS (`hosts/<nome>`)
-
-1. Instale o NixOS normalmente (boot no ISO, particiona, `nixos-generate-config`).
-2. Copie o `hardware-configuration.nix` gerado pra `hosts/<nome>/hardware-configuration.nix`
-   (sobrescrevendo o placeholder, se for um host novo).
-3. Aplique:
-   ```bash
-   sudo nixos-rebuild switch --flake .#<nome-do-host>
-   ```
-
-### Linux não-NixOS ou macOS sem nix-darwin (`home/<perfil>`)
-
 ```bash
 home-manager switch --flake .#joaop@<perfil>
 ```
@@ -93,9 +63,6 @@ home-manager switch --flake .#joaop@<perfil>
 # Atualizar os inputs do flake (nixpkgs estável avança sozinho; revise o diff do flake.lock)
 nix flake update
 
-# Reaplicar — máquina NixOS
-sudo nixos-rebuild switch --flake .#<nome-do-host>
-
-# Reaplicar — perfil standalone
+# Reaplicar
 home-manager switch --flake .#joaop@<perfil>
 ```

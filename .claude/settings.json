@@ -5,9 +5,7 @@
       "Bash(nix flake show:*)",
       "Bash(nix flake metadata:*)",
       "Bash(nix build:*)",
-      "Bash(home-manager build:*)",
-      "Bash(nixos-rebuild build:*)",
-      "Bash(nixos-rebuild dry-activate:*)"
+      "Bash(home-manager build:*)"
     ]
   },
   "env": {}

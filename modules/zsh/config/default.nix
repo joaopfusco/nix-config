@@ -39,21 +39,6 @@
         git push
       '';
 
-      # NixOS
-      nixos-switch = "sudo nixos-rebuild switch --flake .#${host}";
-      nixos-upgrade = ''
-        git pull --rebase &&
-        nix flake update &&
-        sudo nixos-rebuild switch --flake .#${host} &&
-        git add flake.lock &&
-        git commit -m 'chore: update flake.lock' &&
-        git push
-      '';
-      nixos-test = "sudo nixos-rebuild test --flake .#${host}";
-      nixos-gens = "sudo nixos-rebuild list-generations";
-      nixos-rollback = "sudo nixos-rebuild switch --rollback";
-      nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";
-
       # Determinate Nix
       nixd-upgrade = "sudo determinate-nixd upgrade";
       nixd-version = "determinate-nixd version";

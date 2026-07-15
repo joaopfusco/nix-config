@@ -4,14 +4,8 @@
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-hardware = {
-      url = "github:nixos/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -54,7 +48,6 @@
         };
 
       # Standalone home/ profiles read an optional `system` file (default: x86_64-linux).
-      # NixOS hosts/ don't need this: hardware-configuration.nix sets nixpkgs.hostPlatform directly.
       getProfileSystem =
         profile:
         let
@@ -65,7 +58,7 @@
         else
           "x86_64-linux";
 
-      # Shared Home Manager settings, used both standalone (home/) and embedded in NixOS (hosts/)
+      # Shared Home Manager settings
       commonHomeManager =
         { pkgs, ... }:
         {
@@ -88,43 +81,12 @@
       dirNames =
         path: builtins.attrNames (nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir path));
 
-      # NixOS machines (Nix owns the whole OS)
-      nixosHosts = dirNames ./hosts;
-
-      # Standalone Home Manager profiles (any non-NixOS Linux distro, or macOS without nix-darwin)
+      # Standalone Home Manager profiles
       homeProfiles = dirNames ./home;
     in
     {
       # Legacy packages for ad-hoc use (e.g. nix shell pkgs#<pkg> or nix shell pkgs#unstable.<pkg>)
       legacyPackages = nixpkgs.lib.genAttrs systems mkPkgs;
-
-      # NixOS system configurations, with Home Manager embedded as a NixOS module
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit host username inputs; };
-            modules = [
-              ./hosts/${host}/hardware-configuration.nix
-              ./hosts/${host}/configuration.nix
-              {
-                nixpkgs.config.allowUnfree = true;
-                nixpkgs.overlays = overlays;
-              }
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = { inherit host username inputs; };
-                  sharedModules = [ commonHomeManager ];
-                  users.${username} = import ./hosts/${host}/home.nix;
-                };
-              }
-            ];
-          };
-        }) nixosHosts
-      );
 
       # Standalone Home Manager configurations
       homeConfigurations = builtins.listToAttrs (
