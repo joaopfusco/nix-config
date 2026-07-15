@@ -38,6 +38,9 @@
         git commit -m 'chore: update flake.lock' &&
         git push
       '';
+      home-test = "home-manager switch --flake .#${username}@${host} -n";
+      home-gens = "home-manager generations";
+      home-rollback = "home-manager switch --flake .#${username}@${host} --rollback";
 
       # Determinate Nix
       nixd-upgrade = "sudo determinate-nixd upgrade";
