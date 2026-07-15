@@ -36,6 +36,32 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
+  hardware.nvidia = {
+    nvidiaSettings = true;
+    modesetting.enable = true;
+  };
+
+  # Same kernel params as nixos-hardware's dell/precision/5530 (closest official
+  # profile, same chassis generation) — not vendored via that profile because it
+  # pins the Pascal GPU generation instead of Turing (see comment above).
+  boot.kernelParams = [
+    # fix lspci hanging with nouveau
+    # source https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1803179/comments/149
+    "acpi_rev_override=1"
+    "acpi_osi=Linux"
+    "nouveau.modeset=0"
+    "pcie_aspm=force"
+    "drm.vblankoffdelay=1"
+    "nouveau.runpm=0"
+    "mem_sleep_default=deep"
+    # fix flicker
+    # source https://wiki.archlinux.org/index.php/Intel_graphics#Screen_flickering
+    "i915.enable_psr=0"
+    "nvidia_drm.modeset=1"
+  ];
+
+  services.thermald.enable = true;
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
