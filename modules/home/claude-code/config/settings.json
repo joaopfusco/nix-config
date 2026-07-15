@@ -27,6 +27,16 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/session-length-guard.sh"
+          }
+        ]
+      }
     ]
   },
   "extraKnownMarketplaces": {
