@@ -35,9 +35,16 @@
         "source": "github",
         "repo": "anthropics/claude-plugins-official"
       }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
     }
   },
   "enabledPlugins": {
+    "caveman@caveman": true,
     "frontend-design@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
