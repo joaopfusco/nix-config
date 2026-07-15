@@ -30,11 +30,11 @@
 
       # Home Manager
       home-switch = "home-manager switch --flake .#${username}@${host}";
-      home-upgrade = "nix flake update && home-manager switch --flake .#${username}@${host}";
+      home-upgrade = "git pull --rebase && nix flake update && home-manager switch --flake .#${username}@${host} && git add flake.lock && git commit -m 'chore: update flake.lock' && git push";
 
       # NixOS
       nixos-switch = "sudo nixos-rebuild switch --flake .#${host}";
-      nixos-upgrade = "nix flake update && sudo nixos-rebuild switch --flake .#${host}";
+      nixos-upgrade = "git pull --rebase && nix flake update && sudo nixos-rebuild switch --flake .#${host} && git add flake.lock && git commit -m 'chore: update flake.lock' && git push";
       nixos-test = "sudo nixos-rebuild test --flake .#${host}";
       nixos-gens = "sudo nixos-rebuild list-generations";
       nixos-rollback = "sudo nixos-rebuild switch --rollback";
