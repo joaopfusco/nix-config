@@ -2,7 +2,7 @@
 {
   programs.kitty = {
     enable = true;
-    package = lib.mkDefault pkgs.emptyDirectory;
+    package = lib.mkDefault null;
 
     themeFile = "adwaita_dark";
 

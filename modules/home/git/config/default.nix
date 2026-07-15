@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    package = lib.mkDefault pkgs.emptyDirectory;
+    package = lib.mkDefault null;
     settings = {
       user = {
         name = "joaopfusco";

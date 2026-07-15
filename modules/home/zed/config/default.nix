@@ -7,7 +7,7 @@
 {
   programs.zed-editor = {
     enable = true;
-    package = lib.mkDefault pkgs.emptyDirectory;
+    package = lib.mkDefault null;
   };
 
   xdg.configFile."zed/settings.json".source =
