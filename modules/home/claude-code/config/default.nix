@@ -12,9 +12,6 @@ in
 {
   programs.claude-code = {
     enable = true;
-    # config-only by default: everything under ~/.claude is symlinked from
-    # this repo (see home.file below); the `claude` binary itself is a
-    # separate call.
     package = lib.mkDefault null;
   };
 
