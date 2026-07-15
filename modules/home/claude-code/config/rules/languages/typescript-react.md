@@ -3,15 +3,14 @@ paths:
   - "**/*.{ts,tsx,js,jsx}"
   - "**/tsconfig.json"
 ---
-
 # TypeScript / React
 
-> Generic defaults. Pin versions and project-specific rules in the repo's own config.
+> Generic default. Pin version, project-specific rule in repo's own config.
 
-- Prefer TypeScript strict; avoid `any` — use `unknown` + narrowing, or a real type.
-- Match the repo's stack and conventions (build tool, framework, styling); don't mix.
-- Function components + hooks. Keep components small; lift state only as needed.
-- Respect the rules of hooks; give effects correct dependency arrays (don't silence the lint).
-- Follow the repo's styling approach and its ESLint/Prettier config — don't impose your own.
+- Prefer TypeScript strict; avoid `any` — use `unknown` + narrowing, or real type.
+- Match repo's stack, convention (build tool, framework, styling); no mix.
+- Function component + hooks. Keep component small; lift state only when need.
+- Respect rules of hooks; give effect correct dependency array (no silence lint).
+- Follow repo's styling approach, its ESLint/Prettier config — no impose own.
 
 <!-- Per-repo: framework (Vite/Next/...), styling, data fetching, state mgmt, structure. -->

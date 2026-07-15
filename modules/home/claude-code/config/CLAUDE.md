@@ -1,58 +1,58 @@
 # Global instructions
 
-My **global** Claude Code config (dotfiles, symlinked to `~/.claude`). Keep it generic —
-it fits every repo. Repo-specific facts (versions, layout, build/test commands) belong in
-that repo's own `.claude/`/`CLAUDE.md`, which override this. When scaffolding a repo's
-`.claude/` (e.g. `/init`), keep it lean and don't copy these global rules in — they load
+Me **global** Claude Code config (dotfiles, symlink to `~/.claude`). Keep generic —
+fit every repo. Repo-specific fact (version, layout, build/test command) belong in
+that repo own `.claude/`/`CLAUDE.md`, which override this. When scaffold repo
+`.claude/` (e.g. `/init`), keep lean, no copy global rule in — they load
 everywhere.
 
-Global skills/commands are prefixed `global-` (skills resolve user-over-project, so the
-prefix avoids shadowing a repo's or built-in skill). Agents don't need it.
+Global skill/command prefix `global-` (skill resolve user-over-project, so prefix
+avoid shadow repo or built-in skill). Agent no need it.
 
 ## Hooks (`hooks/`)
 
-Blocking PreToolUse hooks **escalate to a user prompt, never dead-end**. Source the shared
-`hooks/lib.sh` and call `hook_ask "<reason>"` (emits `permissionDecision: "ask"` — I approve or
-deny in the UI); reserve `hook_deny` for things that must truly never happen. Don't use bare
-`exit 2` — it's a wall Claude can't get past even when I'd allow it. `protect-main.sh` still
-fast-paths the `CLAUDE_ALLOW_MAIN=1` token as a silent allow.
+Blocking PreToolUse hook **escalate to user prompt, never dead-end**. Source shared
+`hooks/lib.sh`, call `hook_ask "<reason>"` (emit `permissionDecision: "ask"` — me approve or
+deny in UI); save `hook_deny` for thing must truly never happen. No use bare
+`exit 2` — it wall Claude no get past even when me allow it. `protect-main.sh` still
+fast-path `CLAUDE_ALLOW_MAIN=1` token as silent allow.
 
 ## Language
 
 - Reply in **Brazilian Portuguese**.
-- Code, identifiers, commit messages, branch names, config/doc files in **English** —
-  unless a file is already in Portuguese, then match it.
+- Code, identifier, commit message, branch name, config/doc file in **English** —
+  unless file already Portuguese, then match it.
 
 ## About me
 
-Full-stack / systems engineer, polyglot — the stack changes per repo, so check, don't
-assume. Regular: Go, Python, C#/.NET, TypeScript/React, Rust, among others.
+Full-stack / systems engineer, polyglot — stack change per repo, so check, no
+assume. Regular: Go, Python, C#/.NET, TypeScript/React, Rust, among other.
 
-- Dev shells are often Nix flakes (sometimes `devenv`/devcontainers) + direnv; run tools inside them.
-- Local services/DBs via Docker Compose.
-- Dotfiles (incl. this config) managed via `nix-config` (Nix Flakes + Home Manager).
+- Dev shell often Nix flake (sometime `devenv`/devcontainer) + direnv; run tool inside them.
+- Local service/DB via Docker Compose.
+- Dotfile (incl. this config) manage via `nix-config` (Nix Flakes + Home Manager).
 
-## How I like to work
+## How me like work
 
-- Concise and direct. Smallest change that solves the problem.
-- Match existing conventions before introducing new ones.
-- Don't add dependencies without asking; prefer stdlib / libs already present.
-- Don't commit or push unless I ask. Never commit secrets.
-- Default branch (`main`/`master`) off-limits by default: branch off it. Commit/push
-  directly to it **only when I clearly, explicitly authorize that action** — never assume.
-- Commit messages: English, Conventional Commits, **no `Co-Authored-By` trailer**.
-- When a dev shell exists, run tooling inside it; don't install toolchains globally.
-- Don't reformat wholesale or introduce a formatter/linter the repo hasn't adopted.
-- Ask before large refactors, schema changes, or destructive operations.
+- Concise, direct. Smallest change solve problem.
+- Match existing convention before introduce new one.
+- No add dependency without ask; prefer stdlib / lib already present.
+- No commit or push unless me ask. Never commit secret.
+- Default branch (`main`/`master`) off-limit by default: branch off it. Commit/push
+  direct to it **only when me clearly, explicitly authorize that action** — never assume.
+- Commit message: English, Conventional Commits, **no `Co-Authored-By` trailer**.
+- When dev shell exist, run tooling inside it; no install toolchain globally.
+- No reformat wholesale or introduce formatter/linter repo no adopt.
+- Ask before big refactor, schema change, or destructive operation.
 
 ## Conventions (`~/.claude/rules/`)
 
-Load automatically as defaults (repo overrides win):
+Load auto as default (repo override win):
 - Always: `code-style.md`, `security.md`.
 - Path-scoped (`paths:` frontmatter): `testing.md`, `api-conventions.md`,
   `dev-environments.md`, `languages/*.md`.
 
 ## Tooling
 
-- LSPs available (pyright, typescript, gopls, csharp, rust-analyzer) — use when present.
-- Don't run formatters by default; follow the repo's config.
+- LSP available (pyright, typescript, gopls, csharp, rust-analyzer) — use when present.
+- No run formatter by default; follow repo config.

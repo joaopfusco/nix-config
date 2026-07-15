@@ -2,12 +2,9 @@
 name: global-pkg
 description: Install, update, remove/uninstall, or list apps/packages on this machine. Orchestrates the system's package managers (apt, snap, flatpak, nix, brew, …) by a configurable hierarchy; suggests commands and waits for confirmation, never runs on its own.
 ---
-
 # Universal package manager
 
-Orchestrate the machine's package managers to install/update/remove software by the
-user's hierarchy. **Suggest, never auto-run**: present the command(s) and wait for
-confirmation before running anything — especially `sudo`.
+Orchestrate machine's package managers install/update/remove software by user's hierarchy. **Suggest, never auto-run**: present command(s), wait confirm before run anything — especially `sudo`.
 
 ## Paths
 
@@ -17,62 +14,59 @@ confirmation before running anything — especially `sudo`.
 
 ## Every run
 
-Read `config.md`. Load `environment.json`; if missing, run detection once (below).
+Read `config.md`. Load `environment.json`; missing → run detection once (below).
 
 ## Commands
 
 | Command | Aliases | Does |
 |---|---|---|
 | `install <app>` | add, get | Suggest install per hierarchy. |
-| `remove <app>` | uninstall, delete | Reverse the install from its receipt. |
+| `remove <app>` | uninstall, delete | Reverse install from its receipt. |
 | `update [<app>]` | upgrade, check | Check/upgrade out-of-band installs (all if no app). |
 | `list` | ls, status | List installs from `installs.jsonl`. |
-| `info <app>` | show | Print the app's receipt. |
+| `info <app>` | show | Print app's receipt. |
 | `re-detect` | rescan | Re-run detection, overwrite `environment.json`. |
 
-Modifier `refresh`/`force` (any command): ignore the cached receipt, re-research from
-scratch. Unknown verb → ask, don't guess.
+Modifier `refresh`/`force` (any command): ignore cached receipt, re-research scratch. Unknown verb → ask, no guess.
 
 ## Environment detection
 
 Read `/etc/os-release` for distro+version; probe which managers exist (`apt`, `dnf`,
 `pacman`, `zypper`, `apk`, `snap`, `flatpak`, `nix`, `brew`, `cargo`, `pipx`, `npm`).
-Record only those present, with `detected_at`. Re-run only on `re-detect`.
+Record only present ones, with `detected_at`. Re-run only on `re-detect`.
 
 ## Install
 
-1. Pick the method by walking `config.md`'s hierarchy (default: ① official dev/docs →
-   ② native manager → ③ others), skipping tiers whose manager is absent.
-2. Research (`WebSearch`) only when uncertain — method may have changed, niche app, or
-   `refresh`. Never trust a stale guess for tier ①.
-3. Reuse a receipt within TTL unless `refresh`.
-4. Present the methods via the selection prompt (below); run only the chosen command;
-   append a receipt on success.
+1. Pick method, walk `config.md`'s hierarchy (default: ① official dev/docs →
+   ② native manager → ③ others), skip tier whose manager absent.
+2. Research (`WebSearch`) only if unsure — method may change, niche app, or
+   `refresh`. Never trust stale guess for tier ①.
+3. Reuse receipt within TTL unless `refresh`.
+4. Present methods via selection prompt (below); run only chosen command;
+   append receipt on success.
 
 ## Presenting choices
 
-Ask with the normal selection prompt (the `AskUserQuestion` tool), **not** a text menu —
-one single-select question, so I pick with one keystroke and see the recommendation.
+Ask with normal selection prompt (`AskUserQuestion` tool), **not** text menu —
+one single-select question, pick one keystroke, see recommendation.
 
-- **Header**: the verb (`Install`, `Remove`, `Update`).
-- **Question**: `📦 <app> — how should I <verb> it?` State the source (`cache <date>` or
-  `researched`) and that I can pick **Other** to refresh research, name a manager you
-  didn't list, or cancel.
-- **Options** (2–4), ordered by the hierarchy:
-  - First option = the primary method, its `label` ending **(Recommended)**.
-  - Each option: a short `label` (the manager/tier), a one-line `description` (the
-    trade-off — update path, upstream freshness, `sudo`/repo/script side effects), and a
-    `preview` holding the **exact command(s)** and a `Side effects:` line.
-- Selecting an option **is** the confirmation: run exactly that command, nothing else,
-  then append the receipt. Never run anything before I select.
-- Only one real method → still ask, pairing it with a **Cancel** option; don't fabricate
-  alternatives.
-- An official install that's a script (`curl | sh`) or needs `sudo` is fine — record it as
-  a `script` side effect so removal can undo it. Don't deprioritize it.
-- For `remove`, the recommended option is the reversal plan; its `preview` lists the
-  uninstall command plus each side effect being undone.
+- **Header**: verb (`Install`, `Remove`, `Update`).
+- **Question**: `📦 <app> — how should I <verb> it?` State source (`cache <date>` or
+  `researched`) and that **Other** lets pick refresh research, name manager not listed, or cancel.
+- **Options** (2–4), order by hierarchy:
+  - First option = primary method, `label` end **(Recommended)**.
+  - Each option: short `label` (manager/tier), one-line `description` (trade-off — update path, upstream freshness, `sudo`/repo/script side effects), and
+    `preview` hold **exact command(s)** plus `Side effects:` line.
+- Select option **is** confirm: run exact that command, nothing else,
+  then append receipt. Never run before select.
+- Only one real method → still ask, pair with **Cancel** option; no fabricate
+  alternative.
+- Official install script (`curl | sh`) or need `sudo` fine — record as
+  `script` side effect so removal can undo it. No deprioritize it.
+- For `remove`, recommended option = reversal plan; `preview` lists
+  uninstall command plus each side effect undone.
 
-Preview body of an option, e.g.:
+Preview body of option, e.g.:
 
 ```
 sudo apt install ripgrep
@@ -82,13 +76,13 @@ Side effects: none
 
 ## Remove
 
-1. Find the app in `installs.jsonl` to recover how it was installed.
-2. Present a reversal plan: the uninstall command (prefer `purge`), plus each recorded
+1. Find app in `installs.jsonl`, recover how installed.
+2. Present reversal plan: uninstall command (prefer `purge`), plus each recorded
    side effect reversed (apt source, GPG key, added repo). Leftover user config
-   (`~/.config/<app>`) removed **only with confirmation** — never delete data silently.
-3. No receipt (installed by hand) → say so, fall back to the owning manager; don't
-   claim a complete reversal.
-4. Drop the receipt after removal.
+   (`~/.config/<app>`) removed **only with confirm** — never delete data silent.
+3. No receipt (installed by hand) → say so, fall back to owning manager; no
+   claim complete reversal.
+4. Drop receipt after removal.
 
 ## Receipt schema (`installs.jsonl`, one object per line)
 

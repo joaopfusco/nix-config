@@ -4,17 +4,15 @@ paths:
   - "**/*.csproj"
   - "**/*.sln"
 ---
-
 # C# / .NET
 
-> Generic defaults. Pin versions and project-specific rules in the repo's own config.
+> Generic default. Pin version, project rule in repo's own config.
 
-- Keep controllers/handlers thin: validate + delegate; no business logic at the edge.
-- If the repo uses layered/clean architecture, respect its boundaries — dependencies
-  point inward and the domain depends on nothing.
-- Use DI (constructor injection); avoid service locators and statics for dependencies.
+- Keep controller/handler thin: validate + delegate; no business logic at edge.
+- Repo use layered/clean architecture, respect boundary — dependency point inward, domain depend on nothing.
+- Use DI (constructor injection); avoid service locator, static for dependency.
 - `async`/`await` end-to-end for I/O; flow `CancellationToken`; never `.Result`/`.Wait()`.
-- Expose DTOs at the API boundary — don't leak persistence entities directly.
-- Follow the repo's `.editorconfig` and nullable-reference settings.
+- Expose DTO at API boundary — no leak persistence entity direct.
+- Follow repo `.editorconfig`, nullable-reference setting.
 
 <!-- Per-repo: target framework, architecture, validation/mapping libs, test layout. -->

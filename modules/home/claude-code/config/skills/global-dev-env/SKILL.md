@@ -2,10 +2,9 @@
 name: global-dev-env
 description: Scaffold a reproducible dev environment (Nix flake, devenv, or devcontainer) wired with direnv. Use when setting up a repo's toolchain or adding a dev shell.
 ---
-
 # Dev environment scaffold
 
-Set up a reproducible dev shell for a repo. Pick the approach the user prefers (ask if none):
+Set up reproducible dev shell for repo. Pick approach user prefer (ask if none):
 
 - **Nix flake** — `flake.nix` with `devShells.default` + `.envrc` (`use flake`).
 - **devenv** — `devenv.nix` (+ `devenv.yaml`) + `.envrc` (`eval "$(devenv direnvrc)"` then `use devenv`).
@@ -13,49 +12,49 @@ Set up a reproducible dev shell for a repo. Pick the approach the user prefers (
 
 ## Steps
 
-1. Confirm the approach and detect the stack from markers (`go.mod`, `pyproject.toml`,
+1. Confirm approach, detect stack from markers (`go.mod`, `pyproject.toml`,
    `*.csproj`, `package.json`, `Cargo.toml`, …). Ask if ambiguous.
-2. Scaffold with the tool's initializer (`nix flake init`, `devenv init`, or write the
-   file directly), then trim to just what the project needs (toolchain, LSP, formatter,
-   required services). Pin `nixpkgs`.
+2. Scaffold with tool's initializer (`nix flake init`, `devenv init`, or write
+   file direct), then trim to what project need (toolchain, LSP, formatter,
+   required service). Pin `nixpkgs`.
 3. Wire direnv when relevant: `.envrc` (`use flake`, or for devenv the two lines from
-   [devenv specifics](#devenv-specifics) below); tell the user to run `direnv allow`.
-   (`devenv init` writes a bare `use devenv` — still needs the `eval` line prepended.)
-4. Update `.gitignore` (`.direnv/`, `.devenv/`, artifacts) and commit the lockfile.
-5. Verify tools resolve inside the shell (`nix develop -c <tool> --version`, `devenv
+   [devenv specifics](#devenv-specifics) below); tell user run `direnv allow`.
+   (`devenv init` write bare `use devenv` — still need `eval` line prepended.)
+4. Update `.gitignore` (`.direnv/`, `.devenv/`, artifacts) and commit lockfile.
+5. Verify tool resolve inside shell (`nix develop -c <tool> --version`, `devenv
    shell`, or reopen in container).
 
-Keep it minimal and specific: a dev shell, not a production build. Don't leak build-time
-deps into runtime. After adding files to a Stow package, remind to `stow -R <pkg>`.
+Keep minimal, specific: dev shell, not production build. No leak build-time
+dep into runtime. After add file to Stow package, remind `stow -R <pkg>`.
 
 ## devenv specifics
 
-The devenv <-> direnv integration is **not** loaded globally (it overrode nix-direnv's
-`_nix_direnv_preflight` without setting `_nix_direnv_nix`, breaking `use flake` in plain
-Nix projects). Wire it per-repo instead — `.envrc` must have both lines, in order:
+devenv <-> direnv integration **not** loaded globally (it override nix-direnv's
+`_nix_direnv_preflight` without set `_nix_direnv_nix`, break `use flake` in plain
+Nix project). Wire per-repo instead — `.envrc` must have both line, in order:
 
 ```
 eval "$(devenv direnvrc)"
 use devenv
 ```
 
-Add `dotenv.disableHint = true` to `devenv.nix`. For Python with compiled deps
+Add `dotenv.disableHint = true` to `devenv.nix`. For Python with compiled dep
 (numpy/pandas/…) also set `languages.python.libraries = [ pkgs.stdenv.cc.cc.lib pkgs.zlib ];`.
 
 ## devcontainer defaults (editor-agnostic, secure host-bridging)
 
-I use **Zed and VS Code** (mainly Zed), so keep everything at the **spec level** — the
-devcontainer CLI runs it in both. Don't lean on VS Code-only magic (gitconfig copy, agent
-forwarding, `dotfiles.repository`); Zed doesn't do those, so make them explicit. **Zed doesn't
-reload on `devcontainer.json` edits** (you must kill + recreate the container), so scaffold it
-**correct on the first try** — verify the prerequisites below before creating. Bridge host
-niceties **without** mounting host secrets onto the container disk (see
-`rules/dev-environments.md` for the why).
+Use **Zed and VS Code** (mainly Zed), so keep everything at **spec level** — the
+devcontainer CLI runs it in both. No lean on VS Code-only magic (gitconfig copy, agent
+forwarding, `dotfiles.repository`); Zed no do those, so make explicit. **Zed no
+reload on `devcontainer.json` edit** (must kill + recreate container), so scaffold it
+**correct first try** — verify prerequisite below before create. Bridge host
+nicety **without** mount host secret onto container disk (see
+`rules/dev-environments.md` for why).
 
-Prerequisites on the host (checked, don't assume): an SSH agent is running with
-`SSH_AUTH_SOCK` set (mine: gnome-keyring at `/run/user/1000/keyring/ssh`) — if not, drop the
-SSH mount + `remoteEnv`. My git identity and Claude config both come from my dotfiles via
-`stow`, so no host-path binds that could be missing.
+Prerequisite on host (checked, no assume): SSH agent running with
+`SSH_AUTH_SOCK` set (mine: gnome-keyring at `/run/user/1000/keyring/ssh`) — if not, drop
+SSH mount + `remoteEnv`. Git identity and Claude config both come from dotfiles via
+`stow`, so no host-path bind that could be missing.
 
 ```jsonc
 {
@@ -87,9 +86,9 @@ SSH mount + `remoteEnv`. My git identity and Claude config both come from my dot
 }
 ```
 
-`post-create.sh` — editor-agnostic (the VS Code `dotfiles.repository` route won't run in Zed).
-Brings in my shell, git identity, **and global Claude config** via my stow-managed dotfiles,
-and hardens against the usual first-run breakages:
+`post-create.sh` — editor-agnostic (VS Code `dotfiles.repository` route won't run in Zed).
+Bring in shell, git identity, **and global Claude config** via stow-managed dotfiles,
+harden against usual first-run breakage:
 
 ```bash
 #!/usr/bin/env bash
@@ -124,8 +123,8 @@ if [ ! -L "$HOME/.claude.json" ]; then
 fi
 ```
 
-- **Stow packages** (`zsh git claude`) and the dotfiles URL are mine — adjust for another user.
-- **macOS + Docker Desktop**: the SSH socket path is the magic `/run/host-services/ssh-auth.sock`.
-- **Offline alternative** to cloning: commit a container-tailored `.devcontainer/dotfiles/` and
-  `cp` from it in `post-create.sh` — predictable, but duplicated from my real dotfiles.
-- Never bind-mount `~/.ssh`, the host `~/.claude`, or token files.
+- **Stow package** (`zsh git claude`) and dotfiles URL mine — adjust for other user.
+- **macOS + Docker Desktop**: SSH socket path magic `/run/host-services/ssh-auth.sock`.
+- **Offline alternative** to clone: commit container-tailored `.devcontainer/dotfiles/` and
+  `cp` from it in `post-create.sh` — predictable, but duplicate from real dotfiles.
+- Never bind-mount `~/.ssh`, host `~/.claude`, or token file.

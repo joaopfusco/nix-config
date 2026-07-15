@@ -1,37 +1,37 @@
 # Code style (universal)
 
-Language-agnostic defaults. Per-language specifics live in `languages/`.
+Lang-agnostic default. Per-lang specific live `languages/`.
 
 ## Naming
 
-- Names describe intent, not type: `users`, not `userList`/`userArr`.
-- Booleans read as predicates: `isEnabled`, `hasAccess`, `shouldRetry`.
-- Avoid abbreviations except well-known ones (`id`, `url`, `db`, `ctx`).
-- Follow each language's casing convention; don't impose one across languages.
+- Name describe intent, not type: `users`, not `userList`/`userArr`.
+- Boolean read as predicate: `isEnabled`, `hasAccess`, `shouldRetry`.
+- Avoid abbreviation except well-known (`id`, `url`, `db`, `ctx`).
+- Follow each lang's casing convention; no impose one across lang.
 
 ## Structure
 
-- Small, single-purpose functions; extract once logic is reused or hard to read.
-- Keep nesting shallow — prefer early returns / guard clauses over `else` ladders.
-- Order a file top-down: public/exported surface first, helpers below.
-- Co-locate things that change together; split by feature, not by layer-of-the-week.
+- Small, single-purpose function; extract once logic reused or hard read.
+- Keep nesting shallow — prefer early return / guard clause over `else` ladder.
+- Order file top-down: public/exported surface first, helper below.
+- Co-locate thing change together; split by feature, not layer-of-the-week.
 
 ## Comments
 
-- Explain **why**, not **what**. The code already says what.
-- No commented-out code and no decorative banners — delete dead code, git remembers.
-- Keep doc comments on exported/public APIs current; a wrong comment is worse than none.
+- Explain **why**, not **what**. Code already say what.
+- No commented-out code, no decorative banner — delete dead code, git remember.
+- Keep doc comment on exported/public API current; wrong comment worse than none.
 
 ## Errors
 
-- Never swallow errors silently. Handle, wrap with context, or propagate.
-- Fail fast on programmer errors; degrade gracefully on expected/runtime errors.
-- Error messages state what failed and the relevant input, without leaking secrets.
+- Never swallow error silent. Handle, wrap with context, or propagate.
+- Fail fast on programmer error; degrade graceful on expected/runtime error.
+- Error message state what failed and relevant input, no leak secret.
 
 ## General
 
-- No magic numbers/strings — name them.
-- Prefer immutability and pure functions where it doesn't hurt clarity.
-- Delete code rather than leaving it disabled behind a flag "just in case".
-- Respect the repo's existing formatter/linter config; don't reformat unrelated code
-  or impose a formatter the repo hasn't adopted.
+- No magic number/string — name them.
+- Prefer immutability and pure function where no hurt clarity.
+- Delete code rather than leave disabled behind flag "just in case".
+- Respect repo existing formatter/linter config; no reformat unrelated code
+  or impose formatter repo no adopt.

@@ -3,16 +3,15 @@ paths:
   - "**/*.py"
   - "**/pyproject.toml"
 ---
-
 # Python
 
-> Generic defaults. Pin versions and project-specific rules in the repo's own config.
+> Generic default. Pin version, project-specific rule in repo's own config.
 
-- `pyproject.toml` is the source of truth for deps and tooling when present.
-- Type-hint public functions; keep it clean under the repo's type checker.
-- Follow the repo's formatter/linter (e.g. ruff/black) — don't impose one it lacks.
-- Prefer `pathlib`, dataclasses / typed models, and explicit over clever.
-- Use the project's virtualenv / dev shell — don't install packages globally.
-- Raise specific exceptions; never bare `except:`. Use context managers for resources.
+- `pyproject.toml` source of truth for deps, tooling when present.
+- Type-hint public function; keep clean under repo's type checker.
+- Follow repo's formatter/linter (e.g. ruff/black) — no impose one it lack.
+- Prefer `pathlib`, dataclass / typed model, explicit over clever.
+- Use project's virtualenv / dev shell — no install package globally.
+- Raise specific exception; never bare `except:`. Use context manager for resource.
 
-<!-- Per-repo: Python version, web framework, async conventions, package manager. -->
+<!-- Per-repo: Python version, web framework, async convention, package manager. -->
