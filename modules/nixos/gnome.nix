@@ -17,6 +17,7 @@
     gnome-extension-manager
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.appindicator
+    gnome-network-displays
     distroshelf
   ];
 }

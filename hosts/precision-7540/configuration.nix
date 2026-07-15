@@ -23,6 +23,9 @@
     ../../modules/nixos/user.nix
     ../../modules/nixos/ld.nix
     ../../modules/nixos/gnome.nix
+    ../../modules/nixos/apps.nix
+    ../../modules/nixos/flatpak.nix
+    ../../modules/nixos/virtualisation.nix
   ];
 
   # PCI bus IDs confirmed on this exact machine via `lspci -nn | grep -E "VGA|3D"`:

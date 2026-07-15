@@ -16,6 +16,9 @@
     ../../modules/nixos/user.nix
     ../../modules/nixos/ld.nix
     ../../modules/nixos/gnome.nix
+    ../../modules/nixos/apps.nix
+    ../../modules/nixos/flatpak.nix
+    ../../modules/nixos/virtualisation.nix
   ];
 
   # Bootloader
