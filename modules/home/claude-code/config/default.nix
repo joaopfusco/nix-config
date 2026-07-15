@@ -18,7 +18,6 @@ in
   home.file = {
     ".claude/CLAUDE.md".source = linkConfig "CLAUDE.md";
     ".claude/settings.json".source = linkConfig "settings.json";
-    ".claude/agents".source = linkConfig "agents";
     ".claude/commands".source = linkConfig "commands";
     ".claude/hooks".source = linkConfig "hooks";
     ".claude/rules".source = linkConfig "rules";
