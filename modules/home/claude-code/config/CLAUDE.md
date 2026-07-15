@@ -30,7 +30,7 @@ assume. Regular: Go, Python, C#/.NET, TypeScript/React, Rust, among others.
 
 - Dev shells are often Nix flakes (sometimes `devenv`/devcontainers) + direnv; run tools inside them.
 - Local services/DBs via Docker Compose.
-- Dotfiles (incl. this config) managed with GNU Stow.
+- Dotfiles (incl. this config) managed via `nix-config` (Nix Flakes + Home Manager).
 
 ## How I like to work
 
