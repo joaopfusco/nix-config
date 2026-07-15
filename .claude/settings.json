@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nix flake check:*)",
+      "Bash(nix flake show:*)",
+      "Bash(nix flake metadata:*)",
+      "Bash(nix build:*)",
+      "Bash(home-manager build:*)",
+      "Bash(nixos-rebuild build:*)",
+      "Bash(nixos-rebuild dry-activate:*)"
+    ]
+  },
+  "env": {}
+}
