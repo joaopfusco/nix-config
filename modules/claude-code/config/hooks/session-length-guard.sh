@@ -18,7 +18,7 @@ set -euo pipefail
 
 TURN_THRESHOLD=150
 RECONFIRM_EVERY=100
-OVERRIDE_REGEX='continuar (a |na |nesta )?sess[aã]o|manter (a |na |nesta )?sess[aã]o'
+OVERRIDE_WORD='continuar'
 
 input="$(cat)"
 transcript_path="$(printf '%s' "$input" | jq -r '.transcript_path // empty')"
@@ -35,8 +35,8 @@ state_dir="$claude_dir/.session-guard"
 mkdir -p "$state_dir"
 state_file="$state_dir/$session_id"
 
-# This prompt explicitly asks to stay: record it and let it through.
-if printf '%s' "$prompt" | grep -Eiq "$OVERRIDE_REGEX"; then
+# This prompt contains the exact code word: record it and let it through.
+if printf '%s' "$prompt" | grep -Fq "$OVERRIDE_WORD"; then
   echo "$turns" >"$state_file"
   exit 0
 fi
@@ -47,5 +47,5 @@ if [[ -f "$state_file" ]]; then
   (( turns < last_confirmed + RECONFIRM_EVERY )) && exit 0
 fi
 
-jq -n --arg r "session-length-guard: essa sessão já tem $turns turnos (limiar: $TURN_THRESHOLD, ~p90 de uma semana real de uso). Sessões longas concentram a maior parte do gasto de tokens — o histórico inteiro é relido a cada turno, e isso cresce com o tamanho da sessão, não com o tamanho das respostas. Abra uma sessão nova pra continuar mais barato, ou responda incluindo a frase 'continuar sessão' se preferir seguir por aqui mesmo." \
+jq -n --arg r "session-length-guard: essa sessão já tem $turns turnos (limiar: $TURN_THRESHOLD, ~p90 de uma semana real de uso). Sessões longas concentram a maior parte do gasto de tokens — o histórico inteiro é relido a cada turno, e isso cresce com o tamanho da sessão, não com o tamanho das respostas. Abra uma sessão nova pra continuar mais barato, ou responda com a palavra 'continuar' em qualquer lugar da mensagem se preferir seguir por aqui mesmo." \
   '{decision:"block",reason:$r}'
