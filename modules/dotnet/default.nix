@@ -22,7 +22,7 @@ in
   ];
 
   home.sessionVariables = {
-    # UseAppHost = "false";
+    # UseAppHost = "false"; # solve glibc problem but has side effects
     DOTNET_ROOT = "${dotnet-stack}/share/dotnet";
   };
 }
