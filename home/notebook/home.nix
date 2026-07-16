@@ -8,9 +8,9 @@
     ../../modules/direnv
     ../../modules/python
     ../../modules/node
-    ../../modules/rust/config
-    ../../modules/go/config
     ../../modules/dotnet/config
+    ../../modules/go/config
+    ../../modules/rust/config
     ../../modules/claude-code/config
     ../../modules/zsh/config
     ../../modules/kitty/config
