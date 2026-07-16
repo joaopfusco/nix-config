@@ -9,6 +9,16 @@ let
       sdk_10_0
     ]
   );
+
+  dotnet-wrapped = pkgs.symlinkJoin {
+    name = "dotnet-wrapped";
+    paths = [ dotnet-stack ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/dotnet \
+        --prefix LD_LIBRARY_PATH : "${pkgs.glibc}/lib"
+    '';
+  };
 in
 {
   imports = [
@@ -16,12 +26,12 @@ in
   ];
 
   home.packages = [
-    dotnet-stack
+    dotnet-wrapped
     pkgs.dotnet-ef # dotnet tool install --global dotnet-ef
     pkgs.csharp-ls # dotnet tool install --global csharp-ls
   ];
 
   home.sessionVariables = {
-    DOTNET_ROOT = "${dotnet-stack}/share/dotnet";
+    DOTNET_ROOT = "${dotnet-wrapped}";
   };
 }
