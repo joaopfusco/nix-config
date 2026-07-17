@@ -7,9 +7,6 @@
     themeFile = "tokyo_night_night";
 
     settings = {
-      # X11 gives window decorations; 0.34+ can use wayland
-      linux_display_server = "x11";
-
       shell = "zsh --login";
       shell_integration = "enabled";
 
