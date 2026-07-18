@@ -13,9 +13,9 @@
     # Languages
     ../../modules/python
     ../../modules/node
+    ../../modules/dotnet/config
     ../../modules/go/config
     ../../modules/rust/config
-    ../../modules/dotnet/config
 
     # AI tooling
     ../../modules/claude-code/config
