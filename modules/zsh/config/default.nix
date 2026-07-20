@@ -7,6 +7,9 @@
   ...
 }:
 
+let
+  nixConfigDir = "${config.home.homeDirectory}/nix-config";
+in
 {
   programs.zsh = {
     enable = true;
@@ -25,22 +28,24 @@
       py = "python3";
       ipe = "curl ifconfig.me";
       ins = "echo $IN_NIX_SHELL";
-      apt-up = "sudo apt update && sudo apt upgrade -y";
-      brew-up = "brew update && brew upgrade && brew cleanup";
+
+      # Apt/Brew upgrades
+      apt-upgrade = "sudo apt update && sudo apt upgrade -y";
+      brew-upgrade = "brew update && brew upgrade && brew cleanup";
 
       # Home Manager
-      home-switch = "home-manager switch --flake .#${username}@${host}";
+      home-switch = "home-manager switch --flake ${nixConfigDir}#${username}@${host}";
       home-upgrade = ''
-        git pull --rebase &&
-        nix flake update &&
-        home-manager switch --flake .#${username}@${host} &&
-        git add flake.lock &&
-        git commit -m 'chore: update flake.lock' &&
-        git push
+        git -C ${nixConfigDir} pull --rebase &&
+        nix flake update --flake ${nixConfigDir} &&
+        home-manager switch --flake ${nixConfigDir}#${username}@${host} &&
+        git -C ${nixConfigDir} add flake.lock &&
+        git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
+        git -C ${nixConfigDir} push
       '';
-      home-test = "home-manager switch --flake .#${username}@${host} -n";
+      home-test = "home-manager switch --flake ${nixConfigDir}#${username}@${host} -n";
       home-gens = "home-manager generations";
-      home-rollback = "home-manager switch --flake .#${username}@${host} --rollback";
+      home-rollback = "home-manager switch --flake ${nixConfigDir}#${username}@${host} --rollback";
 
       # Determinate Nix
       nixd-upgrade = "sudo determinate-nixd upgrade";
