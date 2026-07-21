@@ -5,6 +5,23 @@ paths:
 
 # Módulos (`modules/`)
 
+## Layout: uma pasta por app, não arquivos soltos por categoria
+
+Cada módulo vive em `modules/<app>/` — uma pasta por app (ver README.md § "Convenção
+`config/` + `default.nix`" pro padrão completo). **Não** espelhar o layout interno do
+código-fonte do Home Manager (`modules/programs/<app>.nix`, `modules/services/<app>.nix`
+soltos por categoria) — isso é como o Home Manager organiza as *options* que ele expõe,
+não como este repo organiza os módulos que as consomem. Mesmo quando o app real é
+modelado como `services.<app>` no Home Manager (ex.: `copyq`, `flameshot`), o módulo
+deste repo continua sendo `modules/<app>/`.
+
+Ao adicionar um módulo novo:
+1. Criar `modules/<app>/` (nunca `modules/programs/` nem `modules/services/`).
+2. Seguir a convenção `config/` + `default.nix` do README se fizer sentido ter variante
+   config-only vs completa; senão, só `default.nix` direto.
+3. Registrar no(s) `home.nix` do(s) perfil(is) certo(s) — nem todo módulo entra em todos
+   os perfis (ex.: app GUI de Linux não entra no perfil `macbook`).
+
 ## `package = null` vs `pkgs.emptyDirectory`
 
 Ao escrever um `modules/<app>/config/default.nix` config-only (sem instalar o
