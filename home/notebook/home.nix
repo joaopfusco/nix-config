@@ -26,5 +26,7 @@
     # GUI apps
     ../../modules/kitty/config
     ../../modules/zed/config
+    ../../modules/flameshot/config
+    ../../modules/copyq/config
   ];
 }
