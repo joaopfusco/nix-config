@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  # Super+V -> copyq toggle
+  # copyq toggle
   systemd.user.services.copyq = {
     Unit = {
       Description = "CopyQ clipboard management daemon";

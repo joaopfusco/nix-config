@@ -1,6 +1,6 @@
 { ... }:
 {
-  # Super+Shift+P -> sh -c "flameshot gui -p ~/Pictures/Screenshots -c"
+  # sh -c "flameshot gui -p ~/Pictures/Screenshots -c"
   systemd.user.services.flameshot = {
     Unit = {
       Description = "Flameshot screenshot tool";
