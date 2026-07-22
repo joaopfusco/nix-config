@@ -1,5 +1,3 @@
-Oops, wrong tool there — ignore that. Here's the compressed text.
-
 # global-pkg config
 
 User-editable settings for `global-pkg` skill. Versioned in dotfiles.
