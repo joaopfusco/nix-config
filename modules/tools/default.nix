@@ -3,6 +3,5 @@
   home.packages = with pkgs; [
     fastfetch
     gnumake
-    terraform
   ];
 }
