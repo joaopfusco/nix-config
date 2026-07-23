@@ -32,7 +32,7 @@ assume. Regular: Go, Python, C#/.NET, TypeScript/React, Rust, among other.
 - Local service/DB via Docker Compose.
 - Dotfile (incl. this config) manage via `nix-config` (Nix Flakes + Home Manager).
 
-## How me like work
+## How I like to work
 
 - Concise, direct. Smallest change solve problem.
 - Match existing convention before introduce new one.
