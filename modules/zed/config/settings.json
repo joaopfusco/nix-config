@@ -12,7 +12,8 @@
     "git-firefly": true,
     "material-icon-theme": true,
     "terraform": true,
-    "ansible": true
+    "ansible": true,
+    "proto": true
   },
   "file_finder": {
     "include_ignored": "all"
