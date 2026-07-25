@@ -19,6 +19,10 @@ Lang-agnostic default. Per-lang specific live `languages/`.
 ## Comments
 
 - Explain **why**, not **what**. Code already say what.
+- Only where truly needed — non-obvious constraint, gotcha, workaround. Most line
+  need zero comment.
+- One line, terse. No paragraph, no essay explain the obvious — turns code into
+  more comment than code.
 - No commented-out code, no decorative banner — delete dead code, git remember.
 - Keep doc comment on exported/public API current; wrong comment worse than none.
 
