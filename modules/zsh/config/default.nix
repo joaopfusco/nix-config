@@ -24,7 +24,7 @@ in
       # Common aliases
       ll = "ls -l";
       la = "ls -la";
-      cls = "clear";
+      cls = "clear && printf '\\033[3J'";
       py = "python3";
       ipe = "curl ifconfig.me";
       ins = "echo $IN_NIX_SHELL";
