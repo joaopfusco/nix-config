@@ -26,4 +26,4 @@ turns="$(grep -c '"type":"assistant"' "$transcript_path" 2>/dev/null || echo 0)"
 (( turns < TURN_THRESHOLD )) && exit 0
 
 jq -n --arg r "session-length-guard: essa sessão já tem $turns turnos (limiar: $TURN_THRESHOLD, ~p90 de uma semana real de uso). Sessões longas concentram a maior parte do gasto de tokens — o histórico inteiro é relido a cada turno. Considere abrir uma sessão nova quando for conveniente." \
-  '{hookSpecificOutput:{hookEventName:"UserPromptSubmit",systemMessage:$r}}'
+  '{systemMessage:$r}'
