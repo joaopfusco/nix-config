@@ -56,3 +56,7 @@ Load auto as default (repo override win):
 
 - LSP available (pyright, typescript, gopls, csharp, rust-analyzer) — use when present.
 - No run formatter by default; follow repo config.
+- Ad-hoc nix (my machine, `nix-config` applied): prefer `pkgs#<pkg>` over `nixpkgs#<pkg>`
+  (registry alias to my own flake's legacyPackages, stable + `.unstable`); prefer `nix-sh
+  <pkg...>` over `nix shell`/`nix-shell` (zsh function, infers `pkgs#` on bare names,
+  passes flake refs/flags through, always `-c zsh`).

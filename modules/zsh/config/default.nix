@@ -70,6 +70,17 @@ in
       bindkey "^[[1;5D" backward-word
 
       export NIXPKGS_ALLOW_UNFREE=1
+
+      nix-sh() {
+        local args=()
+        for arg in "$@"; do
+          case $arg in
+            -*|*#*|*:*|.*|/*) args+=("$arg") ;;
+            *) args+=("pkgs#$arg") ;;
+          esac
+        done
+        nix shell "''${args[@]}" -c zsh
+      }
     '';
 
     oh-my-zsh = {
