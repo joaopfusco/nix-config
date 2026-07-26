@@ -22,6 +22,7 @@
 
     # Shell
     ../../modules/zsh/config
+    ../../modules/starship
 
     # GUI apps
     ../../modules/kitty/config

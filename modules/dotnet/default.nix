@@ -1,42 +1,48 @@
 { pkgs, ... }:
 
 let
-  dotnet-stack = (
-    with pkgs.dotnetCorePackages;
-    combinePackages [
-      sdk_8_0
-      sdk_9_0
-      sdk_10_0
-    ]
-  );
+  inherit (pkgs) dotnetCorePackages;
 
-  dotnetTargetPkgs =
-    pkgs:
-    with pkgs;
-    [
-      # Dotnet SDKs
-      dotnet-stack
+  mkDotnet =
+    name: sdk:
+    if pkgs.stdenv.isLinux then
+      pkgs.buildFHSEnv {
+        inherit name;
 
-      # Dotnet tools
-      dotnet-ef # dotnet tool install --global dotnet-ef
-      csharp-ls # dotnet tool install --global csharp-ls
+        targetPkgs = pkgs: with pkgs; [
+          # sdk
+          sdk
 
-      # Dotnet deps
-      icu
-      openssl
-      zlib
-      curl
-      krb5
-    ];
+          # tools
+          dotnet-ef # dotnet tool install --global dotnet-ef
+          csharp-ls # dotnet tool install --global csharp-ls
 
-  mkDotnetFHS = name: pkgs.buildFHSEnv {
-    inherit name;
-    targetPkgs = dotnetTargetPkgs;
-    runScript = pkgs.writeShellScript "${name}-entry" ''
-      export DOTNET_ROOT=/usr/share/dotnet
-      exec /usr/bin/${name} "$@"
-    '';
-  };
+          # deps
+          icu
+          openssl
+          zlib
+          curl
+          krb5
+        ];
+
+        runScript = pkgs.writeShellScript "${name}-entry" ''
+          export DOTNET_ROOT=/usr/share/dotnet
+          exec /usr/bin/dotnet "$@"
+        '';
+
+        extraBuildCommands = ''
+          cat > $out/etc/os-release <<'EOF'
+          ID=linux
+          NAME="Linux"
+          PRETTY_NAME="Linux"
+          EOF
+        '';
+      }
+    else
+      pkgs.runCommand name { } ''
+        mkdir -p $out/bin
+        ln -s ${sdk}/bin/dotnet $out/bin/${name}
+      '';
 in
 {
   imports = [
@@ -44,8 +50,11 @@ in
   ];
 
   home.packages = [
-    (mkDotnetFHS "dotnet")
-    (mkDotnetFHS "dotnet-ef")
-    (mkDotnetFHS "csharp-ls")
+    (mkDotnet "dotnet8" dotnetCorePackages.sdk_8_0)
+    (mkDotnet "dotnet9" dotnetCorePackages.sdk_9_0)
+    (mkDotnet "dotnet10" dotnetCorePackages.sdk_10_0)
   ];
+
+  # `dotnet` -> default version
+  programs.zsh.shellAliases.dotnet = "dotnet8";
 }

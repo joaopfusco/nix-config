@@ -13,7 +13,7 @@
     # Languages
     ../../modules/python
     ../../modules/node
-    ../../modules/dotnet/config
+    ../../modules/dotnet
     ../../modules/go/config
     ../../modules/rust/config
 
@@ -22,6 +22,7 @@
 
     # Shell
     ../../modules/zsh/config
+    ../../modules/starship
 
     # GUI apps
     ../../modules/kitty/config
