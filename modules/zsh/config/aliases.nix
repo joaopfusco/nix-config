@@ -11,12 +11,12 @@ in
 {
   programs.zsh.shellAliases = {
     # Common aliases
-    ll = "ls -l";
-    la = "ls -la";
+    ll = "eza -l";
+    la = "eza -la";
+    lt = "eza --tree";
     cls = "clear && printf '\\033[3J'";
     py = "python3";
     ipe = "curl ifconfig.me";
-    ins = "echo $IN_NIX_SHELL";
 
     # Apt/Brew upgrades
     apt-upgrade = "sudo apt update && sudo apt upgrade -y";

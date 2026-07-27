@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    # tools
     dotnet-ef # dotnet tool install --global dotnet-ef
   ];
   

@@ -16,16 +16,16 @@
     ../../modules/python.nix
 
     # AI tooling
-    ../../modules/claude-code
+    ../../modules/claude-code/config
     ../../modules/codex.nix
 
     # Shell
     ../../modules/zsh
 
     # GUI apps
-    ../../modules/zed
-    ../../modules/kitty.nix
-    ../../modules/flameshot.nix
-    ../../modules/copyq.nix
+    ../../modules/zed/config
+    ../../modules/kitty/config
+    ../../modules/flameshot/config
+    ../../modules/copyq/config
   ];
 }
