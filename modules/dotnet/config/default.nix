@@ -1,6 +1,12 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 
 {
+  home.packages = with pkgs; [
+    # tools
+    dotnet-ef # dotnet tool install --global dotnet-ef
+    csharp-ls # dotnet tool install --global csharp-ls
+  ];
+  
   home.sessionPath = [
     "${config.home.homeDirectory}/.dotnet/tools"
   ];

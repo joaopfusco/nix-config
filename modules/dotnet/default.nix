@@ -13,10 +13,6 @@ let
           # sdk
           sdk
 
-          # tools
-          dotnet-ef # dotnet tool install --global dotnet-ef
-          csharp-ls # dotnet tool install --global csharp-ls
-
           # deps
           icu
           openssl
@@ -50,6 +46,7 @@ in
   ];
 
   home.packages = [
+    # sdks
     (mkDotnet "dotnet8" dotnetCorePackages.sdk_8_0)
     (mkDotnet "dotnet9" dotnetCorePackages.sdk_9_0)
     (mkDotnet "dotnet10" dotnetCorePackages.sdk_10_0)

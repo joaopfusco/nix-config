@@ -13,7 +13,7 @@
     # Languages
     ../../modules/python
     ../../modules/node
-    ../../modules/dotnet
+    ../../modules/dotnet/config
     ../../modules/go/config
     ../../modules/rust/config
 
