@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
+  # `gh auth login` manages ~/.config/gh/hosts.yml (auth state) at runtime.
   programs.gh = {
     enable = true;
-    package = lib.mkDefault pkgs.emptyDirectory;
     settings = {
       git_protocol = "ssh";
       prompt = "enabled";
@@ -11,6 +11,4 @@
       };
     };
   };
-
-  # `gh auth login` manages ~/.config/gh/hosts.yml (auth state) at runtime — not declared here.
 }

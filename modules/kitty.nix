@@ -1,13 +1,13 @@
-{ pkgs, lib, ... }:
+{ pkgs, config, ... }:
 {
   programs.kitty = {
     enable = true;
-    package = lib.mkDefault null;
+    package = config.lib.own.mkConfigOnly "kitty";
 
     themeFile = "tokyo_night_night";
 
     settings = {
-      shell = "zsh --login";
+      shell = "${pkgs.zsh}/bin/zsh --login";
       shell_integration = "enabled";
 
       window_padding_width = 4;

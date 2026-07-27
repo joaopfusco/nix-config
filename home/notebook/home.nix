@@ -2,32 +2,25 @@
 {
   imports = [
     # Core
-    ../../modules/nix
-    ../../modules/tools
+    ../../modules/pkgs.nix
 
     # Dev tools
-    ../../modules/gh
-    ../../modules/git
-    ../../modules/direnv
-
-    # Languages
-    ../../modules/python
-    ../../modules/node
-    ../../modules/dotnet/config
-    ../../modules/go/config
-    ../../modules/rust/config
+    ../../modules/gh.nix
+    ../../modules/git.nix
+    ../../modules/direnv.nix
+    ../../modules/dotnet.nix
 
     # AI tooling
-    ../../modules/claude-code/config
+    ../../modules/claude-code
 
     # Shell
-    ../../modules/zsh/config
-    ../../modules/starship
+    ../../modules/zsh
+    ../../modules/starship.nix
 
     # GUI apps
-    ../../modules/kitty/config
-    ../../modules/zed/config
-    ../../modules/flameshot/config
-    ../../modules/copyq/config
+    ../../modules/zed
+    ../../modules/kitty.nix
+    ../../modules/flameshot.nix
+    ../../modules/copyq.nix
   ];
 }

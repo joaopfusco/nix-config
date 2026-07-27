@@ -1,9 +1,7 @@
-{ pkgs, lib, ... }:
-
+{ ... }:
 {
   programs.git = {
     enable = true;
-    package = lib.mkDefault null;
     settings = {
       user = {
         name = "joaopfusco";

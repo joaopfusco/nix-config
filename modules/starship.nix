@@ -1,9 +1,8 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 {
   programs.starship = {
     enable = true;
-    package = lib.mkDefault pkgs.emptyDirectory;
-    
+    enableZshIntegration = true;
     settings = {
       format = lib.concatStrings [
         "$username"
