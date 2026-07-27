@@ -45,8 +45,18 @@ use `pkgs.unstable.<pkg>` (`nixpkgs-unstable`, `nixos-unstable`).
 
 - **Nix** instalado (recomendado: [Determinate Nix](https://install.determinate.systems)).
 - **Git** configurado.
+- **Chave SSH** cadastrada no GitHub (necessária pra clonar via `git@github.com`):
 
 ```bash
+ssh-keygen -t ed25519 -C "joaopedrofusco@gmail.com"
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copie a saída do `cat` e cadastre em
+[github.com/settings/keys](https://github.com/settings/keys) → "New SSH key".
+
+```bash
+nix-shell -p git home-manager
 git clone git@github.com:joaopfusco/nix-config.git
 cd nix-config
 ```
@@ -61,8 +71,8 @@ home-manager switch --flake .#joaop@<perfil>
 
 ```bash
 # Atualizar os inputs do flake (nixpkgs estável avança sozinho; revise o diff do flake.lock)
-nix flake update
+home-upgrade
 
 # Reaplicar
-home-manager switch --flake .#joaop@<perfil>
+home-switch
 ```
