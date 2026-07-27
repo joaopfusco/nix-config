@@ -6,6 +6,11 @@ let
       "${config.home.homeDirectory}/nix-config/modules/claude-code/config/${name}";
 in
 {
+  programs.claude-code = {
+    enable = true;
+    package = config.lib.own.mkConfigOnly "claude-code";
+  };
+
   home.file = {
     ".claude/CLAUDE.md".source = linkConfig "CLAUDE.md";
     ".claude/settings.json".source = linkConfig "settings.json";

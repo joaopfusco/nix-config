@@ -23,7 +23,7 @@
     ../../modules/zsh
 
     # GUI apps
-    ../../modules/zed/config
+    ../../modules/zed-editor/config
     ../../modules/kitty/config
     ../../modules/flameshot/config
     ../../modules/copyq/config
