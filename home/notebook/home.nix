@@ -15,7 +15,6 @@
 
     # Shell
     ../../modules/zsh
-    ../../modules/starship.nix
 
     # GUI apps
     ../../modules/zed
