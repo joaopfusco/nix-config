@@ -11,11 +11,20 @@ nix-config/
 ├── home/                      # perfis standalone
 │   └── <perfil>/home.nix      # ex.: linux, macos
 └── modules/                   # módulos de usuário, compartilhados por todos os perfis
-    └── <app>/                 # um módulo por app/ferramenta (ver convenção abaixo)
+    ├── <app>.nix              # módulo sem config própria pra separar (ver convenção abaixo)
+    └── <app>/                 # módulo com config/ própria (ver convenção abaixo)
 ```
 
 Os nomes de perfil correspondem 1:1 aos nomes das pastas em `home/`
 (descobertos automaticamente pelo `flake.nix` — não precisam ser listados em lugar nenhum).
+
+### Arquivo solto vs. pasta
+
+Módulo vira **arquivo solto** (`modules/<app>.nix`) por padrão — é o caso comum: só
+`home.packages` e/ou `programs.<app>.enable`/settings simples, sem nenhum arquivo
+companheiro. Só vira **pasta** (`modules/<app>/`) quando há motivo de verdade: dotfile
+próprio pra symlinkar (`config/settings.json`, `config/keymap.json`, hooks, etc.) ou a
+separação `config/` + `default.nix` abaixo.
 
 ### Convenção `config/` + `default.nix`
 
@@ -30,9 +39,6 @@ mesmo padrão:
 
 Cada `home.nix` escolhe, módulo por módulo, qual variante importar
 (`../../modules/<app>` vs `../../modules/<app>/config`).
-
-Módulos que são só uma lista de pacotes, sem config nenhuma pra separar, não têm `config/` —
-só um `default.nix` direto.
 
 ### Canais do nixpkgs
 

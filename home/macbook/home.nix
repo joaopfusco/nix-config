@@ -1,10 +1,6 @@
 { ... }:
 {
   imports = [
-    # Core
-    ../../modules/nix.nix
-    ../../modules/tools.nix
-
     # Dev tools
     ../../modules/gh.nix
     ../../modules/git.nix
@@ -15,12 +11,10 @@
     ../../modules/node.nix
     ../../modules/python.nix
 
-    # AI tooling
-    ../../modules/claude-code/config
-    ../../modules/codex.nix
-
-    # Shell
+    # CLI apps
+    ../../modules/cli.nix
     ../../modules/zsh
+    ../../modules/claude-code/config
 
     # GUI apps
     ../../modules/zed-editor/config
