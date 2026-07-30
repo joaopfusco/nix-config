@@ -14,18 +14,18 @@ let
       nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir path)
     );
 
-  # Standalone home/ profiles read an optional `system` file (default: x86_64-linux).
+  # Standalone hosts/ profiles read an optional `system` file (default: x86_64-linux).
   getProfileSystem =
     profile:
     let
-      systemFile = ../home/${profile}/system;
+      systemFile = ../hosts/${profile}/system;
     in
     if builtins.pathExists systemFile then
       nixpkgs.lib.replaceStrings [ "\n" " " ] [ "" "" ] (builtins.readFile systemFile)
     else
       "x86_64-linux";
 
-  homeProfiles = dirNames ../home;
+  homeProfiles = dirNames ../hosts;
 in
 {
   inherit getProfileSystem homeProfiles;
@@ -45,7 +45,7 @@ in
             inherit username inputs;
           };
           modules = [
-            ../home/${profile}/home.nix
+            ../hosts/${profile}/home.nix
             homeManager
           ];
         };

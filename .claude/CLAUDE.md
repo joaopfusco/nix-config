@@ -7,9 +7,9 @@ Ver `README.md` na raiz do repo para estrutura, convenções de módulos (`confi
 
 ## Estado conhecido (2026-07-15, revalidar se desatualizado)
 
-- `home/notebook` está **aplicado de verdade** na máquina principal (Dell Precision 7540,
+- `hosts/notebook` está **aplicado de verdade** na máquina principal (Dell Precision 7540,
   Ubuntu 24.04, hostname "notebook") via `home-manager switch`.
-- `home/macbook` nunca foi aplicado de verdade — só validado via `nix flake check` / build
+- `hosts/macbook` nunca foi aplicado de verdade — só validado via `nix flake check` / build
   a seco.
 - O aviso de `GPU drivers require an update, run sudo .../non-nixos-gpu-setup` no
   `home-manager switch` do perfil notebook é ruído esperado (`targets.genericLinux.enable`);

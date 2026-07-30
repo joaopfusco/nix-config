@@ -8,14 +8,14 @@ do sistema operacional — funciona em qualquer distro Linux ou macOS).
 ```
 nix-config/
 ├── flake.nix
-├── home/                      # perfis standalone
+├── hosts/                     # perfis standalone
 │   └── <perfil>/home.nix      # ex.: linux, macos
 └── modules/                   # módulos de usuário, compartilhados por todos os perfis
     ├── <app>.nix              # módulo sem config própria pra separar (ver convenção abaixo)
     └── <app>/                 # módulo com config/ própria (ver convenção abaixo)
 ```
 
-Os nomes de perfil correspondem 1:1 aos nomes das pastas em `home/`
+Os nomes de perfil correspondem 1:1 aos nomes das pastas em `hosts/`
 (descobertos automaticamente pelo `flake.nix` — não precisam ser listados em lugar nenhum).
 
 ### Arquivo solto vs. pasta
