@@ -8,6 +8,10 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -38,11 +42,11 @@
           username
           homeManager
           ;
-        inherit (packages) mkPkgs;
+        inherit (packages) mkPkgs overlays;
       };
     in
     {
       inherit (packages) legacyPackages;
-      inherit (profiles) homeConfigurations;
+      inherit (profiles) homeConfigurations nixosConfigurations;
     };
 }

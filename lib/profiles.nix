@@ -5,6 +5,7 @@
   username,
   mkPkgs,
   homeManager,
+  overlays,
 }:
 
 let
@@ -14,21 +15,25 @@ let
       nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir path)
     );
 
-  # Standalone hosts/ profiles read an optional `system` file (default: x86_64-linux).
   getProfileSystem =
     profile:
     let
-      systemFile = ../hosts/${profile}/system;
+      systemFile = ../home/${profile}/system;
     in
     if builtins.pathExists systemFile then
       nixpkgs.lib.replaceStrings [ "\n" " " ] [ "" "" ] (builtins.readFile systemFile)
     else
       "x86_64-linux";
 
-  homeProfiles = dirNames ../hosts;
+  homeProfiles = dirNames ../home;
+  nixosHosts = dirNames ../hosts;
 in
 {
-  inherit getProfileSystem homeProfiles;
+  inherit
+    getProfileSystem
+    homeProfiles
+    nixosHosts
+    ;
 
   homeConfigurations = builtins.listToAttrs (
     map (profile: {
@@ -45,10 +50,46 @@ in
             inherit username inputs;
           };
           modules = [
-            ../hosts/${profile}/home.nix
+            ../home/${profile}/home.nix
             homeManager
           ];
         };
     }) homeProfiles
+  );
+
+  nixosConfigurations = builtins.listToAttrs (
+    map (
+      host:
+      let
+        homeFile = ../hosts/${host}/home.nix;
+        hasHomeManager = builtins.pathExists homeFile;
+      in
+      {
+        name = host;
+        value = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit host username inputs; };
+          modules = [
+            ../hosts/${host}/hardware-configuration.nix
+            ../hosts/${host}/configuration.nix
+            {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = overlays;
+            }
+          ]
+          ++ nixpkgs.lib.optionals hasHomeManager [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit host username inputs; };
+                sharedModules = [ homeManager ];
+                users.${username} = import homeFile;
+              };
+            }
+          ];
+        };
+      }
+    ) nixosHosts
   );
 }
