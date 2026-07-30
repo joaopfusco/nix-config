@@ -14,6 +14,7 @@
     # CLI apps
     ../../modules/home/cli.nix
     ../../modules/home/zsh
+    ../../modules/home/starship
     ../../modules/home/claude-code/config
 
     # GUI apps

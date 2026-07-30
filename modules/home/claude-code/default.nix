@@ -1,5 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [ ./config ];
-  programs.claude-code.package = pkgs.claude-code;
+  programs.claude-code.enable = true;
 }
