@@ -24,6 +24,10 @@ in
 
     # Home Manager
     home-switch = "home-manager switch --flake ${nixConfigDir}#${username}@${host}";
+    home-sync = ''
+      git -C ${nixConfigDir} pull --rebase &&
+      home-manager switch --flake ${nixConfigDir}#${username}@${host}
+    '';
     home-upgrade = ''
       git -C ${nixConfigDir} pull --rebase &&
       nix flake update --flake ${nixConfigDir} &&
