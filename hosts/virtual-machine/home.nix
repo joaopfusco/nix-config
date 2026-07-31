@@ -8,9 +8,9 @@
     ../../modules/home/direnv.nix
 
     # Languages
-    ../../modules/home/dotnet.nix
     ../../modules/home/node.nix
     ../../modules/home/python.nix
+    ../../modules/home/dotnet/config
 
     # CLI apps
     ../../modules/home/cli.nix
