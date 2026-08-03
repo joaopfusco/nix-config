@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -20,4 +19,13 @@
     gnome-network-displays
     distroshelf
   ];
+
+  # Reset GNOME settings to default values
+  /*
+  gsettings reset org.gnome.desktop.interface icon-theme
+  gsettings reset org.gnome.desktop.interface gtk-theme
+  gsettings reset org.gnome.desktop.interface font-name
+  gsettings reset org.gnome.desktop.interface monospace-font-name
+  gsettings reset org.gnome.desktop.interface cursor-theme
+  */
 }

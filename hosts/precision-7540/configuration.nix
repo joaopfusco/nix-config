@@ -28,8 +28,8 @@
     ../../modules/nixos/hardware/audio.nix
 
     ../../modules/nixos/desktop/gnome.nix
-    ../../modules/nixos/pkgs/cli.nix
     ../../modules/nixos/pkgs/deps.nix
+    ../../modules/nixos/pkgs/cli.nix
     ../../modules/nixos/pkgs/gui.nix
     ../../modules/nixos/pkgs/flatpak.nix
 

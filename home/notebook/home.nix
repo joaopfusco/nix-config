@@ -20,7 +20,5 @@
     # GUI apps
     ../../modules/home/zed-editor/config
     ../../modules/home/kitty/config
-    ../../modules/home/flameshot/config
-    ../../modules/home/copyq/config
   ];
 }

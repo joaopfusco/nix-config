@@ -10,7 +10,7 @@
     # Languages
     ../../modules/home/node.nix
     ../../modules/home/python.nix
-    ../../modules/home/dotnet/config
+    ../../modules/home/dotnet
 
     # CLI apps
     ../../modules/home/cli.nix
