@@ -29,5 +29,14 @@
       done
       NIXSH_ACTIVE="$*" nix shell "''${args[@]}" -c zsh
     }
+
+    devenv-init() {
+      devenv init "$@" || return 1
+      local dir=''${1:-.}
+      if [[ ! -f "$dir/.envrc" ]]; then
+        printf 'eval "$(devenv direnvrc)"\nuse devenv\n' > "$dir/.envrc"
+      fi
+      direnv allow "$dir"
+    }
   '';
 }
