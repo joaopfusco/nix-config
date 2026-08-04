@@ -18,15 +18,15 @@ let
   getProfileSystem =
     profile:
     let
-      systemFile = ../home/${profile}/system;
+      systemFile = ../home-manager/profiles/${profile}/system;
     in
     if builtins.pathExists systemFile then
       nixpkgs.lib.replaceStrings [ "\n" " " ] [ "" "" ] (builtins.readFile systemFile)
     else
       "x86_64-linux";
 
-  homeProfiles = dirNames ../home;
-  nixosHosts = dirNames ../hosts;
+  homeProfiles = dirNames ../home-manager/profiles;
+  nixosHosts = dirNames ../nixos/hosts;
 in
 {
   inherit
@@ -50,7 +50,7 @@ in
             inherit username inputs;
           };
           modules = [
-            ../home/${profile}/home.nix
+            ../home-manager/profiles/${profile}/home.nix
             homeManager
           ];
         };
@@ -61,7 +61,7 @@ in
     map (
       host:
       let
-        homeFile = ../hosts/${host}/home.nix;
+        homeFile = ../nixos/hosts/${host}/home.nix;
         hasHomeManager = builtins.pathExists homeFile;
       in
       {
@@ -69,8 +69,8 @@ in
         value = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit host username inputs; };
           modules = [
-            ../hosts/${host}/hardware-configuration.nix
-            ../hosts/${host}/configuration.nix
+            ../nixos/hosts/${host}/hardware-configuration.nix
+            ../nixos/hosts/${host}/configuration.nix
             {
               nixpkgs.config.allowUnfree = true;
               nixpkgs.overlays = overlays;

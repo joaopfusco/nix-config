@@ -13,28 +13,28 @@
     "${inputs.nixos-hardware}/common/pc/laptop"
     "${inputs.nixos-hardware}/common/pc/ssd"
 
-    ../../modules/nixos/nix/config.nix
-    ../../modules/nixos/nix/ld.nix
-    ../../modules/nixos/networking.nix
-    ../../modules/nixos/locale.nix
-    ../../modules/nixos/user.nix
+    ../../modules/nix/config.nix
+    ../../modules/nix/ld.nix
+    ../../modules/networking.nix
+    ../../modules/locale.nix
+    ../../modules/user.nix
 
-    ../../modules/nixos/boot/inotify.nix
-    ../../modules/nixos/boot/systemd-boot.nix
+    ../../modules/boot/inotify.nix
+    ../../modules/boot/systemd-boot.nix
 
-    ../../modules/nixos/hardware/common.nix
-    ../../modules/nixos/hardware/intel.nix
-    ../../modules/nixos/hardware/nvidia.nix
-    ../../modules/nixos/hardware/audio.nix
+    ../../modules/hardware/common.nix
+    ../../modules/hardware/intel.nix
+    ../../modules/hardware/nvidia.nix
+    ../../modules/hardware/audio.nix
 
-    ../../modules/nixos/desktop/gnome.nix
-    ../../modules/nixos/pkgs/deps.nix
-    ../../modules/nixos/pkgs/cli.nix
-    ../../modules/nixos/pkgs/gui.nix
-    ../../modules/nixos/pkgs/flatpak.nix
+    ../../modules/desktop/gnome.nix
+    ../../modules/pkgs/deps.nix
+    ../../modules/pkgs/cli.nix
+    ../../modules/pkgs/gui.nix
+    ../../modules/pkgs/flatpak.nix
 
-    ../../modules/nixos/virtualisation/docker.nix
-    ../../modules/nixos/virtualisation/vm.nix
+    ../../modules/virtualisation/docker.nix
+    ../../modules/virtualisation/vm.nix
   ];
 
   # Same kernel params as nixos-hardware's dell/precision/5530 (closest official

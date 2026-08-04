@@ -3,7 +3,7 @@ let
   linkConfig =
     name:
     config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/nix-config/modules/home/claude-code/config/${name}";
+      "${config.home.homeDirectory}/nix-config/home-manager/modules/claude-code/config/${name}";
 in
 {
   home.file = {
