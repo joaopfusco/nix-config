@@ -26,6 +26,13 @@ in
     nixd-upgrade = "sudo determinate-nixd upgrade";
     nixd-version = "determinate-nixd version";
 
+    # Nix Flake
+    flake-lock-push = ''
+      git -C ${nixConfigDir} add flake.lock &&
+      git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
+      git -C ${nixConfigDir} push
+    '';
+
     # Home Manager
     home-switch = "home-manager switch --flake ${nixConfigDir}#${username}@${host}";
     home-sync = ''
@@ -35,10 +42,7 @@ in
     home-upgrade = ''
       git -C ${nixConfigDir} pull --rebase &&
       nix flake update --flake ${nixConfigDir} &&
-      home-manager switch --flake ${nixConfigDir}#${username}@${host} &&
-      git -C ${nixConfigDir} add flake.lock &&
-      git -C ${nixConfigDir} commit -m 'chore(home): update flake.lock' &&
-      git -C ${nixConfigDir} push
+      home-manager switch --flake ${nixConfigDir}#${username}@${host}
     '';
     home-test = "home-manager switch --flake ${nixConfigDir}#${username}@${host} -n";
     home-gens = "home-manager generations";
@@ -53,10 +57,7 @@ in
     nixos-upgrade = ''
       git -C ${nixConfigDir} pull --rebase &&
       nix flake update --flake ${nixConfigDir} &&
-      sudo nixos-rebuild switch --flake ${nixConfigDir}#${host} &&
-      git -C ${nixConfigDir} add flake.lock &&
-      git -C ${nixConfigDir} commit -m 'chore(nixos): update flake.lock' &&
-      git -C ${nixConfigDir} push
+      sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}
     '';
     nixos-test = "sudo nixos-rebuild test --flake ${nixConfigDir}#${host}";
     nixos-gens = "sudo nixos-rebuild list-generations";
