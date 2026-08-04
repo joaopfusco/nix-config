@@ -8,7 +8,7 @@
         email = "joaopedrofusco@gmail.com";
       };
       alias = {
-        lg = "log --oneline --graph --all";
+        discard = "!git restore --staged . && git restore . && git clean -fd";
       };
       credential = {
         helper = "store";
