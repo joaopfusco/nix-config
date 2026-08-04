@@ -33,6 +33,7 @@
     ../../modules/pkgs/gui.nix
     ../../modules/pkgs/flatpak.nix
 
+    ../../modules/virtualisation/distrobox.nix
     ../../modules/virtualisation/docker.nix
     ../../modules/virtualisation/vm.nix
   ];
