@@ -4,6 +4,5 @@
     wget
     curl
     btop
-    distrobox
   ];
 }
