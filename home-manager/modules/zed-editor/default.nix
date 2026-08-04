@@ -1,5 +1,5 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ./config ];
-  programs.zed-editor.enable = true;
+  programs.zed-editor.package = pkgs.zed-editor;
 }
