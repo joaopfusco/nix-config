@@ -19,7 +19,7 @@
     "include_ignored": "all"
   },
   "search": {
-    "include_ignored": true
+    "include_ignored": false
   },
   "soft_wrap": "editor_width",
   "autosave": {
