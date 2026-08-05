@@ -15,6 +15,7 @@
   config = lib.mkMerge [
     {
       nix.registry.pkgs.flake = self;
+      news.display = "silent";
       home = {
         inherit username;
         homeDirectory =
