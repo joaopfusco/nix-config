@@ -7,7 +7,6 @@ $git_state\
 $git_status\
 $python\
 $nix_shell\
-$env_var\
 $cmd_duration\
 $line_break\
 $character
@@ -28,7 +27,3 @@ format = "[venv:\\($virtualenv\\)]($style) "
 detect_extensions = []
 detect_files = []
 detect_folders = []
-
-[env_var.NIXSH_ACTIVE]
-format = "[nix-sh:(\\($env_value\\))]($style) "
-style = "bold blue"

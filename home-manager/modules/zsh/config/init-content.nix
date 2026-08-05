@@ -19,24 +19,12 @@
 
     export NIXPKGS_ALLOW_UNFREE=1
 
-    nix-sh() {
-      local args=()
-      for arg in "$@"; do
-        case $arg in
-          -*|*#*|*:*|.*|/*) args+=("$arg") ;;
-          *) args+=("pkgs#$arg") ;;
-        esac
-      done
-      NIXSH_ACTIVE="$*" nix shell "''${args[@]}" -c zsh
-    }
-
     devenv-init() {
       devenv init "$@" || return 1
       local dir=''${1:-.}
       if [[ ! -f "$dir/.envrc" ]]; then
         printf 'eval "$(devenv direnvrc)"\nuse devenv\n' > "$dir/.envrc"
       fi
-      direnv allow "$dir"
     }
   '';
 }
