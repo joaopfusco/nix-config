@@ -96,14 +96,29 @@ espera?). Isso precisa de um spike rápido lendo o código-fonte do hjem antes d
 implementar os hosts standalone; não bloqueia o desenho, mas é o primeiro risco a
 validar na fase de implementação.
 
-### 6. Forma de módulo: um arquivo por feature; pasta só quando há asset
+### 6. Forma de módulo: arquivo solto por padrão; pasta por dois motivos, nunca por terceiro
 
-- Sem asset companion (dotfile, script) → arquivo solto: `modules/programs/git.nix`.
-- Com asset companion → pasta com `default.nix` como entrypoint (convenção padrão do
-  Nix: importar uma pasta resolve pra `default.nix` sozinho) + o asset ao lado, sem
-  nesting extra tipo `config/`: `modules/programs/zsh/default.nix` +
-  `modules/programs/zsh/p10k.zsh` (mesmo padrão usado pelo próprio
-  MatthiasBenaets/nix-config).
+Regra única, aplicada sem exceção:
+
+- **Arquivo solto** (`modules/programs/git.nix`) é o padrão — feature cujo conteúdo é
+  só Nix (sem asset cru, sem irmão relacionado).
+- **Pasta com `default.nix`** só acontece por um destes dois motivos, nunca por "achei
+  que ficava mais organizado":
+  1. A feature tem **asset cru companheiro** que precisa existir como arquivo próprio
+     (dotfile symlinkado, script, `.toml`/`.json` de verdade) — ex.
+     `modules/programs/zsh/{default.nix,p10k.zsh}` (mesmo padrão do
+     `MatthiasBenaets/nix-config`), `modules/programs/starship/{default.nix,starship.toml}`.
+  2. Um grupo de arquivos `.nix` **irmãos** trata do mesmo assunto e faz sentido like
+     ler junto — ex. `modules/system/hardware/{common,intel,nvidia,audio}.nix` (mesmo
+     agrupamento que já existe hoje em `nixos/modules/hardware/`, e que o
+     `MatthiasBenaets/nix-config` também usa: `modules/hardware/`, `modules/gui/`,
+     `modules/theme/`). Nesse caso **não** existe um único `default.nix` — cada
+     arquivo da pasta é seu próprio módulo nomeado (`flake.modules.nixos.audio`,
+     `flake.modules.nixos.nvidia`, etc.), a pasta é só agrupamento de arquivos pro
+     humano, o `import-tree` importa cada um individualmente.
+- Nunca cria pasta pra um único arquivo `.nix` sem asset cru — isso é sempre arquivo
+  solto (`dotnet.nix`, `kitty.nix`, `copyq.nix`, `flameshot.nix` — nenhum tem dotfile
+  cru: o ini do flameshot é *gerado* via `pkgs.formats.ini`, não symlinkado).
 
 ## Estrutura de pastas completa
 
@@ -119,28 +134,29 @@ nix-config/
     │   ├── hjem.nix                # wiring do input hjem (nixosModules.default)
     │   └── host-options.nix       # host.* (ex MatthiasBenaets/nix-config)
     ├── programs/
-    │   ├── zsh/
-    │   │   ├── default.nix
-    │   │   ├── aliases.nix
-    │   │   ├── init-content.nix
-    │   │   └── oh-my-zsh.nix
     │   ├── git.nix
     │   ├── direnv.nix
     │   ├── gh.nix
     │   ├── cli-tools.nix           # ex-cli.nix (home-manager), grab-bag sem config
     │   ├── nodejs.nix
     │   ├── python.nix
-    │   ├── dotnet/
-    │   │   └── default.nix
-    │   ├── kitty/
-    │   │   └── default.nix
-    │   ├── starship/
+    │   ├── dotnet.nix               # sem asset cru → arquivo solto
+    │   ├── kitty.nix                # sem asset cru → arquivo solto
+    │   ├── copyq.nix                # sem asset cru → arquivo solto
+    │   ├── flameshot.nix            # ini gerado via pkgs.formats.ini → arquivo solto
+    │   ├── zsh/                     # pasta: 4 .nix irmãos sobre o mesmo assunto
+    │   │   ├── default.nix
+    │   │   ├── aliases.nix
+    │   │   ├── init-content.nix
+    │   │   └── oh-my-zsh.nix
+    │   ├── starship/                # pasta: asset cru companheiro
     │   │   ├── default.nix
     │   │   └── starship.toml
-    │   ├── zed-editor/
-    │   │   ├── default.nix        # aspectos homeManager.zed-editor + dotfiles-only
-    │   │   └── settings.json
-    │   ├── claude-code/
+    │   ├── zed-editor/              # pasta: 2 assets crus companheiros
+    │   │   ├── default.nix          # aspectos homeManager.zed-editor + dotfiles-only (hjem)
+    │   │   ├── settings.json
+    │   │   └── keymap.json
+    │   ├── claude-code/             # pasta: árvore inteira de assets crus
     │   │   ├── default.nix
     │   │   ├── CLAUDE.md
     │   │   ├── settings.json
@@ -148,11 +164,7 @@ nix-config/
     │   │   ├── rules/...
     │   │   ├── references/...
     │   │   └── skills/...
-    │   ├── copyq/
-    │   │   └── default.nix
-    │   ├── flameshot/
-    │   │   └── default.nix
-    │   └── distrobox-export/
+    │   └── distrobox-export/        # pasta: asset cru companheiro (script)
     │       ├── default.nix
     │       └── sync-exports.sh
     ├── services/
@@ -162,21 +174,26 @@ nix-config/
     ├── system/
     │   ├── locale.nix
     │   ├── networking.nix
-    │   ├── nix-settings.nix        # ex nix/config.nix + nix/ld.nix
+    │   ├── nix-settings.nix        # ex nix/config.nix
+    │   ├── nix-ld.nix              # ex nix/ld.nix
     │   ├── user.nix
-    │   ├── boot-systemd.nix
-    │   ├── boot-grub.nix
-    │   ├── inotify.nix
-    │   ├── desktop-gnome.nix
-    │   ├── desktop-plasma.nix
-    │   ├── hardware-common.nix
-    │   ├── hardware-intel.nix
-    │   ├── hardware-nvidia.nix
-    │   ├── hardware-audio.nix
-    │   ├── pkgs-cli.nix
-    │   ├── pkgs-gui.nix
-    │   ├── pkgs-media-codecs.nix
-    │   └── vm-guest.nix
+    │   ├── vm-guest.nix
+    │   ├── boot/                   # pasta: agrupamento (mesmo já existente hoje)
+    │   │   ├── systemd-boot.nix
+    │   │   ├── grub.nix
+    │   │   └── inotify.nix
+    │   ├── desktop/                # pasta: agrupamento
+    │   │   ├── gnome.nix
+    │   │   └── plasma.nix
+    │   ├── hardware/                # pasta: agrupamento
+    │   │   ├── common.nix
+    │   │   ├── intel.nix
+    │   │   ├── nvidia.nix
+    │   │   └── audio.nix
+    │   └── pkgs/                   # pasta: agrupamento
+    │       ├── cli.nix
+    │       ├── gui.nix
+    │       └── media-codecs.nix
     └── hosts/
         ├── nixos/
         │   ├── precision-7540/
@@ -196,12 +213,16 @@ nix-config/
 |---|---|
 | `lib/packages.nix`, `lib/profiles.nix`, `lib/home-manager.nix` | `modules/nix/nixpkgs.nix`, `flake-parts.nix`, `home-manager.nix`, `host-options.nix` |
 | `home-manager/modules/zsh/` (+ `cli.nix`, `git.nix`, `direnv.nix`, `gh.nix`, `node.nix`, `python.nix`) | `modules/programs/zsh/`, `cli-tools.nix`, `git.nix`, `direnv.nix`, `gh.nix`, `nodejs.nix`, `python.nix` |
-| `home-manager/modules/dotnet/{default.nix,config}` | `modules/programs/dotnet/default.nix` (aspectos homeManager + dotfiles-only) |
-| `home-manager/modules/{kitty,starship,zed-editor,claude-code,copyq,flameshot}/{default.nix,config}` | `modules/programs/<app>/default.nix` (aspectos homeManager + dotfiles-only via hjem), assets ao lado |
-| `home-manager/modules/distrobox-export/` | `modules/programs/distrobox-export/` |
-| `nixos/modules/boot/*`, `desktop/*`, `hardware/*`, `locale.nix`, `networking.nix`, `user.nix` | `modules/system/*` |
-| `nixos/modules/nix/config.nix`, `nix/ld.nix` | `modules/system/nix-settings.nix` |
-| `nixos/modules/pkgs/*` | `modules/system/pkgs-*.nix` |
+| `home-manager/modules/dotnet/{default.nix,config}` | `modules/programs/dotnet.nix` (arquivo solto — sem asset cru, um único aspecto homeManager) |
+| `home-manager/modules/{kitty,copyq,flameshot}/{default.nix,config}` | `modules/programs/{kitty,copyq,flameshot}.nix` (arquivo solto — sem asset cru) |
+| `home-manager/modules/{starship,zed-editor,claude-code}/{default.nix,config}` | `modules/programs/<app>/default.nix` (pasta — asset cru companheiro), aspectos homeManager + dotfiles-only via hjem quando aplicável |
+| `home-manager/modules/distrobox-export/` | `modules/programs/distrobox-export/` (pasta — asset cru: sync-exports.sh) |
+| `nixos/modules/boot/*` | `modules/system/boot/*` |
+| `nixos/modules/desktop/*` | `modules/system/desktop/*` |
+| `nixos/modules/hardware/*` | `modules/system/hardware/*` |
+| `nixos/modules/locale.nix`, `networking.nix`, `user.nix` | `modules/system/locale.nix`, `networking.nix`, `user.nix` |
+| `nixos/modules/nix/config.nix`, `nix/ld.nix` | `modules/system/nix-settings.nix`, `modules/system/nix-ld.nix` |
+| `nixos/modules/pkgs/*` (menos `flatpak.nix`) | `modules/system/pkgs/*` |
 | `nixos/modules/virtualisation/{docker,flatpak}.nix` | `modules/services/{docker,flatpak}.nix` |
 | `nixos/modules/virtualisation/{distrobox,vm}.nix` | `modules/services/distrobox.nix`, `modules/system/vm-guest.nix` |
 | `nixos/hosts/precision-7540/`, `virtual-machine/` | `modules/hosts/nixos/precision-7540/`, `virtual-machine/` |
