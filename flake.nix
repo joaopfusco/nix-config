@@ -12,41 +12,13 @@
       url = "github:nixos/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      username = "joaop";
-      homeStateVersion = "26.05";
-
-      packages = import ./lib/packages.nix {
-        inherit nixpkgs nixpkgs-unstable;
-      };
-
-      homeManager = import ./lib/home-manager.nix {
-        inherit self username homeStateVersion;
-      };
-
-      profiles = import ./lib/profiles.nix {
-        inherit
-          nixpkgs
-          home-manager
-          inputs
-          username
-          homeManager
-          ;
-        inherit (packages) mkPkgs overlays;
-      };
-    in
-    {
-      inherit (packages) legacyPackages;
-      inherit (profiles) homeConfigurations nixosConfigurations;
+    inputs@{ flake-parts, import-tree, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ (import-tree ./modules) ];
     };
 }
