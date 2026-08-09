@@ -110,11 +110,23 @@ módulos do Nix pra isso (`lib.mkForce`):
 ```
 
 ```nix
-# modules/hosts/home-manager/notebook.nix — host sobrescreve a opção, não escolhe import
+# modules/hosts/home-manager/notebook.nix — host lista seletivamente o que quer
+# (seção 4), e sobrescreve a opção pro que estiver na lista (seção 5) — nunca
+# importa tudo incondicionalmente, senão flameshot/copyq (Linux GUI-only)
+# vazariam pro macbook, por exemplo.
 {
   flake.homeConfigurations."joaop@notebook" = inputs.home-manager.lib.homeManagerConfiguration {
-    modules = (builtins.attrValues config.flake.modules.homeManager) ++ [
-      { programs.kitty.package = lib.mkForce null; }  # kitty vem do apt aqui
+    modules = (with config.flake.modules.homeManager; [
+      gh git direnv nodejs python dotnet cli-tools zsh starship claude-code zed-editor kitty
+    ]) ++ [
+      {
+        # comportamento hoje no notebook real: kitty, zed-editor e claude-code
+        # são config-only lá (`modules/<app>/config`) — preservado aqui
+        # sobrescrevendo a opção em vez de trocar de import.
+        programs.kitty.package = lib.mkForce null;
+        programs.zed-editor.package = lib.mkForce null;
+        programs.claude-code.package = lib.mkForce null;
+      }
     ];
   };
 }
