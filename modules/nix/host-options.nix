@@ -32,10 +32,15 @@ let
   };
 in
 {
-  flake.modules.nixos.base = {
-    options.host = hostOptions;
-    config.host.isNixOS = lib.mkDefault true;
-  };
+  flake.modules.nixos.base =
+    { config, ... }:
+    {
+      options.host = hostOptions;
+      config = {
+        host.isNixOS = lib.mkDefault true;
+        system.stateVersion = config.host.state.version;
+      };
+    };
 
   flake.modules.homeManager.base = {
     options.host = hostOptions;

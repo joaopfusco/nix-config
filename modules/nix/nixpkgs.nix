@@ -18,6 +18,8 @@ in
     "x86_64-darwin"
   ];
 
+  flake.overlays.default = builtins.head overlays;
+
   perSystem = { system, ... }: {
     _module.args.pkgs = mkPkgs system;
     legacyPackages = mkPkgs system;
