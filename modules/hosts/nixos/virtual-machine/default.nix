@@ -5,10 +5,6 @@
     modules = [
       ./_hardware.nix
       { host.name = "virtual-machine"; }
-      {
-        nixpkgs.config.allowUnfree = true;
-        nixpkgs.overlays = [ config.flake.overlays.default ];
-      }
     ]
     ++ (with config.flake.modules.nixos; [
       base
@@ -31,25 +27,28 @@
       vmGuest
     ])
     ++ [
-      {
-        home-manager.users.${config.host.user.name}.imports = with config.flake.modules.homeManager; [
-          base
-          gh
-          git
-          direnv
-          nodejs
-          python
-          dotnet
-          cliTools
-          zsh
-          starship
-          claudeCode
-          zedEditor
-          kitty
-          flameshot
-          copyq
-        ];
-      }
+      (
+        { config, ... }:
+        {
+          home-manager.users.${config.host.user.name}.imports = with config.flake.modules.homeManager; [
+            base
+            gh
+            git
+            direnv
+            nodejs
+            python
+            dotnet
+            cliTools
+            zsh
+            starship
+            claudeCode
+            zedEditor
+            kitty
+            flameshot
+            copyq
+          ];
+        }
+      )
     ];
   };
 }

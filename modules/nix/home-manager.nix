@@ -1,17 +1,5 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.base =
-    { config, ... }:
-    {
-      imports = [ inputs.home-manager.nixosModules.home-manager ];
-
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = { inherit inputs; };
-      };
-    };
-
   flake.modules.homeManager.base =
     { config, lib, pkgs, osConfig, ... }:
     {
