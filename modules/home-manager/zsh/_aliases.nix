@@ -1,5 +1,4 @@
 { config, ... }:
-
 let
   nixConfigDir = "${config.home.homeDirectory}/nix-config";
   username = config.host.user.name;

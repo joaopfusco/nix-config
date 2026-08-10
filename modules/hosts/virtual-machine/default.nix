@@ -10,7 +10,7 @@
       nodejs
       python
       dotnet
-      cliTools
+      cliPkgs
       zsh
       starship
       claudeCode
