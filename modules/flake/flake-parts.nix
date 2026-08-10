@@ -9,9 +9,4 @@
     type = lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule);
     default = { };
   };
-
-  # options.flake.nixosConfigurations = lib.mkOption {
-  #   type = lib.types.lazyAttrsOf lib.types.raw;
-  #   default = { };
-  # };
 }
