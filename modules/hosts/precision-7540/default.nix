@@ -17,6 +17,7 @@
       dotnet
       cliPkgs
       zsh
+      aliases
       starship
       claudeCode
       zedEditor

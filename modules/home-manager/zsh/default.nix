@@ -2,8 +2,6 @@
   flake.modules.homeManager.zsh =
     { config, ... }:
     {
-      imports = [ ./_aliases.nix ];
-
       programs.zsh = {
         enable = true;
         dotDir = "${config.xdg.configHome}/zsh";
