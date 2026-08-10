@@ -33,7 +33,7 @@
 
         # Home Manager
         home-switch = ''
-          nix fmt &&
+          (cd ${nixConfigDir} && nix fmt) &&
           home-manager switch --flake ${nixConfigDir}#${username}@${host}
         '';
         home-sync = ''
@@ -51,7 +51,7 @@
 
         # NixOS
         nixos-switch = ''
-          nix fmt &&
+          (cd ${nixConfigDir} && nix fmt) &&
           sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}
         '';
         nixos-sync = ''
