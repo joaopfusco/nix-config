@@ -30,30 +30,36 @@ in
     '';
 
     # Home Manager
-    home-switch = "home-manager switch --flake ${nixConfigDir}#${username}@${host}";
+    home-switch = ''
+      nix fmt &&
+      home-manager switch --flake ${nixConfigDir}#${username}@${host}
+    '';
     home-sync = ''
       git -C ${nixConfigDir} pull --rebase &&
-      home-manager switch --flake ${nixConfigDir}#${username}@${host}
+      home-switch
     '';
     home-upgrade = ''
       git -C ${nixConfigDir} pull --rebase &&
       nix flake update --flake ${nixConfigDir} &&
-      home-manager switch --flake ${nixConfigDir}#${username}@${host}
+      home-switch
     '';
-    home-test = "home-manager switch --flake ${nixConfigDir}#${username}@${host} -n";
+    home-test = "home-switch -n";
     home-gens = "home-manager generations";
-    home-rollback = "home-manager switch --flake ${nixConfigDir}#${username}@${host} --rollback";
+    home-rollback = "home-switch --rollback";
 
     # NixOS
-    nixos-switch = "sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}";
+    nixos-switch = ''
+      nix fmt &&
+      sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}
+    '';
     nixos-sync = ''
       git -C ${nixConfigDir} pull --rebase &&
-      sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}
+      nixos-switch
     '';
     nixos-upgrade = ''
       git -C ${nixConfigDir} pull --rebase &&
       nix flake update --flake ${nixConfigDir} &&
-      sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}
+      nixos-switch
     '';
     nixos-test = "sudo nixos-rebuild test --flake ${nixConfigDir}#${host}";
     nixos-gens = "sudo nixos-rebuild list-generations";
