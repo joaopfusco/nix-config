@@ -17,42 +17,44 @@
       zedEditor
       kitty
     ];
-    modules = (with config.flake.modules.nixos; [
-      base
-      user
-      networking
-      locale
-      inotify
-      grub
-      hardwareCommon
-      intel
-      nvidia
-      audio
-      gnome
-      cliPkgs
-      guiPkgs
-      mediaCodecs
-      flatpak
-      distrobox
-      docker
-      vm
-    ]) ++ [
-      ./_hardware.nix
-      (
-        { config, homeManagerModules, ... }:
-        {
-          host.name = "virtual-machine";
-          host.stateVersion.nixos = "26.05";
+    modules =
+      (with config.flake.modules.nixos; [
+        base
+        user
+        networking
+        locale
+        inotify
+        grub
+        hardwareCommon
+        intel
+        nvidia
+        audio
+        gnome
+        cliPkgs
+        guiPkgs
+        mediaCodecs
+        flatpak
+        distrobox
+        docker
+        vm
+      ])
+      ++ [
+        ./_hardware.nix
+        (
+          { config, homeManagerModules, ... }:
+          {
+            host.name = "virtual-machine";
+            host.stateVersion.nixos = "26.05";
 
-          home-manager = {
-            sharedModules = homeManagerModules;
-            users.${config.host.user.name} = {
-              host.name = "virtual-machine";
-              host.stateVersion.home = "26.05";
+            home-manager = {
+              sharedModules = homeManagerModules;
+              users.${config.host.user.name} = {
+                host.name = "virtual-machine";
+                host.stateVersion.home = "26.05";
+              };
             };
-          };
-        }
-      )
-    ];
+          }
+        )
+      ];
   };
 }

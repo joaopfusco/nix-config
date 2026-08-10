@@ -22,66 +22,68 @@
       zedEditor
       kitty
     ];
-    modules = (with config.flake.modules.nixos; [
-      base
-      user
-      networking
-      locale
-      inotify
-      systemdBoot
-      hardwareCommon
-      intel
-      nvidia
-      audio
-      gnome
-      cliPkgs
-      guiPkgs
-      mediaCodecs
-      flatpak
-      distrobox
-      docker
-      vm
-    ]) ++ [
-      ./_hardware.nix
-      "${inputs.nixos-hardware}/common/cpu/intel/coffee-lake"
-      "${inputs.nixos-hardware}/common/gpu/nvidia/turing"
-      "${inputs.nixos-hardware}/common/gpu/nvidia/prime.nix"
-      "${inputs.nixos-hardware}/common/pc/laptop"
-      "${inputs.nixos-hardware}/common/pc/ssd"
-      (
-        { config, homeManagerModules, ... }:
-        {
-          host.name = "precision-7540";
-          host.stateVersion.nixos = "26.05";
+    modules =
+      (with config.flake.modules.nixos; [
+        base
+        user
+        networking
+        locale
+        inotify
+        systemdBoot
+        hardwareCommon
+        intel
+        nvidia
+        audio
+        gnome
+        cliPkgs
+        guiPkgs
+        mediaCodecs
+        flatpak
+        distrobox
+        docker
+        vm
+      ])
+      ++ [
+        ./_hardware.nix
+        "${inputs.nixos-hardware}/common/cpu/intel/coffee-lake"
+        "${inputs.nixos-hardware}/common/gpu/nvidia/turing"
+        "${inputs.nixos-hardware}/common/gpu/nvidia/prime.nix"
+        "${inputs.nixos-hardware}/common/pc/laptop"
+        "${inputs.nixos-hardware}/common/pc/ssd"
+        (
+          { config, homeManagerModules, ... }:
+          {
+            host.name = "precision-7540";
+            host.stateVersion.nixos = "26.05";
 
-          # Same kernel params as nixos-hardware's dell/precision/5530 (closest official
-          # profile, same chassis generation) — not vendored via that profile because it
-          # pins the Pascal GPU generation instead of Turing (see comment above).
-          boot.kernelParams = [
-            # fix lspci hanging with nouveau
-            # source https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1803179/comments/149
-            "acpi_rev_override=1"
-            "acpi_osi=Linux"
-            "nouveau.modeset=0"
-            "pcie_aspm=force"
-            "drm.vblankoffdelay=1"
-            "nouveau.runpm=0"
-            "mem_sleep_default=deep"
-            # fix flicker
-            # source https://wiki.archlinux.org/index.php/Intel_graphics#Screen_flickering
-            "i915.enable_psr=0"
-            "nvidia_drm.modeset=1"
-          ];
+            # Same kernel params as nixos-hardware's dell/precision/5530 (closest official
+            # profile, same chassis generation) — not vendored via that profile because it
+            # pins the Pascal GPU generation instead of Turing (see comment above).
+            boot.kernelParams = [
+              # fix lspci hanging with nouveau
+              # source https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1803179/comments/149
+              "acpi_rev_override=1"
+              "acpi_osi=Linux"
+              "nouveau.modeset=0"
+              "pcie_aspm=force"
+              "drm.vblankoffdelay=1"
+              "nouveau.runpm=0"
+              "mem_sleep_default=deep"
+              # fix flicker
+              # source https://wiki.archlinux.org/index.php/Intel_graphics#Screen_flickering
+              "i915.enable_psr=0"
+              "nvidia_drm.modeset=1"
+            ];
 
-          home-manager = {
-            sharedModules = homeManagerModules;
-            users.${config.host.user.name} = {
-              host.name = "precision-7540";
-              host.stateVersion.home = "26.05";
+            home-manager = {
+              sharedModules = homeManagerModules;
+              users.${config.host.user.name} = {
+                host.name = "precision-7540";
+                host.stateVersion.home = "26.05";
+              };
             };
-          };
-        }
-      )
-    ];
+          }
+        )
+      ];
   };
 }

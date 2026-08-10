@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.dotnet =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       inherit (pkgs) dotnetCorePackages;
 
@@ -10,15 +15,16 @@
           pkgs.buildFHSEnv {
             inherit name;
 
-            targetPkgs = pkgs: with pkgs; [
-              sdk
-              dotnet-ef
-              icu
-              openssl
-              zlib
-              curl
-              krb5
-            ];
+            targetPkgs =
+              pkgs: with pkgs; [
+                sdk
+                dotnet-ef
+                icu
+                openssl
+                zlib
+                curl
+                krb5
+              ];
 
             runScript = pkgs.writeShellScript "${name}-entry" ''
               export DOTNET_ROOT=/usr/share/dotnet

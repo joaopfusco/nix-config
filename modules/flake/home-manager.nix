@@ -1,7 +1,13 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.base =
-    { config, lib, pkgs, osConfig, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      osConfig,
+      ...
+    }:
     {
       config = lib.mkMerge [
         {
