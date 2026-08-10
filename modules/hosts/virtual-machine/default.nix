@@ -30,7 +30,7 @@
         intel
         nvidia
         audio
-        gnome
+        plasma
         cliPkgs
         guiPkgs
         mediaCodecs
