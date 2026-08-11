@@ -17,6 +17,7 @@
       claudeCode
       zedEditor
       kitty
+      plasma
     ];
     modules =
       (with config.flake.modules.nixos; [

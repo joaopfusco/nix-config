@@ -20,6 +20,12 @@
           picture-uri-dark = "file://${wallpaper}";
         };
 
+        "org/gnome/settings-daemon/plugins/color" = {
+          night-light-enabled = true;
+          night-light-schedule-automatic = false;
+          night-light-temperature = lib.hm.gvariant.mkUint32 2700;
+        };
+
         "org/gnome/desktop/peripherals/touchpad" = {
           disable-while-typing = true;
           two-finger-scrolling-enabled = true;
