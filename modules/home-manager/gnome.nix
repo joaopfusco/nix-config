@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.gnome =
     { lib, ... }:
+    let
+      wallpaper = ./wallpapers/jesus-crown.jpg;
+    in
     {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
@@ -9,6 +12,12 @@
           color-scheme = "prefer-dark";
           enable-hot-corners = true;
           show-battery-percentage = true;
+        };
+
+        "org/gnome/desktop/background" = {
+          picture-options = "zoom";
+          picture-uri = "file://${wallpaper}";
+          picture-uri-dark = "file://${wallpaper}";
         };
 
         "org/gnome/desktop/peripherals/touchpad" = {
@@ -42,6 +51,8 @@
           lock-enabled = true;
           lock-delay = lib.hm.gvariant.mkUint32 0;
           ubuntu-lock-on-suspend = true;
+          picture-uri = "file://${wallpaper}";
+          picture-options = "zoom";
         };
 
         "org/gnome/desktop/notifications" = {
