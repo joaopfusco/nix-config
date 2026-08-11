@@ -27,6 +27,7 @@
         claudeCode
         zedEditor
         kitty
+        gnome
       ])
       ++ [
         {
