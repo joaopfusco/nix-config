@@ -54,17 +54,14 @@
           (mkDotnet "dotnet10" dotnetCorePackages.sdk_10_0)
           (pkgs.writeShellScriptBin "dotnet" ''exec dotnet8 "$@"'')
         ];
-        description = ''
-          SDKs do .NET instalados via Nix (FHS envs pesados). Hosts que não
-          querem o Nix dono desses binários sobrescrevem com `lib.mkForce [ ]`
-          — o `dotnet-ef` continua instalado de qualquer forma.
-        '';
       };
 
       config = {
         home.packages = config.dotnetSdks ++ [ pkgs.dotnet-ef ];
 
-        home.sessionPath = [ "${config.home.homeDirectory}/.dotnet/tools" ];
+        home.sessionPath = [
+          "${config.home.homeDirectory}/.dotnet/tools"
+        ];
 
         home.sessionVariables = {
           DOTNET_CLI_TELEMETRY_OPTOUT = "1";
