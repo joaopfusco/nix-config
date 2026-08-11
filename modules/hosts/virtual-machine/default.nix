@@ -22,6 +22,8 @@
       (with config.flake.modules.nixos; [
         base
         user
+        nixSettings
+        nixLd
         networking
         locale
         inotify
