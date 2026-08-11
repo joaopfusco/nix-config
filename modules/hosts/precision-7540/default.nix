@@ -15,35 +15,29 @@
       nodejs
       python
       dotnet
-      cliPkgs
+      pkgs
       zsh
       aliases
       starship
       claudeCode
       zedEditor
       kitty
-      gnome
+      dconf
     ];
     modules =
       (with config.flake.modules.nixos; [
         base
         user
-        nixSettings
+        common
         nixLd
-        networking
-        locale
         inotify
         systemdBoot
-        hardwareCommon
         intel
         nvidia
-        audio
         gnome
-        cliPkgs
-        guiPkgs
+        pkgs
         mediaCodecs
         flatpak
-        distrobox
         docker
         vm
       ])

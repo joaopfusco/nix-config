@@ -20,14 +20,14 @@
         nodejs
         python
         dotnet
-        cliPkgs
+        pkgs
         zsh
         aliases
         starship
         claudeCode
         zedEditor
         kitty
-        gnome
+        dconf
       ])
       ++ [
         {

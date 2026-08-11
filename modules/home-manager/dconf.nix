@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.gnome =
+  flake.modules.homeManager.dconf =
     { lib, ... }:
     let
       wallpaper = ./wallpapers/jesus-crown.jpg;

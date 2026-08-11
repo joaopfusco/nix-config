@@ -1,9 +1,13 @@
 {
-  flake.modules.nixos.guiPkgs =
+  flake.modules.nixos.pkgs =
     { pkgs, ... }:
     {
       environment.systemPackages =
         (with pkgs; [
+          wget
+          curl
+          btop
+          distrobox
           libreoffice
           vlc
           obs-studio

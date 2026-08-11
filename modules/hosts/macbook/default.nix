@@ -20,7 +20,7 @@
         nodejs
         python
         dotnet
-        cliPkgs
+        pkgs
         zsh
         aliases
         starship
