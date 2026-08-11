@@ -41,44 +41,6 @@
         };
       };
 
-      # Painel padrão do Plasma, só com o ícone do launcher trocado e os
-      # apps centralizados (2 spacers), mesmos favoritos do gnome.nix.
-      panels = [
-        {
-          location = "bottom";
-          widgets = [
-            {
-              kickoff = {
-                icon = "nix-snowflake-white";
-              };
-            }
-            {
-              panelSpacer.expanding = true;
-            }
-            {
-              iconTasks = {
-                launchers = [
-                  "applications:google-chrome.desktop"
-                  "applications:org.kde.dolphin.desktop"
-                  "applications:org.kde.discover.desktop"
-                  "applications:org.kde.systemsettings.desktop"
-                  "applications:kitty.desktop"
-                  "applications:dev.zed.Zed.desktop"
-                  "applications:code.desktop"
-                ];
-              };
-            }
-            {
-              panelSpacer.expanding = true;
-            }
-            "org.kde.plasma.systemtray"
-            {
-              digitalClock = { };
-            }
-          ];
-        }
-      ];
-
       configFile = {
         kdeglobals.General.TerminalApplication = "kitty";
         kdeglobals.General.TerminalService = "kitty.desktop";
