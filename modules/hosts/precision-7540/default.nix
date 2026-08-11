@@ -22,7 +22,7 @@
       claudeCode
       zedEditor
       kitty
-      plasma
+      gnome
     ];
     modules =
       (with config.flake.modules.nixos; [
@@ -38,7 +38,7 @@
         intel
         nvidia
         audio
-        plasma
+        gnome
         cliPkgs
         guiPkgs
         mediaCodecs
