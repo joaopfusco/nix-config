@@ -17,7 +17,7 @@
       claudeCode
       zedEditor
       kitty
-      dconf
+      gnome
     ];
     modules =
       (with config.flake.modules.nixos; [

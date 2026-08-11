@@ -27,7 +27,7 @@
         claudeCode
         zedEditor
         kitty
-        dconf
+        gnome
       ])
       ++ [
         {
