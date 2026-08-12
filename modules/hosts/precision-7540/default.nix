@@ -32,8 +32,6 @@
         nixLd
         inotify
         systemdBoot
-        intel
-        nvidia
         gnome
         pkgs
         mediaCodecs
@@ -54,6 +52,37 @@
             host.name = "precision-7540";
             host.stateVersion.nixos = "26.05";
 
+            home-manager = {
+              sharedModules = homeManagerModules;
+              users.${config.host.user.name} = {
+                host.name = "precision-7540";
+                host.stateVersion.home = "26.05";
+              };
+            };
+
+            # intel
+            services.thermald.enable = true;
+
+            # nvidia
+            services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+            hardware.nvidia = {
+              nvidiaSettings = true;
+              modesetting.enable = true;
+              powerManagement.enable = true;
+              package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+              # PCI bus IDs `lspci -nn | grep -E "VGA|3D"`:
+              #   00:02.0 Intel UHD Graphics 630   -> PCI:0:2:0
+              #   01:00.0 NVIDIA Quadro RTX 3000   -> PCI:1:0:0
+              prime = {
+                intelBusId = "PCI:0:2:0";
+                nvidiaBusId = "PCI:1:0:0";
+                # PRIME offload (render on iGPU, dGPU idle unless invoked via
+                # `nvidia-offload <cmd>`) is already forced true by nixos-hardware's
+                # common/gpu/nvidia/prime.nix — not redeclared here.
+              };
+            };
+
             # Same kernel params as nixos-hardware's dell/precision/5530 (closest official
             # profile, same chassis generation) — not vendored via that profile because it
             # pins the Pascal GPU generation instead of Turing (see comment above).
@@ -72,14 +101,6 @@
               "i915.enable_psr=0"
               "nvidia_drm.modeset=1"
             ];
-
-            home-manager = {
-              sharedModules = homeManagerModules;
-              users.${config.host.user.name} = {
-                host.name = "precision-7540";
-                host.stateVersion.home = "26.05";
-              };
-            };
           }
         )
       ];

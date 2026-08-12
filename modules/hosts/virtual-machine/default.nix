@@ -27,8 +27,6 @@
         nixLd
         inotify
         grub
-        intel
-        nvidia
         gnome
         pkgs
         mediaCodecs
