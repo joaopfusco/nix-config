@@ -30,6 +30,12 @@
           git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
           git -C ${nixConfigDir} push
         '';
+        flake-lock-revert = ''
+          git -C ${nixConfigDir} diff --quiet -- flake.lock \
+            && git -C ${nixConfigDir} checkout HEAD~1 -- flake.lock \
+            || git -C ${nixConfigDir} checkout -- flake.lock
+          home-switch
+        '';
 
         # Home Manager
         home-switch = ''
