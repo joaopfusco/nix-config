@@ -65,26 +65,6 @@
           show-in-lock-screen = false;
         };
 
-        "org/gnome/shell" = {
-          enabled-extensions = [
-            "clipboard-indicator@tudmotu.com"
-          ];
-          disabled-extensions = [
-            "tiling-assistant@ubuntu.com"
-            "ubuntu-dock@ubuntu.com"
-            "ding@rastersoft.com"
-          ];
-          favorite-apps = [
-            "google-chrome.desktop"
-            "org.gnome.Nautilus.desktop"
-            "org.gnome.Software.desktop"
-            "org.gnome.Settings.desktop"
-            "kitty.desktop"
-            "dev.zed.Zed.desktop"
-            "code.desktop"
-          ];
-        };
-
         "org/gnome/shell/keybindings" = {
           toggle-message-tray = [ "<Super>m" ];
         };

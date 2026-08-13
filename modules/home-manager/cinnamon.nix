@@ -75,15 +75,6 @@
         };
 
         "org/cinnamon" = {
-          favorite-apps = [
-            "google-chrome.desktop"
-            "nemo.desktop"
-            "mintinstall.desktop"
-            "cinnamon-settings.desktop"
-            "kitty.desktop"
-            "dev.zed.Zed.desktop"
-            "code.desktop"
-          ];
           overview-corner-hover = true;
           theme = "Mint-Y-Dark";
         };
