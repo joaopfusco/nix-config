@@ -6,7 +6,7 @@ Personal Nix Flakes config (Home Manager + NixOS). `Dendritic pattern`: a single
 
 ## Prerequisites
 
-- [Determinate Nix](https://install.determinate.systems)
+- [Determinate Nix](https://determinate.systems/blog/determinate-nix-installer/)
 - Git configured, with an SSH key registered on GitHub
 
 ```bash
@@ -22,14 +22,13 @@ cd nix-config
 
 ## Initial setup
 
-Home Manager standalone:
+Home Manager:
 
 ```bash
-nix-shell -p home-manager
-home-manager switch --flake .#joaop@<host>
+nix run home-manager -- switch --flake .#joaop@<host>
 ```
 
-NixOS — generate hardware config before the first switch:
+NixOS:
 
 ```bash
 sudo nixos-generate-config --show-hardware-config > modules/hosts/<host>/_hardware.nix
