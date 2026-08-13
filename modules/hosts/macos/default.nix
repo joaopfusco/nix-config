@@ -35,7 +35,6 @@ in
             {
               host.name = hostName;
               home.stateVersion = "26.05";
-              dotnetSdks = lib.mkForce [ ];
               programs.claude-code.package = lib.mkForce null;
               programs.zed-editor.package = lib.mkForce null;
               programs.kitty.package = lib.mkForce null;
