@@ -25,13 +25,8 @@
             sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
           };
         }
-        (lib.mkIf (osConfig == null) {
-          targets.genericLinux.enable = pkgs.stdenv.hostPlatform.isLinux;
-          nix.gc = {
-            automatic = true;
-            dates = "weekly";
-            options = "--delete-older-than 7d";
-          };
+        (lib.mkIf (osConfig == null && pkgs.stdenv.hostPlatform.isLinux) {
+          targets.genericLinux.enable = true;
         })
       ];
     };

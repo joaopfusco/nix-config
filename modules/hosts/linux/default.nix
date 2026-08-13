@@ -17,6 +17,7 @@ in
         modules =
           (with config.flake.modules.homeManager; [
             base
+            nixGc
             gh
             git
             direnv
