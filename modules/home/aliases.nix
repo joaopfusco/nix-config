@@ -24,6 +24,9 @@
         nixd-upgrade = "sudo determinate-nixd upgrade";
         nixd-version = "determinate-nixd version";
 
+        # Nix
+        nix-upgrade = "sudo -i nix upgrade-nix";
+
         # Nix Flake
         flake-lock-push = ''
           git -C ${nixConfigDir} add flake.lock &&

@@ -1,9 +1,6 @@
 {
   flake.modules.homeManager.cinnamon =
     { lib, ... }:
-    let
-      wallpaper = ./wallpapers/jesus-crown.jpg;
-    in
     {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
@@ -41,11 +38,6 @@
 
         "org/cinnamon/desktop/interface" = {
           icon-theme = "Papirus-Dark";
-        };
-
-        "org/cinnamon/desktop/background" = {
-          picture-options = "zoom";
-          picture-uri = "file://${wallpaper}";
         };
 
         "org/cinnamon/desktop/wm/preferences" = {

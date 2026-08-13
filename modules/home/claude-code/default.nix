@@ -4,7 +4,7 @@
     let
       linkConfig =
         name:
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/modules/home-manager/claude-code/${name}";
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/modules/home/claude-code/${name}";
     in
     {
       programs.claude-code.enable = true;
