@@ -39,7 +39,6 @@ in
               dotnetSdks = lib.mkForce [ ];
               programs.claude-code.package = lib.mkForce null;
               programs.zed-editor.package = lib.mkForce null;
-              programs.kitty.package = lib.mkForce null;
             }
           ];
       };
