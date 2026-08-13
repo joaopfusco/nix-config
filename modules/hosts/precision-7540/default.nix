@@ -1,11 +1,9 @@
-# Dell Precision 7540 — Intel Core i9-9980HK (Coffee Lake) + NVIDIA Quadro
-# RTX 3000 Mobile / Max-Q (Turing) hybrid graphics, confirmed via `lspci`.
-# No exact "precision-7540" profile in nixos-hardware; closest generation
-# match is dell/precision/5530 (same CPU/GPU family) — composed from the
-# same generic pieces it uses instead of copying it wholesale.
 { config, inputs, ... }:
+let
+  hostName = baseNameOf ./.;
+in
 {
-  flake.nixosConfigurations."precision-7540" = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.${hostName} = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs.homeManagerModules = with config.flake.modules.homeManager; [
       base
@@ -49,14 +47,14 @@
         (
           { config, homeManagerModules, ... }:
           {
-            host.name = "precision-7540";
-            host.stateVersion.nixos = "26.05";
+            host.name = hostName;
+            system.stateVersion = "26.05";
 
             home-manager = {
               sharedModules = homeManagerModules;
               users.${config.host.user.name} = {
-                host.name = "precision-7540";
-                host.stateVersion.home = "26.05";
+                host.name = hostName;
+                home.stateVersion = "26.05";
               };
             };
 

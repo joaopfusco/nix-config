@@ -1,6 +1,9 @@
 { config, inputs, ... }:
+let
+  hostName = baseNameOf ./.;
+in
 {
-  flake.nixosConfigurations."virtual-machine" = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.${hostName} = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs.homeManagerModules = with config.flake.modules.homeManager; [
       base
@@ -39,14 +42,14 @@
         (
           { config, homeManagerModules, ... }:
           {
-            host.name = "virtual-machine";
-            host.stateVersion.nixos = "26.05";
+            host.name = hostName;
+            system.stateVersion = "26.05";
 
             home-manager = {
               sharedModules = homeManagerModules;
               users.${config.host.user.name} = {
-                host.name = "virtual-machine";
-                host.stateVersion.home = "26.05";
+                host.name = hostName;
+                home.stateVersion = "26.05";
               };
             };
           }

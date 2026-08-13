@@ -3,8 +3,8 @@
     { config, ... }:
     let
       nixConfigDir = "${config.home.homeDirectory}/nix-config";
+      hostName = config.host.name;
       username = config.host.user.name;
-      host = config.host.name;
     in
     {
       home.shellAliases = {
@@ -40,7 +40,7 @@
         # Home Manager
         home-switch = ''
           (cd ${nixConfigDir} && nix fmt) &&
-          home-manager switch --flake ${nixConfigDir}#${username}@${host}
+          home-manager switch --flake ${nixConfigDir}#${username}@${hostName}
         '';
         home-sync = ''
           git -C ${nixConfigDir} pull --rebase &&
@@ -58,7 +58,7 @@
         # NixOS
         nixos-switch = ''
           (cd ${nixConfigDir} && nix fmt) &&
-          sudo nixos-rebuild switch --flake ${nixConfigDir}#${host}
+          sudo nixos-rebuild switch --flake ${nixConfigDir}#${hostName}
         '';
         nixos-sync = ''
           git -C ${nixConfigDir} pull --rebase &&
@@ -69,7 +69,7 @@
           nix flake update --flake ${nixConfigDir} &&
           nixos-switch
         '';
-        nixos-test = "sudo nixos-rebuild test --flake ${nixConfigDir}#${host}";
+        nixos-test = "sudo nixos-rebuild test --flake ${nixConfigDir}#${hostName}";
         nixos-gens = "sudo nixos-rebuild list-generations";
         nixos-rollback = "sudo nixos-rebuild switch --rollback";
         nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";

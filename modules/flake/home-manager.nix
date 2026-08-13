@@ -22,7 +22,6 @@
                 "/home/${config.host.user.name}"
               else
                 "/Users/${config.host.user.name}";
-            stateVersion = config.host.stateVersion.home;
             sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
           };
         }

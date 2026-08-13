@@ -4,39 +4,42 @@
   lib,
   ...
 }:
+let
+  hostName = baseNameOf ./.;
+  username = config.flake.lib.username;
+  system = "aarch64-darwin";
+in
 {
-  flake.homeConfigurations."joaop@macbook" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = import inputs.nixpkgs {
-      system = "aarch64-darwin";
-      overlays = builtins.attrValues config.flake.overlays;
-      config.allowUnfree = true;
-    };
-    modules =
-      (with config.flake.modules.homeManager; [
-        base
-        gh
-        git
-        direnv
-        nodejs
-        python
-        dotnet
-        pkgs
-        zsh
-        aliases
-        starship
-        claudeCode
-        zedEditor
-        kitty
-      ])
-      ++ [
-        {
-          host.name = "macbook";
-          host.stateVersion.home = "26.05";
-          dotnetSdks = lib.mkForce [ ];
-          programs.claude-code.package = lib.mkForce null;
-          programs.zed-editor.package = lib.mkForce null;
-          programs.kitty.package = lib.mkForce null;
-        }
-      ];
-  };
+  flake.homeConfigurations."${username}@${hostName}" =
+    inputs.home-manager.lib.homeManagerConfiguration
+      {
+        pkgs = config.flake.legacyPackages.${system};
+        modules =
+          (with config.flake.modules.homeManager; [
+            base
+            gh
+            git
+            direnv
+            nodejs
+            python
+            dotnet
+            pkgs
+            zsh
+            aliases
+            starship
+            claudeCode
+            zedEditor
+            kitty
+          ])
+          ++ [
+            {
+              host.name = hostName;
+              home.stateVersion = "26.05";
+              dotnetSdks = lib.mkForce [ ];
+              programs.claude-code.package = lib.mkForce null;
+              programs.zed-editor.package = lib.mkForce null;
+              programs.kitty.package = lib.mkForce null;
+            }
+          ];
+      };
 }
