@@ -10,7 +10,7 @@
       home.shellAliases = {
         # Common aliases
         l = "eza -l";
-        ll = "eza -la";
+        la = "eza -la";
         lt = "eza --tree";
         cls = "clear && printf '\\033[3J'";
         py = "python3";
