@@ -1,19 +1,15 @@
 {
   flake.modules.homeManager.claudeCode =
-    { config, pkgs, ... }:
-    let
-      linkConfig =
-        name:
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/modules/home/claude-code/${name}";
-    in
+    { pkgs, ... }:
     {
-      programs.claude-code.enable = true;
+      programs.claude-code = {
+        enable = true;
+        context = ./CLAUDE.md;
+        settings = builtins.fromJSON (builtins.readFile ./settings.json);
+      };
 
       home.file = {
-        ".claude/CLAUDE.md".source = linkConfig "CLAUDE.md";
-        ".claude/settings.json".source = linkConfig "settings.json";
-        ".claude/hooks".source = linkConfig "hooks";
-        ".claude/rules".source = linkConfig "rules";
+        ".claude/hooks".source = ./hooks;
       };
 
       home.packages = with pkgs; [

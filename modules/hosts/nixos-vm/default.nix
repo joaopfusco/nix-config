@@ -10,8 +10,6 @@ in
       gh
       git
       direnv
-      nodejs
-      python
       dotnet
       pkgs
       zsh

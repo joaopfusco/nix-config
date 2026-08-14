@@ -8,7 +8,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/block-secrets.sh"
+            "command": "$HOME/.claude/hooks/secrets.sh"
           }
         ]
       },
@@ -17,21 +17,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/protect-main.sh"
-          },
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/log-commands.sh"
+            "command": "$HOME/.claude/hooks/git.sh"
           }
         ]
       }
     ],
-    "UserPromptSubmit": [
+    "PostToolUse": [
       {
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/session-length-guard.sh"
+            "command": "$HOME/.claude/hooks/log.sh"
           }
         ]
       }

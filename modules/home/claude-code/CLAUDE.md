@@ -1,60 +1,36 @@
-# Global instructions
+# CLAUDE.md
 
-Me **global** Claude Code config (dotfiles, symlink to `~/.claude`). Keep generic —
-fit every repo. Repo-specific fact (version, layout, build/test command) belong in
-that repo own `.claude/`/`CLAUDE.md`, which override this. When scaffold repo
-`.claude/` (e.g. `/init`), keep lean, no copy global rule in — they load
-everywhere.
-
-Global skill/command prefix `global-` (skill resolve user-over-project, so prefix
-avoid shadow repo or built-in skill). Agent no need it.
-
-## Hooks (`hooks/`)
-
-Blocking PreToolUse hook **escalate to user prompt, never dead-end**. Source shared
-`hooks/lib.sh`, call `hook_ask "<reason>"` (emit `permissionDecision: "ask"` — me approve or
-deny in UI); save `hook_deny` for thing must truly never happen. No use bare
-`exit 2` — it wall Claude no get past even when me allow it. `protect-main.sh` still
-fast-path `CLAUDE_ALLOW_MAIN=1` token as silent allow.
+## Preferences
+- Ask before committing to git
+- Prefer editing existing files over creating new ones
+- Run tests after making changes
+- Keep code simple — no over-engineering
 
 ## Language
+- Code, identifiers, documentation, comments, and commit messages: always in English
+- Chat explanations: always in Portuguese
 
-- Reply in **Brazilian Portuguese**.
-- Code, identifier, commit message, branch name, config/doc file in **English** —
-  unless file already Portuguese, then match it.
+## Comments
+- No large comments or explanations in the middle of code — put that in documentation instead
+- Only comment to document the code itself (non-obvious why), never to narrate what it does
+- They must be simple and concise, and always short (less than 1 line)
 
-## About me
+## Commits
+- Use Conventional Commits format (`feat:`, `fix:`, `refactor:`, etc.)
+- Never add a `Co-Authored-By` trailer or any other co-author attribution to commit messages
 
-Full-stack / systems engineer, polyglot — stack change per repo, so check, no
-assume. Regular: Go, Python, C#/.NET, TypeScript/React, Rust, among other.
-
-- Dev shell often Nix flake (sometime `devenv`/devcontainer) + direnv; run tool inside them.
-- Local service/DB via Docker Compose.
-- Dotfile (incl. this config) manage via `nix-config` (Nix Flakes + Home Manager).
-
-## How I like to work
-
-- Concise, direct. Smallest change solve problem.
-- Match existing convention before introduce new one.
-- No add dependency without ask; prefer stdlib / lib already present.
-- No commit or push unless me ask. Never commit secret.
-- Default branch (`main`/`master`) off-limit by default: branch off it. Commit/push
-  direct to it **only when me clearly, explicitly authorize that action** — never assume.
-- Commit message: English, Conventional Commits, **no `Co-Authored-By` trailer**.
-- When dev shell exist, run tooling inside it; no install toolchain globally.
-- No reformat wholesale or introduce formatter/linter repo no adopt.
-- Ask before big refactor, schema change, or destructive operation.
-
-## Conventions (`~/.claude/rules/`)
-
-Load auto as default (repo override win):
-- Always: `code-style.md`, `security.md`.
-- Path-scoped (`paths:` frontmatter): `testing.md`, `api-conventions.md`,
-  `dev-environments.md`, `languages/*.md`.
+## Sourcing
+- Always state the source of any information given, and verify it before asserting it
 
 ## Tooling
+- Use CLI tools (`gh`, `aws`, `gcloud`, etc.) for external services instead of raw API calls, when available
 
-- LSP available (pyright, typescript, gopls, csharp-ls, rust-analyzer) — use when present.
-- No run formatter by default; follow repo config.
-- Ad-hoc nix (my machine, `nix-config` applied): prefer `pkgs#<pkg>` over `nixpkgs#<pkg>`
-  (registry alias to my own flake's legacyPackages, stable + `.unstable`).
+## Workflow
+- When something goes sideways, stop and re-plan — don't keep pushing
+- After finishing a task: run typecheck, tests, and lint before calling it done
+- Show evidence of completion (test output, command run) rather than just asserting a task is done
+- When compacting, always preserve the full list of modified files and any test commands
+
+## Style
+- Prefer small, focused functions
+- Use early returns over nested conditionals
