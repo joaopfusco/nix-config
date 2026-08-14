@@ -12,7 +12,7 @@ cwd="$(jq -r '.cwd // empty' <<<"$input")"
 cd "$cwd" 2>/dev/null || exit 0
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0
 
-default_branch="$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##')"
+default_branch="$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##')" || true
 if [ -z "$default_branch" ]; then
   for candidate in main master; do
     if git show-ref --verify --quiet "refs/heads/$candidate"; then
@@ -23,7 +23,7 @@ if [ -z "$default_branch" ]; then
 fi
 [ -z "$default_branch" ] && exit 0
 
-current_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+current_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || true
 [ "$current_branch" != "$default_branch" ] && exit 0
 
 mutating_subcommands='commit|push|merge|rebase|reset|revert|cherry-pick|filter-branch'
