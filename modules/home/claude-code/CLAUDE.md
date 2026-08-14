@@ -6,6 +6,10 @@
 - Run tests after making changes
 - Keep code simple — no over-engineering
 
+## Environment
+- System/dotfiles are managed declaratively via Nix: home-manager (Linux and macOS, user-level), nix-darwin (macOS, system-level), NixOS (Linux, system-level)
+- Config files under `$HOME` are often symlinks into `/nix/store` (or an out-of-store symlink via `mkOutOfStoreSymlink`, pointing straight at the repo), generated from a nix-config repo — edit the source in that repo, not the symlink target
+
 ## Language
 - Code, identifiers, documentation, comments, and commit messages: always in English
 - Chat explanations: always in Portuguese
@@ -24,6 +28,8 @@
 
 ## Tooling
 - Use CLI tools (`gh`, `aws`, `gcloud`, etc.) for external services instead of raw API calls, when available
+- Before installing or using a tool/language version globally, check if the repo defines a dev environment (`devenv.nix`, `flake.nix`, `.devcontainer/`, `shell.nix`, `.envrc`) and use that instead (`nix develop`, `devenv shell`, etc.)
+- Don't add packages to a global/user profile to satisfy a per-repo need — add them to the repo's own dev environment file
 
 ## Workflow
 - When something goes sideways, stop and re-plan — don't keep pushing
