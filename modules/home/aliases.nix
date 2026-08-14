@@ -28,6 +28,9 @@
         nix-upgrade = "sudo -i nix upgrade-nix";
 
         # Nix Flake
+        flake-sync = ''
+          git -C ${nixConfigDir} pull --rebase
+        '';
         flake-lock-push = ''
           git -C ${nixConfigDir} add flake.lock &&
           git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
@@ -37,17 +40,13 @@
           git -C ${nixConfigDir} diff --quiet -- flake.lock \
             && git -C ${nixConfigDir} checkout HEAD~1 -- flake.lock \
             || git -C ${nixConfigDir} checkout -- flake.lock
-          home-switch
+          flake-sync
         '';
 
         # Home Manager
         home-switch = ''
           (cd ${nixConfigDir} && nix fmt) &&
           home-manager switch --flake ${nixConfigDir}#${username}@${hostName}
-        '';
-        home-sync = ''
-          git -C ${nixConfigDir} pull --rebase &&
-          home-switch
         '';
         home-upgrade = ''
           git -C ${nixConfigDir} pull --rebase &&
@@ -57,43 +56,6 @@
         home-test = "home-switch -n";
         home-gens = "home-manager generations";
         home-rollback = "home-switch --rollback";
-
-        # NixOS
-        nixos-switch = ''
-          (cd ${nixConfigDir} && nix fmt) &&
-          sudo nixos-rebuild switch --flake ${nixConfigDir}#${hostName}
-        '';
-        nixos-sync = ''
-          git -C ${nixConfigDir} pull --rebase &&
-          nixos-switch
-        '';
-        nixos-upgrade = ''
-          git -C ${nixConfigDir} pull --rebase &&
-          nix flake update --flake ${nixConfigDir} &&
-          nixos-switch
-        '';
-        nixos-test = "sudo nixos-rebuild test --flake ${nixConfigDir}#${hostName}";
-        nixos-gens = "sudo nixos-rebuild list-generations";
-        nixos-rollback = "sudo nixos-rebuild switch --rollback";
-        nixos-fix-boot = "sudo /run/current-system/bin/switch-to-configuration boot";
-
-        # Darwin
-        darwin-switch = ''
-          (cd ${nixConfigDir} && nix fmt) &&
-          sudo darwin-rebuild switch --flake ${nixConfigDir}#${hostName}
-        '';
-        darwin-sync = ''
-          git -C ${nixConfigDir} pull --rebase &&
-          darwin-switch
-        '';
-        darwin-upgrade = ''
-          git -C ${nixConfigDir} pull --rebase &&
-          nix flake update --flake ${nixConfigDir} &&
-          darwin-switch
-        '';
-        darwin-test = "darwin-rebuild check --flake ${nixConfigDir}#${hostName}";
-        darwin-gens = "darwin-rebuild --list-generations";
-        darwin-rollback = "sudo darwin-rebuild --rollback";
       };
     };
 }

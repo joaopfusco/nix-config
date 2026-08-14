@@ -7,7 +7,7 @@ Personal Nix Flakes config (Home Manager + NixOS + Darwin). `Dendritic pattern`:
 ## Prerequisites
 
 - Nix installer:
-  - Home Manager / NixOS: [Determinate Nix](https://determinate.systems/blog/determinate-nix-installer/)
+  - Home Manager: [Determinate Nix](https://determinate.systems/blog/determinate-nix-installer/)
   - Darwin: [Lix](https://lix.systems/install/) — nix-darwin's [recommended installer](https://github.com/nix-darwin/nix-darwin/blob/master/README.md), since the official Nix installer lacks an automated uninstaller on macOS
 - Git configured, with an SSH key registered on GitHub
 
@@ -41,4 +41,19 @@ NixOS:
 ```bash
 sudo nixos-generate-config --show-hardware-config > modules/hosts/<host>/_hardware.nix
 sudo nixos-rebuild switch --flake .#<host>
+```
+
+## Uninstalling
+
+Darwin — order matters: `nix-darwin` manages files under `/etc` (e.g. `modules/darwin/aliases.nix`), so remove it before removing the underlying Nix install, or those files are left pointing at a gone store:
+
+```bash
+sudo darwin-uninstaller # reverts /etc/zshrc, /etc/zprofile, etc. and removes launchd services
+sudo /nix/lix-installer uninstall
+```
+
+Home Manager ([Determinate Nix](https://manual.determinate.systems/installation/uninstall)):
+
+```bash
+sudo /nix/nix-installer uninstall
 ```

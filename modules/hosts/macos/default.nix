@@ -32,6 +32,7 @@ in
         base
         user
         common
+        aliases
         pkgs
         homebrew
       ])

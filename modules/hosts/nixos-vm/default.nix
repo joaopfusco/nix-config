@@ -31,6 +31,7 @@ in
         inotify
         grub
         gnome
+        aliases
         pkgs
         mediaCodecs
         flatpak

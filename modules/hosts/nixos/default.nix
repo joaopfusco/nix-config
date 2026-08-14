@@ -31,6 +31,7 @@ in
         inotify
         systemdBoot
         gnome
+        aliases
         pkgs
         mediaCodecs
         flatpak
