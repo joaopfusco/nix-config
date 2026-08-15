@@ -19,7 +19,7 @@ in
       dotnet
       pkgs
       zsh
-      aliases
+      darwinAliases
       starship
       claudeCode
       zedEditor
@@ -30,7 +30,6 @@ in
         base
         user
         common
-        aliases
         pkgs
         homebrew
       ])

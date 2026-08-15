@@ -13,7 +13,7 @@ in
       dotnet
       pkgs
       zsh
-      aliases
+      nixosAliases
       starship
       claudeCode
       zedEditor
@@ -29,7 +29,6 @@ in
         inotify
         grub
         gnome
-        aliases
         pkgs
         mediaCodecs
         flatpak

@@ -1,12 +1,17 @@
+{ config, ... }:
+let
+  homeManager = config.flake.modules.homeManager;
+in
 {
-  flake.modules.nixos.aliases =
+  flake.modules.homeManager.nixosAliases =
     { config, ... }:
     let
-      nixConfigDir = "/home/${config.host.user.name}/nix-config";
+      nixConfigDir = "${config.home.homeDirectory}/nix-config";
       hostName = config.host.name;
     in
     {
-      environment.shellAliases = {
+      imports = [ homeManager.aliases ];
+      home.shellAliases = {
         nixos-switch = ''
           (cd ${nixConfigDir} && nix fmt) &&
           sudo nixos-rebuild switch --flake ${nixConfigDir}#${hostName}
