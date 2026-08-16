@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.nixGc = {
+  flake.modules.homeManager.nix = {
     nix.gc = {
       automatic = true;
       dates = "weekly";

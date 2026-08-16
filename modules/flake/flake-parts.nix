@@ -1,4 +1,9 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     inputs.flake-parts.flakeModules.modules
@@ -8,5 +13,9 @@
   options.flake.modules = lib.mkOption {
     type = lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule);
     default = { };
+  };
+
+  config._module.args = {
+    inherit (config.flake.modules) nixos darwin homeManager;
   };
 }

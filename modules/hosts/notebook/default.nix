@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  homeManager,
   ...
 }:
 let
@@ -14,30 +15,30 @@ in
     inputs.home-manager.lib.homeManagerConfiguration
       {
         pkgs = config.flake.legacyPackages.${system};
-        modules =
-          (with config.flake.modules.homeManager; [
-            base
-            nixGc
-            gh
-            git
-            direnv
-            dotnet
-            pkgs
-            zsh
-            aliases
-            starship
-            claudeCode
-            zedEditor
-            kitty
-            gnome
-          ])
-          ++ [
-            {
-              host.name = hostName;
-              home.stateVersion = "26.05";
-              programs.claude-code.package = lib.mkForce null;
-              programs.zed-editor.package = lib.mkForce null;
-            }
-          ];
+        modules = [
+          homeManager.${hostName}
+          homeManager.base
+          homeManager.nix
+          homeManager.gh
+          homeManager.git
+          homeManager.direnv
+          homeManager.dotnet
+          homeManager.pkgs
+          homeManager.zsh
+          homeManager.aliases
+          homeManager.starship
+          homeManager.claudeCode
+          homeManager.zedEditor
+          homeManager.kitty
+          homeManager.gnome
+        ];
       };
+
+  flake.modules.homeManager.${hostName} = {
+    host.name = hostName;
+    home.stateVersion = "26.05";
+
+    programs.claude-code.package = lib.mkForce null;
+    programs.zed-editor.package = lib.mkForce null;
+  };
 }
