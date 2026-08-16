@@ -28,9 +28,6 @@
         nix-upgrade = "sudo -i nix upgrade-nix";
 
         # Nix Flake
-        flake-sync = ''
-          git -C ${nixConfigDir} pull --rebase
-        '';
         flake-lock-push = ''
           git -C ${nixConfigDir} add flake.lock &&
           git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
@@ -43,19 +40,19 @@
           flake-sync
         '';
 
-        # Home Manager
+        # Nix Switch
         home-switch = ''
           (cd ${nixConfigDir} && nix fmt) &&
           home-manager switch --flake ${nixConfigDir}#${username}@${hostName}
         '';
-        home-upgrade = ''
-          git -C ${nixConfigDir} pull --rebase &&
-          nix flake update --flake ${nixConfigDir} &&
-          home-switch
+        nixos-switch = ''
+          (cd ${nixConfigDir} && nix fmt) &&
+          sudo nixos-rebuild switch --flake ${nixConfigDir}#${hostName}
         '';
-        home-test = "home-switch -n";
-        home-gens = "home-manager generations";
-        home-rollback = "home-switch --rollback";
+        darwin-switch = ''
+          (cd ${nixConfigDir} && nix fmt) &&
+          sudo darwin-rebuild switch --flake ${nixConfigDir}#${hostName}
+        '';
       };
     };
 }

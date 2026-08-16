@@ -19,7 +19,7 @@ in
       dotnet
       pkgs
       zsh
-      darwinAliases
+      aliases
       starship
       claudeCode
       zedEditor

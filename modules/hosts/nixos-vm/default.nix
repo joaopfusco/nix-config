@@ -13,7 +13,7 @@ in
       dotnet
       pkgs
       zsh
-      nixosAliases
+      aliases
       starship
       claudeCode
       zedEditor
@@ -25,15 +25,8 @@ in
         base
         user
         common
-        nixLd
-        inotify
-        grub
         gnome
         pkgs
-        mediaCodecs
-        flatpak
-        docker
-        vm
       ])
       ++ [
         ./_hardware.nix
@@ -50,6 +43,10 @@ in
                 home.stateVersion = "26.05";
               };
             };
+
+            boot.loader.grub.enable = true;
+            boot.loader.grub.devices = [ "/dev/vda" ];
+            boot.loader.grub.useOSProber = true;
           }
         )
       ];

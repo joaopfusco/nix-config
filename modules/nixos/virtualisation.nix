@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.vm = {
+  config.flake.modules.nixos.virtualisation = {
     programs.virt-manager.enable = true;
     virtualisation = {
       libvirtd = {
