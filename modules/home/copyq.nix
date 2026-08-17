@@ -7,13 +7,14 @@
       ...
     }:
     {
-      options.copyqPkg = lib.mkOption {
-        type = lib.types.listOf lib.types.package;
-        default = [ pkgs.copyq ];
+      options.copyq.installPackage = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Install the copyq package (disable if it's provided some other way).";
       };
 
       config = {
-        home.packages = config.copyqPkg;
+        home.packages = lib.optional config.copyq.installPackage pkgs.copyq;
 
         systemd.user.services.copyq = {
           Unit = {
