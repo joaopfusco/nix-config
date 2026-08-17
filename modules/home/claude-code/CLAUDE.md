@@ -30,6 +30,7 @@
 - Use CLI tools (`gh`, `aws`, `gcloud`, etc.) for external services instead of raw API calls, when available
 - Before installing or using a tool/language version globally, check if the repo defines a dev environment (`devenv.nix`, `flake.nix`, `.devcontainer/`, `shell.nix`, `.envrc`) and use that instead (`nix develop`, `devenv shell`, etc.)
 - Don't add packages to a global/user profile to satisfy a per-repo need — add them to the repo's own dev environment file
+- For one-off scripts (e.g. Python with dependencies), reach for Nix before global `pip`/`npm install`/etc: `nix shell`/`nix run` for throwaway use, `devenv.nix`/`flake.nix` if it's project-scoped and reusable
 
 ## Workflow
 - When something goes sideways, stop and re-plan — don't keep pushing

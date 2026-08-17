@@ -12,10 +12,6 @@
         jq
         azure-cli
         codex
-        python3
-        uv
-        nodejs_24
-        pnpm
       ];
     };
 }
