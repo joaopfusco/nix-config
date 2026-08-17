@@ -32,6 +32,7 @@ in
           homeManager.zedEditor
           homeManager.kitty
           homeManager.gnome
+          homeManager.wayland
         ];
       };
 
