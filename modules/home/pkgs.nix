@@ -7,6 +7,7 @@
         devenv
         fastfetch
         gnumake
+        bat
         eza
         jq
         azure-cli
