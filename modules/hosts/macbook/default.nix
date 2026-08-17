@@ -20,6 +20,7 @@ in
       homeManager.direnv
       homeManager.dotnet
       homeManager.pkgs
+      homeManager.fonts
       homeManager.zsh
       homeManager.aliases
       homeManager.starship
