@@ -42,7 +42,9 @@
           ".envrc"
           "*.envrc"
         ];
+        ui_font_family = "JetBrainsMono Nerd Font";
         ui_font_size = 16;
+        buffer_font_family = "JetBrainsMono Nerd Font";
         buffer_font_size = 15;
         theme = "One Dark";
         icon_theme = "Material Icon Theme";

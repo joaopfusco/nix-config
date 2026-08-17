@@ -9,6 +9,7 @@ in
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      backupFileExtension = "backup";
     };
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = overlays;
