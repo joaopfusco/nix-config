@@ -1,23 +1,25 @@
+{ homeManager, ... }:
 {
   flake.modules.homeManager.cinnamon =
     { lib, ... }:
     {
+      imports = [ homeManager.gtk ];
       dconf.settings = {
-        "org/gnome/desktop/interface" = {
+        "org/cinnamon/desktop/interface" = {
           clock-show-seconds = false;
-          clock-show-weekday = true;
-          color-scheme = "prefer-dark";
-          show-battery-percentage = true;
           icon-theme = "Papirus-Dark";
-          gtk-theme = "Mint-Y-Dark";
+          gtk-theme = "WhiteSur-Dark";
+          cursor-theme = "Bibata-Modern-Classic";
+          cursor-size = 24;
+          font-name = "JetBrainsMono Nerd Font 11";
         };
 
-        "org/gnome/desktop/peripherals/touchpad" = {
+        "org/cinnamon/desktop/peripherals/touchpad" = {
           disable-while-typing = true;
           two-finger-scrolling-enabled = true;
         };
 
-        "org/gnome/desktop/input-sources" = {
+        "org/cinnamon/desktop/input-sources" = {
           sources = [
             (lib.hm.gvariant.mkTuple [
               "xkb"
@@ -26,39 +28,29 @@
           ];
         };
 
-        "org/gnome/desktop/sound" = {
+        "org/cinnamon/desktop/sound" = {
           event-sounds = false;
         };
 
-        "org/gnome/settings-daemon/plugins/color" = {
+        "org/cinnamon/settings-daemon/plugins/color" = {
           night-light-enabled = true;
-          night-light-schedule-automatic = false;
+          night-light-schedule-mode = "manual";
           night-light-temperature = lib.hm.gvariant.mkUint32 2700;
         };
 
-        "org/cinnamon/desktop/interface" = {
-          icon-theme = "Papirus-Dark";
-        };
-
         "org/cinnamon/desktop/wm/preferences" = {
-          button-layout = "appmenu:minimize,maximize,close";
+          button-layout = "menu:minimize,maximize,close";
           focus-mode = "click";
+          theme = "WhiteSur-Dark";
         };
 
         "org/cinnamon/desktop/session" = {
           idle-delay = lib.hm.gvariant.mkUint32 900; # 15 minutos
         };
 
-        "org/cinnamon/desktop/notifications" = {
-          show-in-lock-screen = false;
-        };
-
         "org/cinnamon/desktop/screensaver" = {
           lock-enabled = true;
           idle-activation-enabled = true;
-        };
-
-        "org/cinnamon/screensaver" = {
           lock-delay = lib.hm.gvariant.mkUint32 0;
         };
 
@@ -66,9 +58,8 @@
           lock-on-suspend = true;
         };
 
-        "org/cinnamon" = {
-          overview-corner-hover = true;
-          theme = "Mint-Y-Dark";
+        "org/cinnamon/theme" = {
+          name = "WhiteSur-Dark";
         };
 
         "org/cinnamon/desktop/keybindings" = {
