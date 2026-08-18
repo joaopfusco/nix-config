@@ -3,11 +3,52 @@
     { lib, ... }:
     {
       dconf.settings = {
+        # Appearance
         "org/cinnamon/desktop/interface" = {
           gtk-theme = "Mint-Y-Dark";
           icon-theme = "Papirus-Dark";
+          clock-show-date = true;
         };
 
+        "org/cinnamon/desktop/wm/preferences" = {
+          theme = "Mint-Y-Dark";
+        };
+
+        "org/cinnamon/theme" = {
+          name = "Mint-Y-Dark";
+        };
+
+        "org/cinnamon" = {
+          hotcorner-layout = [
+            "expo:true:0"
+            "scale:false:0"
+            "scale:false:0"
+            "desktop:false:0"
+          ];
+        };
+
+        # Power & session
+        "org/cinnamon/settings-daemon/plugins/color" = {
+          night-light-enabled = true;
+          night-light-schedule-mode = "manual";
+          night-light-temperature = lib.hm.gvariant.mkUint32 2700;
+        };
+
+        "org/cinnamon/settings-daemon/plugins/power" = {
+          button-power = "suspend";
+          sleep-inactive-ac-type = "nothing";
+          sleep-inactive-battery-type = "suspend";
+        };
+
+        "org/cinnamon/desktop/session" = {
+          idle-delay = lib.hm.gvariant.mkUint32 900; # 15 minutos
+        };
+
+        "org/cinnamon/desktop/screensaver" = {
+          show-notifications = false;
+        };
+
+        # Peripherals & sound
         "org/cinnamon/desktop/peripherals/touchpad" = {
           disable-while-typing = true;
         };
@@ -16,25 +57,7 @@
           event-sounds = false;
         };
 
-        "org/cinnamon/settings-daemon/plugins/color" = {
-          night-light-enabled = true;
-          night-light-schedule-mode = "manual";
-          night-light-temperature = lib.hm.gvariant.mkUint32 2700;
-        };
-
-        "org/cinnamon/desktop/wm/preferences" = {
-          focus-mode = "click";
-          theme = "Mint-Y-Dark";
-        };
-
-        "org/cinnamon/desktop/session" = {
-          idle-delay = lib.hm.gvariant.mkUint32 900; # 15 minutos
-        };
-
-        "org/cinnamon/theme" = {
-          name = "Mint-Y-Dark";
-        };
-
+        # Keybindings & shortcuts
         "org/cinnamon/desktop/keybindings" = {
           custom-list = [
             "custom0"

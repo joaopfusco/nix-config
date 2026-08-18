@@ -3,6 +3,7 @@
     { lib, ... }:
     {
       dconf.settings = {
+        # Appearance
         "org/gnome/desktop/interface" = {
           clock-show-weekday = true;
           color-scheme = "prefer-dark";
@@ -10,22 +11,21 @@
           show-battery-percentage = true;
         };
 
+        "org/gnome/desktop/wm/preferences" = {
+          button-layout = "appmenu:minimize,maximize,close";
+        };
+
+        # Power & session
         "org/gnome/settings-daemon/plugins/color" = {
           night-light-enabled = true;
           night-light-schedule-automatic = false;
           night-light-temperature = lib.hm.gvariant.mkUint32 2700;
         };
 
-        "org/gnome/desktop/peripherals/touchpad" = {
-          disable-while-typing = true;
-        };
-
-        "org/gnome/desktop/wm/preferences" = {
-          button-layout = "appmenu:minimize,maximize,close";
-        };
-
-        "org/gnome/desktop/sound" = {
-          event-sounds = false;
+        "org/gnome/settings-daemon/plugins/power" = {
+          power-button-action = "suspend";
+          sleep-inactive-ac-type = "nothing";
+          sleep-inactive-battery-type = "suspend";
         };
 
         "org/gnome/desktop/session" = {
@@ -36,19 +36,18 @@
           show-in-lock-screen = false;
         };
 
-        "org/gnome/shell/keybindings" = {
-          toggle-message-tray = [ "<Super>m" ];
+        # Peripherals & sound
+        "org/gnome/desktop/peripherals/touchpad" = {
+          disable-while-typing = true;
         };
 
-        "org/gnome/shell/extensions/clipboard-indicator" = {
-          history-size = 50;
-          preview-size = 30;
-          display-mode = 0;
-          move-item-first = true;
-          paste-on-selection = true;
-          paste-on-select = false;
-          case-sensitive-search = false;
-          toggle-menu = [ "<Super>v" ];
+        "org/gnome/desktop/sound" = {
+          event-sounds = false;
+        };
+
+        # Keybindings & shortcuts
+        "org/gnome/shell/keybindings" = {
+          toggle-message-tray = [ "<Super>m" ];
         };
 
         "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -75,6 +74,18 @@
           name = "Terminal";
           binding = "<Super>Return";
           command = "kitty";
+        };
+
+        # Extensions
+        "org/gnome/shell/extensions/clipboard-indicator" = {
+          history-size = 50;
+          preview-size = 30;
+          display-mode = 0;
+          move-item-first = true;
+          paste-on-selection = true;
+          paste-on-select = false;
+          case-sensitive-search = false;
+          toggle-menu = [ "<Super>v" ];
         };
       };
     };
