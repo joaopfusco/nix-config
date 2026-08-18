@@ -4,7 +4,6 @@
     {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
-          clock-show-seconds = false;
           clock-show-weekday = true;
           color-scheme = "prefer-dark";
           enable-hot-corners = true;
@@ -19,21 +18,10 @@
 
         "org/gnome/desktop/peripherals/touchpad" = {
           disable-while-typing = true;
-          two-finger-scrolling-enabled = true;
         };
 
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
-          focus-mode = "click";
-        };
-
-        "org/gnome/desktop/input-sources" = {
-          sources = [
-            (lib.hm.gvariant.mkTuple [
-              "xkb"
-              "us+intl"
-            ])
-          ];
         };
 
         "org/gnome/desktop/sound" = {
@@ -42,12 +30,6 @@
 
         "org/gnome/desktop/session" = {
           idle-delay = lib.hm.gvariant.mkUint32 900; # 15 minutes
-        };
-
-        "org/gnome/desktop/screensaver" = {
-          lock-enabled = true;
-          lock-delay = lib.hm.gvariant.mkUint32 0;
-          ubuntu-lock-on-suspend = true;
         };
 
         "org/gnome/desktop/notifications" = {

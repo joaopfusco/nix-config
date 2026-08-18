@@ -4,23 +4,12 @@
     {
       dconf.settings = {
         "org/cinnamon/desktop/interface" = {
-          clock-show-seconds = false;
           gtk-theme = "Mint-Y-Dark";
           icon-theme = "Papirus-Dark";
         };
 
         "org/cinnamon/desktop/peripherals/touchpad" = {
           disable-while-typing = true;
-          two-finger-scrolling-enabled = true;
-        };
-
-        "org/cinnamon/desktop/input-sources" = {
-          sources = [
-            (lib.hm.gvariant.mkTuple [
-              "xkb"
-              "us+intl"
-            ])
-          ];
         };
 
         "org/cinnamon/desktop/sound" = {
@@ -34,23 +23,12 @@
         };
 
         "org/cinnamon/desktop/wm/preferences" = {
-          button-layout = "menu:minimize,maximize,close";
           focus-mode = "click";
           theme = "Mint-Y-Dark";
         };
 
         "org/cinnamon/desktop/session" = {
           idle-delay = lib.hm.gvariant.mkUint32 900; # 15 minutos
-        };
-
-        "org/cinnamon/desktop/screensaver" = {
-          lock-enabled = true;
-          idle-activation-enabled = true;
-          lock-delay = lib.hm.gvariant.mkUint32 0;
-        };
-
-        "org/cinnamon/settings-daemon/plugins/power" = {
-          lock-on-suspend = true;
         };
 
         "org/cinnamon/theme" = {
