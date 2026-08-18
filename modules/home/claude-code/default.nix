@@ -4,6 +4,7 @@
     {
       programs.claude-code = {
         enable = true;
+        package = pkgs.unstable.claude-code;
         context = ./CLAUDE.md;
         settings = builtins.fromJSON (builtins.readFile ./settings.json);
       };

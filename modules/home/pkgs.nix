@@ -2,17 +2,20 @@
   flake.modules.homeManager.pkgs =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        nixd
-        devenv
-        fastfetch
-        nano
-        bat
-        eza
-        jq
-        gnumake
-        azure-cli
-        codex
-      ];
+      home.packages =
+        (with pkgs; [
+          nixd
+          devenv
+          fastfetch
+          nano
+          bat
+          eza
+          jq
+          gnumake
+          azure-cli
+        ])
+        ++ (with pkgs.unstable; [
+          codex
+        ]);
     };
 }
