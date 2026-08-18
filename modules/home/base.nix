@@ -22,7 +22,11 @@
                 "/home/${config.host.user.name}"
               else
                 "/Users/${config.host.user.name}";
-            sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
+            sessionVariables = {
+              NIX_PATH = "nixpkgs=${pkgs.path}";
+              EDITOR = "nano";
+              VISUAL = "nano";
+            };
           };
         }
         (lib.mkIf (osConfig == null && pkgs.stdenv.hostPlatform.isLinux) {

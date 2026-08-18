@@ -6,10 +6,11 @@
         nixd
         devenv
         fastfetch
-        gnumake
+        nano
         bat
         eza
         jq
+        gnumake
         azure-cli
         codex
       ];

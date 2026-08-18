@@ -21,8 +21,8 @@
         brew-upgrade = "brew update && brew upgrade && brew cleanup";
 
         # Determinate Nix
-        nixd-upgrade = "sudo determinate-nixd upgrade";
-        nixd-version = "determinate-nixd version";
+        dnix-upgrade = "sudo determinate-nixd upgrade";
+        dnix-version = "determinate-nixd version";
 
         # Nix
         nix-upgrade = "sudo -i nix upgrade-nix";
