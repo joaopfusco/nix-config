@@ -28,6 +28,7 @@
         nix-upgrade = "sudo -i nix upgrade-nix";
 
         # Nix Flake
+        flake-lock-age = "git -C ${nixConfigDir} log -1 --format='%cd (%cr)' --date=short -- flake.lock";
         flake-lock-push = ''
           git -C ${nixConfigDir} add flake.lock &&
           git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
