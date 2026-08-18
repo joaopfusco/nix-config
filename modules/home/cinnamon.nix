@@ -1,17 +1,12 @@
-{ homeManager, ... }:
 {
   flake.modules.homeManager.cinnamon =
     { lib, ... }:
     {
-      imports = [ homeManager.gtk ];
       dconf.settings = {
         "org/cinnamon/desktop/interface" = {
           clock-show-seconds = false;
+          gtk-theme = "Mint-Y-Dark";
           icon-theme = "Papirus-Dark";
-          gtk-theme = "WhiteSur-Dark";
-          cursor-theme = "Bibata-Modern-Classic";
-          cursor-size = 24;
-          font-name = "JetBrainsMono Nerd Font 11";
         };
 
         "org/cinnamon/desktop/peripherals/touchpad" = {
@@ -41,7 +36,7 @@
         "org/cinnamon/desktop/wm/preferences" = {
           button-layout = "menu:minimize,maximize,close";
           focus-mode = "click";
-          theme = "WhiteSur-Dark";
+          theme = "Mint-Y-Dark";
         };
 
         "org/cinnamon/desktop/session" = {
@@ -59,7 +54,7 @@
         };
 
         "org/cinnamon/theme" = {
-          name = "WhiteSur-Dark";
+          name = "Mint-Y-Dark";
         };
 
         "org/cinnamon/desktop/keybindings" = {

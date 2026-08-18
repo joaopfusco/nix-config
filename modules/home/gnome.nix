@@ -1,9 +1,7 @@
-{ homeManager, ... }:
 {
   flake.modules.homeManager.gnome =
     { lib, ... }:
     {
-      imports = [ homeManager.gtk ];
       dconf.settings = {
         "org/gnome/desktop/interface" = {
           clock-show-seconds = false;
@@ -11,12 +9,6 @@
           color-scheme = "prefer-dark";
           enable-hot-corners = true;
           show-battery-percentage = true;
-          icon-theme = "Papirus-Dark";
-          gtk-theme = "WhiteSur-Dark";
-          cursor-theme = "Bibata-Modern-Classic";
-          cursor-size = 24;
-          font-name = "JetBrainsMono Nerd Font 11";
-          monospace-font-name = "JetBrainsMono Nerd Font 11";
         };
 
         "org/gnome/settings-daemon/plugins/color" = {
