@@ -4,17 +4,25 @@
     {
       home.packages =
         (with pkgs; [
+          # nix
           nixd
           devenv
-          fastfetch
+
+          # tools
           nano
           bat
           eza
           jq
+          ripgrep
+          fd
+
+          # packages
+          fastfetch
           gnumake
           azure-cli
         ])
         ++ (with pkgs.unstable; [
+          # packages
           codex
         ]);
     };

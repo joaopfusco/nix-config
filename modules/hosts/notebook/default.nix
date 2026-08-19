@@ -38,6 +38,7 @@ in
   flake.modules.homeManager.${hostName} = {
     host.name = hostName;
     home.stateVersion = "26.05";
+    targets.genericLinux.enable = true;
 
     programs.claude-code.package = lib.mkForce null;
     programs.zed-editor.package = lib.mkForce null;
