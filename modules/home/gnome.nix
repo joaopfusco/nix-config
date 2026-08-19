@@ -50,6 +50,11 @@
           toggle-message-tray = [ "<Super>m" ];
         };
 
+        "org/gnome/desktop/wm/keybindings" = {
+          switch-applications = [ "<Super>Tab" ];
+          switch-windows = [ "<Alt>Tab" ];
+        };
+
         "org/gnome/settings-daemon/plugins/media-keys" = {
           custom-keybindings = [
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
