@@ -33,6 +33,7 @@ in
       darwin.base
       darwin.user
       darwin.common
+      darwin.desktop
       darwin.pkgs
       darwin.homebrew
     ];

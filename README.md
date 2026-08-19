@@ -45,7 +45,7 @@ sudo nixos-rebuild switch --flake .#<host>
 
 ## Uninstalling
 
-Darwin — order matters: `nix-darwin` manages files under `/etc` (e.g. `modules/darwin/aliases.nix`), so remove it before removing the underlying Nix install, or those files are left pointing at a gone store:
+Darwin — order matters: `nix-darwin` manages files under `/etc`, so remove it before removing the underlying Nix install, or those files are left pointing at a gone store:
 
 ```bash
 sudo darwin-uninstaller # reverts /etc/zshrc, /etc/zprofile, etc. and removes launchd services
