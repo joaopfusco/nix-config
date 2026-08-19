@@ -23,16 +23,12 @@ in
       homeManager.aliases
       homeManager.starship
       homeManager.claudeCode
-      homeManager.zedEditor
-      homeManager.kitty
-      homeManager.gnome
     ];
     modules = [
       nixos.${hostName}
       nixos.base
       nixos.user
       nixos.common
-      nixos.gnome
       nixos.pkgs
     ];
   };
@@ -58,5 +54,10 @@ in
       boot.loader.grub.enable = true;
       boot.loader.grub.devices = [ "/dev/vda" ];
       boot.loader.grub.useOSProber = true;
+
+      services.openssh = {
+        enable = true;
+        openFirewall = true;
+      };
     };
 }
