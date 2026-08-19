@@ -25,23 +25,6 @@
       networking.networkmanager.enable = true;
       networking.firewall.enable = true;
 
-      # hardware
-      hardware.enableAllFirmware = true;
-      hardware.enableRedistributableFirmware = true;
-      hardware.bluetooth.enable = true;
-      hardware.bluetooth.powerOnBoot = true;
-      hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
-
-      # services
-      services.fwupd.enable = true;
-      services.libinput.enable = true;
-      services.libinput.touchpad.tapping = true;
-      services.libinput.touchpad.naturalScrolling = true;
-      services.printing.enable = true;
-
       # locale
       time.timeZone = "America/Sao_Paulo";
 
@@ -58,21 +41,6 @@
         LC_TIME = "en_US.UTF-8";
       };
 
-      services.xserver.xkb = {
-        layout = "us";
-        variant = "intl";
-      };
-
       console.keyMap = "us-acentos";
-
-      # audio
-      services.pulseaudio.enable = false;
-      security.rtkit.enable = true;
-      services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-      };
     };
 }
