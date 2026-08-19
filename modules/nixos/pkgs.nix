@@ -22,11 +22,6 @@
       # Docker
       virtualisation.docker.enable = true;
 
-      # Flatpak
-      # Only turns on the service/portal — apps installed imperatively (flatpak install).
-      # Run: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-      services.flatpak.enable = true;
-
       # Nix LD
       programs.nix-ld = {
         enable = true;
