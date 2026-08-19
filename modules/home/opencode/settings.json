@@ -1,0 +1,10 @@
+{
+  "autoshare": false,
+  "autoupdate": true,
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "bash": "allow"
+  },
+  "plugin": []
+}

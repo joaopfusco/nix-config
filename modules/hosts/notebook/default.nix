@@ -28,6 +28,7 @@ in
           homeManager.zsh
           homeManager.aliases
           homeManager.starship
+          homeManager.opencode
           homeManager.claudeCode
           homeManager.zedEditor
           homeManager.kitty

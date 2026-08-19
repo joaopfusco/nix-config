@@ -26,6 +26,12 @@
           input_delay = 3;
           repaint_delay = 10;
         };
+        keybindings = {
+          "ctrl+shift+left" = "neighboring_window left";
+          "ctrl+shift+right" = "neighboring_window right";
+          "ctrl+shift+up" = "neighboring_window up";
+          "ctrl+shift+down" = "neighboring_window down";
+        };
       };
     };
 }
