@@ -72,7 +72,7 @@ though nobody needs it today.
 |---|---|---|
 | `nixos.common` | nix settings/gc, inotify sysctl, networking, firewall, timezone, i18n locale, `console.keyMap` | trimmed (existing file) |
 | `nixos.hardware` | `hardware.enableAllFirmware`/`enableRedistributableFirmware`, `hardware.bluetooth.*`, `services.fwupd`, `services.libinput.*` (touchpad), `services.printing`, `hardware.graphics.enable32Bit` | new |
-| `nixos.desktop` | `services.pulseaudio.enable = false` + `security.rtkit.enable` + `services.pipewire.*`, `services.xserver.xkb` | new |
+| `nixos.desktop` | `hardware.graphics.enable`, `services.pulseaudio.enable = false` + `security.rtkit.enable` + `services.pipewire.*`, `services.xserver.xkb` | new |
 | `nixos.gnome` | GDM + GNOME + extensions | unchanged |
 | `nixos.pkgs` | wget, curl, btop, distrobox, gstreamer codecs, docker, flatpak, nix-ld | trimmed (existing file) |
 | `nixos.apps` | libreoffice, vlc, obs-studio, vscode, dbeaver, postman, firefox, google-chrome | new |
@@ -80,6 +80,13 @@ though nobody needs it today.
 Both browsers (`programs.firefox` and `google-chrome`) move to `nixos.apps`
 — there's no reason to treat one browser as more headless-safe than the
 other, both are full GUI applications.
+
+`hardware.graphics` splits across two modules: the base
+`hardware.graphics.enable` (GPU render acceleration) goes to `nixos.desktop`
+— a VM with a UI still benefits from render acceleration for its desktop
+session — while `hardware.graphics.enable32Bit` (legacy 32-bit app/game
+compat, e.g. Wine/Steam) goes to `nixos.hardware`, since that's a
+physical-desktop concern only.
 
 Host recipes this split enables (not created now, for reference):
 
