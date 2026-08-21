@@ -22,6 +22,10 @@
           disabled = false;
           symbol = "";
           format = "[nix:\\($state\\)]($style) ";
+          style = "bold blue";
+          impure_msg = "impure";
+          pure_msg = "pure";
+          unknown_msg = "unknown";
         };
 
         git_branch = {
