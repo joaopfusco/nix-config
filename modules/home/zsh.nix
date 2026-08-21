@@ -28,6 +28,10 @@
 
           export NIXPKGS_ALLOW_UNFREE=1
 
+          nixsh() {
+            IN_NIX_SHELL=impure nix shell "$@" --command zsh
+          }
+
           devenv-init() {
             devenv init "$@" || return 1
             local dir=''${1:-.}
