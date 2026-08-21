@@ -13,6 +13,11 @@
 
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
+          num-workspaces = 5;
+        };
+
+        "org/gnome/mutter" = {
+          dynamic-workspaces = false;
         };
 
         # Power & session
