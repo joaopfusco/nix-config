@@ -14,6 +14,7 @@ in
       nixos.${hostName}
       nixos.base
       nixos.user
+      nixos.nix
       nixos.common
       nixos.pkgs
     ];

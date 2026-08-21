@@ -1,5 +1,5 @@
 {
-  flake.modules.darwin.common =
+  flake.modules.darwin.nix =
     { pkgs, ... }:
     {
       # nix
@@ -21,8 +21,5 @@
           options = "--delete-older-than 7d";
         };
       };
-
-      # locale
-      time.timeZone = "America/Sao_Paulo";
     };
 }

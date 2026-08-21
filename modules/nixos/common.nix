@@ -8,18 +8,6 @@
         "fs.inotify.max_user_instances" = 512;
       };
 
-      # nix
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      nix.optimise.automatic = true;
-      nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
-      };
-
       # networking
       networking.hostName = config.host.name;
       networking.networkmanager.enable = true;

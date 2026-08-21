@@ -15,8 +15,7 @@ in
       darwin.${hostName}
       darwin.base
       darwin.user
-      darwin.common
-      darwin.desktop
+      darwin.nix
       darwin.pkgs
       darwin.homebrew
     ];
