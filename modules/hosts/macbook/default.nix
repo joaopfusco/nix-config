@@ -28,7 +28,6 @@ in
       homeManager.git
       homeManager.direnv
       homeManager.dotnet
-      homeManager.ollama
       homeManager.pkgs
       homeManager.fonts
       homeManager.zsh
