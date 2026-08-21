@@ -10,6 +10,13 @@ in
 {
   flake.nixosConfigurations.${hostName} = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
+    modules = [
+      nixos.${hostName}
+      nixos.base
+      nixos.user
+      nixos.common
+      nixos.pkgs
+    ];
     specialArgs.homeManagerModules = [
       homeManager.base
       homeManager.gh
@@ -23,13 +30,6 @@ in
       homeManager.starship
       homeManager.opencode
       homeManager.claudeCode
-    ];
-    modules = [
-      nixos.${hostName}
-      nixos.base
-      nixos.user
-      nixos.common
-      nixos.pkgs
     ];
   };
 

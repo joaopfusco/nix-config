@@ -11,6 +11,15 @@ in
 {
   flake.darwinConfigurations.${hostName} = inputs.nix-darwin.lib.darwinSystem {
     system = "aarch64-darwin";
+    modules = [
+      darwin.${hostName}
+      darwin.base
+      darwin.user
+      darwin.common
+      darwin.desktop
+      darwin.pkgs
+      darwin.homebrew
+    ];
     specialArgs.homeManagerModules = [
       homeManager.base
       homeManager.nix
@@ -28,15 +37,6 @@ in
       homeManager.claudeCode
       homeManager.zedEditor
       homeManager.kitty
-    ];
-    modules = [
-      darwin.${hostName}
-      darwin.base
-      darwin.user
-      darwin.common
-      darwin.desktop
-      darwin.pkgs
-      darwin.homebrew
     ];
   };
 
