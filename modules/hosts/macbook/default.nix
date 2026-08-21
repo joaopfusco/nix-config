@@ -16,6 +16,8 @@ in
       darwin.base
       darwin.user
       darwin.nix
+      darwin.desktop
+      darwin.keybindings
       darwin.pkgs
       darwin.homebrew
     ];
@@ -43,7 +45,7 @@ in
     { config, homeManagerModules, ... }:
     {
       host.name = hostName;
-      system.stateVersion = 6;
+      system.stateVersion = 7;
 
       home-manager = {
         sharedModules = homeManagerModules;
