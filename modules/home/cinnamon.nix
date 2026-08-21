@@ -5,17 +5,7 @@
       dconf.settings = {
         # Appearance
         "org/cinnamon/desktop/interface" = {
-          gtk-theme = "Mint-Y-Dark";
-          icon-theme = "Papirus-Dark";
           clock-show-date = true;
-        };
-
-        "org/cinnamon/desktop/wm/preferences" = {
-          theme = "Mint-Y-Dark";
-        };
-
-        "org/cinnamon/theme" = {
-          name = "Mint-Y-Dark";
         };
 
         "org/cinnamon" = {
