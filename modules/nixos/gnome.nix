@@ -13,6 +13,7 @@
         gnome-extension-manager
         gnomeExtensions.clipboard-indicator
         gnomeExtensions.appindicator
+        gnomeExtensions.dash-to-dock
         gnome-network-displays
         distroshelf
       ];
