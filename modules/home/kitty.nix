@@ -4,6 +4,7 @@
     {
       programs.kitty = {
         enable = true;
+        themeFile = "tokyo_night_night";
         font = {
           name = "JetBrainsMono Nerd Font";
           size = 12;
@@ -12,7 +13,7 @@
         settings = {
           shell = "${pkgs.zsh}/bin/zsh --login";
           shell_integration = "enabled";
-          background_opacity = 0.9;
+          background_opacity = 1.0;
           window_padding_width = 4;
           scrollbar = "always";
           scrollback_lines = 10000;
