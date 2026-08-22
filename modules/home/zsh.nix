@@ -32,6 +32,10 @@
             IN_NIX_SHELL=impure nix shell "$@" --command zsh
           }
 
+          flake-init() {
+            nix flake init --template "github:DeterminateSystems/flake-templates#minimal"
+          }
+
           devenv-init() {
             devenv init "$@" || return 1
             local dir=''${1:-.}
