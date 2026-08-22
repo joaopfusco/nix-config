@@ -4,7 +4,7 @@
     {
       programs.kitty = {
         enable = true;
-        themeFile = "tokyo_night_night";
+        themeFile = "Catppuccin-Mocha";
         font = {
           name = "JetBrainsMono Nerd Font";
           size = 12;
