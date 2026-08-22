@@ -5,7 +5,6 @@
       dconf.settings = {
         # Appearance
         "org/gnome/desktop/interface" = {
-          clock-show-weekday = true;
           color-scheme = "prefer-dark";
           enable-hot-corners = true;
           show-battery-percentage = true;
