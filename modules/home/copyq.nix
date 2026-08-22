@@ -10,7 +10,10 @@
       options.copyq.installPackage = lib.mkOption {
         type = lib.types.bool;
         default = true;
-        description = "Install the copyq package (disable if it's provided some other way).";
+        description = ''
+          Install the copyq package (disable if it's provided some other way).
+          Toggle with `copyq toggle`.
+        '';
       };
 
       config = {

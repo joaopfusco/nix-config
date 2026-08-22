@@ -10,7 +10,10 @@
       options.flameshot.installPackage = lib.mkOption {
         type = lib.types.bool;
         default = true;
-        description = "Install the flameshot package (disable if it's provided some other way).";
+        description = ''
+          Install the flameshot package (disable if it's provided some other way).
+          Capture with `flameshot gui -p ~/Pictures/Screenshots -c`.
+        '';
       };
 
       config = {
