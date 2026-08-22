@@ -16,6 +16,7 @@ in
       nixos.user
       nixos.nix
       nixos.common
+      nixos.hardware
       nixos.pkgs
     ];
     specialArgs.homeManagerModules = [
