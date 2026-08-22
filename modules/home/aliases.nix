@@ -15,6 +15,7 @@
         cls = "clear && printf '\\033[3J'";
         py = "python3";
         ipe = "curl ifconfig.me";
+        fetch = "fastfetch --logo nixos";
 
         # Apt/Brew upgrades
         apt-upgrade = "sudo apt update && sudo apt upgrade -y";
