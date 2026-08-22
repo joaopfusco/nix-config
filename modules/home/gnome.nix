@@ -96,18 +96,6 @@
           case-sensitive-search = false;
           toggle-menu = [ "<Super>v" ];
         };
-
-        "org/gnome/shell/extensions/dash-to-dock" = {
-          dock-position = "BOTTOM";
-          dash-max-icon-size = 48;
-          show-favorites = true;
-          show-trash = true;
-          dock-fixed = false;
-          extend-height = false;
-          apply-custom-theme = false;
-          custom-theme-shrink = false;
-          height-fraction = 0.8;
-        };
       };
     };
 }
