@@ -19,12 +19,7 @@
 
           autoload -U select-word-style
           select-word-style bash
-
           bindkey '^H' backward-kill-word
-          bindkey '^[[3;5~' kill-word
-
-          bindkey "^[[1;5C" forward-word
-          bindkey "^[[1;5D" backward-word
 
           export NIXPKGS_ALLOW_UNFREE=1
 
