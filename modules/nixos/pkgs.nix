@@ -14,15 +14,15 @@
       virtualisation.docker.enable = true;
 
       # Nix LD
-      programs.nix-ld = {
-        enable = true;
-        libraries = with pkgs; [
-          stdenv.cc.cc
-          zlib
-          openssl
-          libGL
-          glib
-        ];
-      };
+      programs.nix-ld.enable = true;
+      programs.nix-ld.libraries = with pkgs; [
+        libGL
+        icu
+        libunwind
+        libuuid
+        krb5
+        glib
+        lttng-ust
+      ];
     };
 }
