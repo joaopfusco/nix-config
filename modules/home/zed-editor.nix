@@ -1,7 +1,8 @@
 {
-  flake.modules.homeManager.zedEditor = {
+  flake.modules.homeManager.zedEditor = { pkgs, ... }: {
     programs.zed-editor = {
       enable = true;
+      package = pkgs.zed-editor-fhs;
 
       mutableUserSettings = false;
       mutableUserKeymaps = false;

@@ -16,7 +16,7 @@
           libreoffice
           vlc
           obs-studio
-          vscode
+          vscode-fhs
           dbeaver-bin
           postman
         ])
