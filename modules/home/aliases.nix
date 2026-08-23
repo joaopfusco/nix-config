@@ -17,8 +17,7 @@
         ipe = "curl ifconfig.me";
         fetch = "fastfetch --logo nixos";
 
-        # Apt/Brew upgrades
-        apt-upgrade = "sudo apt update && sudo apt upgrade -y";
+        # Brew
         brew-upgrade = "brew update && brew upgrade && brew cleanup";
 
         # Determinate Nix
