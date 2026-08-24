@@ -35,7 +35,7 @@
           };
 
           Service = {
-            ExecStart = "flameshot";
+            ExecStart = if config.flameshot.installPackage then lib.getExe pkgs.flameshot else "flameshot";
             Restart = "on-failure";
           };
 

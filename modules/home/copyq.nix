@@ -27,7 +27,7 @@
           };
 
           Service = {
-            ExecStart = "copyq";
+            ExecStart = if config.copyq.installPackage then lib.getExe pkgs.copyq else "copyq";
             Restart = "on-failure";
           };
 
