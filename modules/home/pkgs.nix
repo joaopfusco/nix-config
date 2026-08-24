@@ -15,6 +15,7 @@
           jq
           ripgrep
           fd
+          glab
 
           # packages
           fastfetch
