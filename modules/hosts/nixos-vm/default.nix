@@ -32,6 +32,7 @@ in
       homeManager.starship
       homeManager.opencode
       homeManager.claudeCode
+      homeManager.copyq
     ];
   };
 

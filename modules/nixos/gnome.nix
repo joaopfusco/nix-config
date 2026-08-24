@@ -11,7 +11,6 @@
       environment.systemPackages = with pkgs; [
         gnome-tweaks
         gnome-extension-manager
-        gnomeExtensions.clipboard-indicator
         gnomeExtensions.appindicator
         gnome-network-displays
         distroshelf
