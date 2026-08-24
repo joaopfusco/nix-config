@@ -7,25 +7,20 @@
       ...
     }:
     {
-      config = {
-        _module.args.inputs = inputs;
-        nix.registry.pkgs.flake = inputs.self;
+      _module.args.inputs = inputs;
+      nix.registry.pkgs.flake = inputs.self;
 
-        programs.home-manager.enable = true;
+      news.display = "silent";
 
-        news.display = "silent";
+      programs.home-manager.enable = true;
 
-        home = {
-          username = config.host.user.name;
+      home.username = config.host.user.name;
+      home.homeDirectory =
+        if pkgs.stdenv.hostPlatform.isLinux then
+          "/home/${config.host.user.name}"
+        else
+          "/Users/${config.host.user.name}";
 
-          homeDirectory =
-            if pkgs.stdenv.hostPlatform.isLinux then
-              "/home/${config.host.user.name}"
-            else
-              "/Users/${config.host.user.name}";
-
-          sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
-        };
-      };
+      home.sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
     };
 }
