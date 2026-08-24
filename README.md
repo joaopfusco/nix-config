@@ -2,7 +2,7 @@
 
 Personal Nix Flakes config (Home Manager + NixOS + Darwin). `Dendritic pattern`: a single `modules/` tree, auto-imported via [`import-tree`](https://github.com/vic/import-tree) — nothing listed by hand in `flake.nix`.
 
-- `nixpkgs`/`home-manager`/`nix-darwin` track the stable release via FlakeHub; use `pkgs.unstable.<pkg>` for bleeding-edge.
+- `nixpkgs`/`home-manager`/`nix-darwin` track the stable release; use `pkgs.unstable.<pkg>` for bleeding-edge.
 
 ## Prerequisites
 
