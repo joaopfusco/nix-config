@@ -16,6 +16,8 @@ in
       darwin.base
       darwin.user
       darwin.nix
+      darwin.desktop
+      darwin.keybindings
       darwin.pkgs
       darwin.homebrew
     ];
