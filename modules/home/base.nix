@@ -12,8 +12,6 @@
 
       news.display = "silent";
 
-      programs.home-manager.enable = true;
-
       home.username = config.host.user.name;
       home.homeDirectory =
         if pkgs.stdenv.hostPlatform.isLinux then
@@ -22,5 +20,7 @@
           "/Users/${config.host.user.name}";
 
       home.sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
+
+      programs.home-manager.enable = true;
     };
 }
