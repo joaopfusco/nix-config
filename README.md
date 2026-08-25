@@ -1,14 +1,12 @@
 # ❄️ nix-config
 
-Personal Nix Flakes config (Home Manager + NixOS + Darwin). `Dendritic pattern`: a single `modules/` tree, auto-imported via [`import-tree`](https://github.com/vic/import-tree) — nothing listed by hand in `flake.nix`.
+Personal Nix Flakes config (Home Manager + NixOS). `Dendritic pattern`: a single `modules/` tree, auto-imported via [`import-tree`](https://github.com/vic/import-tree) — nothing listed by hand in `flake.nix`.
 
-- `nixpkgs`/`home-manager`/`nix-darwin` track the stable release; use `pkgs.unstable.<pkg>` for bleeding-edge.
+- `nixpkgs`/`home-manager` track the stable release; use `pkgs.unstable.<pkg>` for bleeding-edge.
 
 ## Prerequisites
 
-- Nix installer:
-  - Home Manager: [Determinate Nix](https://determinate.systems/blog/determinate-nix-installer/)
-  - Darwin: [Lix](https://lix.systems/install/) — nix-darwin's [recommended installer](https://github.com/nix-darwin/nix-darwin/blob/master/README.md), since the official Nix installer lacks an automated uninstaller on macOS
+- Nix installer: [Determinate Nix](https://determinate.systems/blog/determinate-nix-installer/) or [Lix](https://lix.systems/install/)
 - Git configured, with an SSH key registered on GitHub
 
 ```bash
@@ -30,12 +28,6 @@ Home Manager:
 nix run home-manager -- switch --flake .#joaop@<host>
 ```
 
-Darwin:
-
-```bash
-sudo nix run nix-darwin -- switch --flake .#<host>
-```
-
 NixOS:
 
 ```bash
@@ -45,15 +37,14 @@ sudo nixos-rebuild switch --flake .#<host>
 
 ## Uninstalling
 
-Darwin — order matters: `nix-darwin` manages files under `/etc`, so remove it before removing the underlying Nix install, or those files are left pointing at a gone store:
-
-```bash
-sudo darwin-uninstaller # reverts /etc/zshrc, /etc/zprofile, etc. and removes launchd services
-sudo /nix/lix-installer uninstall
-```
-
-Home Manager ([Determinate Nix](https://manual.determinate.systems/installation/uninstall)):
+[Determinate Nix](https://manual.determinate.systems/installation/uninstall):
 
 ```bash
 sudo /nix/nix-installer uninstall
+```
+
+[Lix](https://lix.systems/install/):
+
+```bash
+sudo /nix/lix-installer uninstall
 ```

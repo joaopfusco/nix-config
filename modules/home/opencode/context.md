@@ -7,7 +7,7 @@
 - Keep code simple — no over-engineering
 
 ## Environment
-- System/dotfiles are managed declaratively via Nix: home-manager (Linux and macOS, user-level), nix-darwin (macOS, system-level), NixOS (Linux, system-level)
+- System/dotfiles are managed declaratively via Nix: home-manager (Linux and macOS, user-level), NixOS (Linux, system-level)
 - Config files under `$HOME` are often symlinks into `/nix/store` (or an out-of-store symlink via `mkOutOfStoreSymlink`, pointing straight at the repo), generated from a nix-config repo — edit the source in that repo, not the symlink target
 
 ## Language

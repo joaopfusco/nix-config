@@ -44,7 +44,6 @@
         # Nix Switch
         home-switch = "(cd ${nixConfigDir} && nix fmt) && home-manager switch --flake ${nixConfigDir}#${username}@${hostName}";
         nixos-switch = "(cd ${nixConfigDir} && nix fmt) && sudo nixos-rebuild switch --flake ${nixConfigDir}#${hostName}";
-        darwin-switch = "(cd ${nixConfigDir} && nix fmt) && sudo darwin-rebuild switch --flake ${nixConfigDir}#${hostName}";
       };
     };
 }

@@ -15,7 +15,6 @@ let
 in
 {
   flake.modules.nixos.base = hostOptions;
-  flake.modules.darwin.base = hostOptions;
   flake.modules.homeManager.base = hostOptions;
   flake.lib.username = username;
 }

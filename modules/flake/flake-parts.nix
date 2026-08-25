@@ -16,6 +16,6 @@
   };
 
   config._module.args = {
-    inherit (config.flake.modules) nixos darwin homeManager;
+    inherit (config.flake.modules) nixos homeManager;
   };
 }
