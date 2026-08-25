@@ -9,6 +9,8 @@
           devenv
 
           # tools
+          wget
+          curl
           nano
           bat
           eza
