@@ -29,6 +29,7 @@
           Service = {
             ExecStart = if config.copyq.installPackage then lib.getExe pkgs.copyq else "copyq";
             Restart = "on-failure";
+            Environment = "QT_QPA_PLATFORM=xcb";
           };
 
           Install.WantedBy = [ "graphical-session.target" ];
