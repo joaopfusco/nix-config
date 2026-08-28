@@ -20,6 +20,7 @@
           glab
 
           # packages
+          pfetch
           fastfetch
           gnumake
           azure-cli

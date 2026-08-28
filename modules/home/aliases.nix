@@ -8,7 +8,6 @@
       lt = "eza --tree";
       cls = "clear && printf '\\033[3J'";
       ipe = "curl ifconfig.me";
-      nfetch = "fastfetch --logo nixos";
 
       # Brew
       brew-upgrade = "brew update && brew upgrade && brew cleanup";
