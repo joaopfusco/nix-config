@@ -1,11 +1,6 @@
 {
   flake.modules.homeManager.zsh =
     { config, ... }:
-    let
-      nixConfigDir = "${config.home.homeDirectory}/nix-config";
-      hostName = config.host.name;
-      username = config.host.user.name;
-    in
     {
       programs.zsh = {
         enable = true;
@@ -45,27 +40,19 @@
           }
 
           flake-lock-age() {
-            git -C ${nixConfigDir} log -1 --format='%cd (%cr)' --date=short -- flake.lock
+            git -C ${config.host.configDir} log -1 --format='%cd (%cr)' --date=short -- flake.lock
           }
 
           flake-lock-push() {
-            git -C ${nixConfigDir} add flake.lock &&
-            git -C ${nixConfigDir} commit -m 'chore: update flake.lock' &&
-            git -C ${nixConfigDir} push
+            git -C ${config.host.configDir} add flake.lock &&
+            git -C ${config.host.configDir} commit -m 'chore: update flake.lock' &&
+            git -C ${config.host.configDir} push
           }
 
           flake-lock-revert() {
-            git -C ${nixConfigDir} diff --quiet -- flake.lock \
-              && git -C ${nixConfigDir} checkout HEAD~1 -- flake.lock \
-              || git -C ${nixConfigDir} checkout -- flake.lock
-          }
-
-          home-switch() {
-            (cd ${nixConfigDir} && nix fmt) && home-manager switch --flake ${nixConfigDir}#${username}@${hostName} "$@"
-          }
-
-          nixos-switch() {
-            (cd ${nixConfigDir} && nix fmt) && sudo nixos-rebuild switch --flake ${nixConfigDir}#${hostName} "$@"
+            git -C ${config.host.configDir} diff --quiet -- flake.lock \
+            && git -C ${config.host.configDir} checkout HEAD~1 -- flake.lock \
+            || git -C ${config.host.configDir} checkout -- flake.lock
           }
         '';
 

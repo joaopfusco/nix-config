@@ -13,13 +13,10 @@
       news.display = "silent";
 
       home.username = config.host.user.name;
-      home.homeDirectory =
-        if pkgs.stdenv.hostPlatform.isLinux then
-          "/home/${config.host.user.name}"
-        else
-          "/Users/${config.host.user.name}";
+      home.homeDirectory = config.host.homeDir;
 
       home.sessionVariables.NIX_PATH = "nixpkgs=${pkgs.path}";
+      home.sessionVariables.NH_FLAKE = config.host.configDir;
 
       programs.home-manager.enable = true;
     };
