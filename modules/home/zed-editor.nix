@@ -36,6 +36,10 @@
           ];
           JSON.format_on_save = "off";
           JSONC.format_on_save = "off";
+          Python.language_servers = [
+            "basedpyright"
+            "!ruff"
+          ];
         };
         terminal.shell.program = "zsh";
         file_types."Shell Script" = [
@@ -49,6 +53,15 @@
         buffer_font_size = 15;
         theme = "One Dark";
         icon_theme = "Material Icon Theme";
+        lsp = {
+          basedpyright = {
+            settings = {
+              basedpyright.analysis = {
+                typeCheckingMode = "basic";
+              };
+            };
+          };
+        };
       };
 
       userKeymaps = [
