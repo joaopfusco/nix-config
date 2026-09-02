@@ -7,7 +7,6 @@
           # nix
           nixd
           devenv
-          nh
 
           # tools
           wget

@@ -25,6 +25,7 @@ in
       homeManager.git
       homeManager.direnv
       homeManager.dotnet
+      homeManager.nh
       homeManager.pkgs
       homeManager.fonts
       homeManager.zsh
