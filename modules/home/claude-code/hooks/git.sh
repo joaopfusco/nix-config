@@ -9,6 +9,17 @@ cwd="$(jq -r '.cwd // empty' <<<"$input")"
 
 [ -z "$command" ] && exit 0
 
+if grep -Eiq 'git[[:space:]]+commit\b' <<<"$command" && grep -Eiq 'co-authored-by' <<<"$command"; then
+  jq -n '{
+    hookSpecificOutput: {
+      hookEventName: "PreToolUse",
+      permissionDecision: "deny",
+      permissionDecisionReason: "Commit message contains a Co-Authored-By trailer. Per CLAUDE.md, never add co-author attribution to commits. Remove the trailer and retry."
+    }
+  }'
+  exit 0
+fi
+
 cd "$cwd" 2>/dev/null || exit 0
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0
 
