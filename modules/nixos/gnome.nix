@@ -13,7 +13,6 @@
         gnome-extension-manager
         gnomeExtensions.appindicator
         gnome-network-displays
-        distroshelf
       ];
     };
 }
