@@ -32,6 +32,8 @@
           # nix
           nixd
           devenv
+          nix-output-monitor
+          nvd
 
           # tools
           wget
