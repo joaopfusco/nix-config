@@ -23,10 +23,6 @@
 
           export NIXPKGS_ALLOW_UNFREE=1
 
-          nixsh() {
-            IN_NIX_SHELL=impure nix shell "$@" --command zsh
-          }
-
           flake-init() {
             nix flake init --template "github:DeterminateSystems/flake-templates#minimal"
           }
