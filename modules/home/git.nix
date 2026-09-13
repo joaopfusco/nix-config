@@ -14,6 +14,9 @@
           helper = "store";
         };
       };
+      ignores = [
+        ".DS_Store"
+      ];
     };
   };
 }

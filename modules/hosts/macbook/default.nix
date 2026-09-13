@@ -33,6 +33,7 @@ in
           homeManager.claudeCode
           homeManager.zedEditor
           homeManager.kitty
+          homeManager.maccy
         ];
       };
 

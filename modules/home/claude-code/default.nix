@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.claudeCode =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       programs.claude-code = {
         enable = true;
@@ -13,12 +13,14 @@
         ".claude/hooks".source = ./hooks;
       };
 
-      home.packages = with pkgs; [
-        typescript-language-server
-        pyright
-        rust-analyzer
-        gopls
-        csharp-ls
-      ];
+      home.packages =
+        with pkgs;
+        [
+          typescript-language-server
+          pyright
+          rust-analyzer
+          gopls
+        ]
+        ++ lib.optional (!stdenv.isDarwin) csharp-ls;
     };
 }

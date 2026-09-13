@@ -26,6 +26,8 @@
           disable_ligatures = "never";
           input_delay = 3;
           repaint_delay = 10;
+          remember_window_position = "yes";
+          macos_quit_when_last_window_closed = "yes";
         };
         keybindings = {
           "ctrl+shift+left" = "neighboring_window left";

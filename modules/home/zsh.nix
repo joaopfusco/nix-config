@@ -11,6 +11,8 @@
         syntaxHighlighting.enable = true;
 
         initContent = ''
+          export PATH="$HOME/.local/bin:$PATH"
+
           if [[ -d /opt/homebrew ]]; then
             eval "$(/opt/homebrew/bin/brew shellenv)"
           elif [[ -d /home/linuxbrew/.linuxbrew ]]; then
