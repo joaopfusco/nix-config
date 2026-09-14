@@ -6,7 +6,7 @@
         enable = true;
         themeFile = "tokyo_night_night";
         font = {
-          name = "JetBrainsMono Nerd Font";
+          name = "JetBrainsMono Nerd Font Mono";
           size = 12;
           package = pkgs.nerd-fonts.jetbrains-mono;
         };

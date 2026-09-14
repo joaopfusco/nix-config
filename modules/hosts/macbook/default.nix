@@ -34,6 +34,9 @@ in
           homeManager.zedEditor
           homeManager.kitty
           homeManager.maccy
+          homeManager.raycast
+          homeManager.dbeaver
+          homeManager.postman
         ];
       };
 
@@ -42,7 +45,6 @@ in
     home.stateVersion = "26.05";
 
     programs.claude-code.package = lib.mkForce null;
-    programs.kitty.package = lib.mkForce null;
     programs.zed-editor.package = lib.mkForce null;
   };
 }
