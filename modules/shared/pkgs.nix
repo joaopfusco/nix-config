@@ -45,13 +45,13 @@
           jq
           ripgrep
           fd
-          glab
 
           # packages
           pfetch
           fastfetch
           gnumake
           azure-cli
+          glab
         ])
         ++ (with pkgs.unstable; [
           # packages
