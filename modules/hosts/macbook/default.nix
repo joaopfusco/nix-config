@@ -34,7 +34,6 @@ in
           homeManager.zedEditor
           homeManager.kitty
           homeManager.maccy
-          homeManager.raycast
           homeManager.dbeaver
           homeManager.postman
         ];
