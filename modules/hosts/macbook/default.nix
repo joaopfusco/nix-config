@@ -31,10 +31,8 @@ in
           homeManager.starship
           homeManager.opencode
           homeManager.claudeCode
-          homeManager.zedEditor
           homeManager.kitty
-          homeManager.dbeaver
-          homeManager.postman
+          homeManager.zedEditor
         ];
       };
 
@@ -43,6 +41,7 @@ in
     home.stateVersion = "26.05";
 
     programs.claude-code.package = lib.mkForce null;
+    programs.kitty.package = lib.mkForce null;
     programs.zed-editor.package = lib.mkForce null;
   };
 }

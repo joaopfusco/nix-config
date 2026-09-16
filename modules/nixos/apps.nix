@@ -8,6 +8,8 @@
           vlc
           obs-studio
           vscode-fhs
+          dbeaver-bin
+          postman
         ])
         ++ (with pkgs.unstable; [
           google-chrome
