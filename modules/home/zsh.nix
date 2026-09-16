@@ -60,7 +60,7 @@
             "git"
             "docker"
           ];
-          # theme = "robbyrussell";
+          theme = "robbyrussell";
         };
       };
     };
