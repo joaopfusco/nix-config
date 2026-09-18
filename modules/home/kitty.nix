@@ -15,6 +15,9 @@
           shell_integration = "enabled";
           background_opacity = 1.0;
           window_padding_width = 4;
+          initial_window_width = "145c";
+          initial_window_height = "40c";
+          remember_window_size = "no";
           scrollbar = "always";
           scrollback_lines = 10000;
           confirm_os_window_close = 0;
