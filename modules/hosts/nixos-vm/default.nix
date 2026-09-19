@@ -30,7 +30,6 @@ in
       homeManager.fonts
       homeManager.zsh
       homeManager.aliases
-      homeManager.starship
       homeManager.opencode
       homeManager.claudeCode
       homeManager.copyq

@@ -4,7 +4,7 @@
     {
       programs.opencode = {
         enable = true;
-        package = pkgs.opencode;
+        package = pkgs.unstable.opencode;
         extraPackages =
           with pkgs;
           [

@@ -28,7 +28,6 @@ in
           homeManager.fonts
           homeManager.zsh
           homeManager.aliases
-          homeManager.starship
           homeManager.opencode
           homeManager.claudeCode
           homeManager.zedEditor
@@ -37,7 +36,7 @@ in
         ];
       };
 
-  flake.modules.homeManager.${hostName} = {
+  flake.modules.homeManager.${hostName} = { pkgs, ... }: {
     host.name = hostName;
     home.stateVersion = "26.05";
 
@@ -47,6 +46,8 @@ in
     };
 
     programs.claude-code.package = lib.mkForce null;
+    programs.opencode.package = lib.mkForce pkgs.emptyDirectory;
+    programs.opencode.extraPackages = lib.mkForce [ ];
     programs.zed-editor.package = lib.mkForce null;
   };
 }
