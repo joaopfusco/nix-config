@@ -33,6 +33,7 @@
           macos_quit_when_last_window_closed = "yes";
           paste_actions = "quote-urls-at-prompt";
         };
+        environment.LC_ALL = "en_US.UTF-8";
         keybindings = {
           "ctrl+shift+left" = "neighboring_window left";
           "ctrl+shift+right" = "neighboring_window right";
