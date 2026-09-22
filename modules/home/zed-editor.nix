@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.zedEditor = { pkgs, ... }: {
+  flake.modules.homeManager.zedEditor = { pkgs, config, ... }: {
     programs.zed-editor = {
       enable = true;
       package = pkgs.zed-editor-fhs;
@@ -41,7 +41,7 @@
             "!ruff"
           ];
         };
-        terminal.shell.program = "zsh";
+        terminal.shell.program = "${config.host.shell}";
         file_types."Shell Script" = [
           "envrc"
           ".envrc"

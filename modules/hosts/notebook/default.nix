@@ -27,6 +27,7 @@ in
           homeManager.pkgs
           homeManager.fonts
           homeManager.zsh
+          homeManager.fish
           homeManager.aliases
           homeManager.opencode
           homeManager.claudeCode

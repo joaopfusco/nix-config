@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.kitty =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       programs.kitty = {
         enable = true;
@@ -11,7 +11,7 @@
           package = pkgs.nerd-fonts.jetbrains-mono;
         };
         settings = {
-          shell = "${pkgs.zsh}/bin/zsh --login";
+          shell = "${pkgs.${config.host.shell}}/bin/${config.host.shell}";
           shell_integration = "enabled";
           background_opacity = 1.0;
           window_padding_width = 4;

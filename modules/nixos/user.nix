@@ -2,9 +2,9 @@
   flake.modules.nixos.user =
     { config, pkgs, ... }:
     {
-      programs.zsh.enable = true;
+      programs.${config.host.shell}.enable = true;
       users.users.${config.host.user.name} = {
-        shell = pkgs.zsh;
+        shell = pkgs.${config.host.shell};
         isNormalUser = true;
         description = "Joao Pedro Fusco";
         extraGroups = [
