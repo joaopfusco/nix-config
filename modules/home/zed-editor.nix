@@ -37,7 +37,7 @@
           JSON.format_on_save = "off";
           JSONC.format_on_save = "off";
           Python.language_servers = [
-            "basedpyright"
+            "pyright"
             "!ruff"
           ];
         };
@@ -54,11 +54,9 @@
         theme = "One Dark";
         icon_theme = "Material Icon Theme";
         lsp = {
-          basedpyright = {
+          pyright = {
             settings = {
-              basedpyright.analysis = {
-                typeCheckingMode = "basic";
-              };
+              python.analysis.typeCheckingMode = "basic";
             };
           };
         };
