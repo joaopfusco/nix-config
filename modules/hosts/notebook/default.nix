@@ -46,8 +46,10 @@ in
     };
 
     programs.claude-code.package = lib.mkForce null;
-    programs.opencode.package = lib.mkForce pkgs.emptyDirectory;
-    programs.opencode.extraPackages = lib.mkForce [ ];
+    programs.opencode = {
+      package = lib.mkForce pkgs.emptyDirectory;
+      extraPackages = lib.mkForce [ ];
+    };
     programs.zed-editor.package = lib.mkForce null;
   };
 }

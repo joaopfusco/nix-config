@@ -12,6 +12,7 @@
 
         initContent = ''
           export PATH="$HOME/.local/bin:$PATH"
+          export PATH=/Users/joaop/.opencode/bin:$PATH
 
           if [[ -d /opt/homebrew ]]; then
             eval "$(/opt/homebrew/bin/brew shellenv)"

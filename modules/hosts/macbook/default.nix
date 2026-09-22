@@ -43,7 +43,7 @@ in
     programs.kitty.package = lib.mkForce null;
     programs.opencode = {
       package = lib.mkForce pkgs.emptyDirectory;
-      extraPackages = lib.mkForce [];
+      extraPackages = lib.mkForce [ ];
     };
     programs.zed-editor.package = lib.mkForce null;
   };
