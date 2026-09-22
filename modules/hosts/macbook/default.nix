@@ -35,12 +35,16 @@ in
         ];
       };
 
-  flake.modules.homeManager.${hostName} = {
+  flake.modules.homeManager.${hostName} = { pkgs, ... }: {
     host.name = hostName;
     home.stateVersion = "26.05";
 
     programs.claude-code.package = lib.mkForce null;
     programs.kitty.package = lib.mkForce null;
+    programs.opencode = {
+      package = lib.mkForce pkgs.emptyDirectory;
+      extraPackages = lib.mkForce [];
+    };
     programs.zed-editor.package = lib.mkForce null;
   };
 }
