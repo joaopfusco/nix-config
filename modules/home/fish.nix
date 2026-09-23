@@ -45,22 +45,6 @@
         };
 
         functions = {
-          flake-init = ''
-            nix flake init --template "github:DeterminateSystems/flake-templates#minimal"
-          '';
-
-          devenv-init = ''
-            devenv init $argv
-            or return 1
-            set -l dir .
-            if test (count $argv) -gt 0
-              set dir $argv[1]
-            end
-            if not test -f "$dir/.envrc"
-              printf 'eval "$(devenv direnvrc)"\nuse devenv\n' > "$dir/.envrc"
-            end
-          '';
-
           flake-lock-age = ''
             git -C ${config.host.configDir} log -1 --format='%cd (%cr)' --date=short -- flake.lock
           '';
