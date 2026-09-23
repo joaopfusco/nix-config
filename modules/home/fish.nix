@@ -14,14 +14,8 @@
         ];
 
         shellInit = ''
-          if not set -q __ETC_PROFILE_NIX_SOURCED
-            set -gx __ETC_PROFILE_NIX_SOURCED 1
-            set -l nix_link "$HOME/.local/state/nix/profile"
-            if not test -e "$nix_link"
-              set nix_link "$HOME/.nix-profile"
-            end
-            set -gx NIX_PROFILES "/nix/var/nix/profiles/default $nix_link"
-            set -gx PATH "$nix_link/bin" /nix/var/nix/profiles/default/bin $PATH
+          if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+            source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
           end
         '';
 
