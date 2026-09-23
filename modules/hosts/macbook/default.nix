@@ -38,7 +38,7 @@ in
 
   flake.modules.homeManager.${hostName} = { pkgs, ... }: {
     host.name = hostName;
-    host.shell = "fish";
+    host.shell.name = "fish";
     home.stateVersion = "26.05";
 
     programs.claude-code.package = lib.mkForce null;

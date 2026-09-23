@@ -11,7 +11,7 @@
           package = pkgs.nerd-fonts.jetbrains-mono;
         };
         settings = {
-          shell = "${pkgs.${config.host.shell}}/bin/${config.host.shell}";
+          shell = config.host.shell.path;
           shell_integration = "enabled";
           background_opacity = 1.0;
           window_padding_width = 4;

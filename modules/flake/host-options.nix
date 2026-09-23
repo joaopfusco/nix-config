@@ -8,12 +8,16 @@ let
         name = lib.mkOption {
           type = lib.types.str;
         };
-        shell = lib.mkOption {
+        shell.name = lib.mkOption {
           type = lib.types.enum [
             "zsh"
             "fish"
           ];
           default = "zsh";
+        };
+        shell.path = lib.mkOption {
+          type = lib.types.str;
+          default = "${pkgs.${config.host.shell.name}}/bin/${config.host.shell.name}";
         };
         user.name = lib.mkOption {
           type = lib.types.str;

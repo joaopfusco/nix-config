@@ -1,78 +1,80 @@
 {
-  flake.modules.homeManager.zedEditor = { pkgs, config, ... }: {
-    programs.zed-editor = {
-      enable = true;
-      package = pkgs.zed-editor-fhs;
+  flake.modules.homeManager.zedEditor =
+    { pkgs, config, ... }:
+    {
+      programs.zed-editor = {
+        enable = true;
+        package = pkgs.zed-editor-fhs;
 
-      mutableUserSettings = false;
-      mutableUserKeymaps = false;
+        mutableUserSettings = false;
+        mutableUserKeymaps = false;
 
-      extensions = [
-        "html"
-        "toml"
-        "sql"
-        "make"
-        "nix"
-        "csharp"
-        "docker"
-        "dockerfile"
-        "git-firefly"
-        "material-icon-theme"
-        "terraform"
-        "ansible"
-        "proto"
-      ];
-
-      userSettings = {
-        cli_default_open_behavior = "new_window";
-        file_finder.include_ignored = "all";
-        search.include_ignored = false;
-        soft_wrap = "editor_width";
-        autosave.after_delay.milliseconds = 1000;
-        languages = {
-          Nix.language_servers = [
-            "nixd"
-            "!nil"
-          ];
-          JSON.format_on_save = "off";
-          JSONC.format_on_save = "off";
-          Python.language_servers = [
-            "pyright"
-            "!ruff"
-          ];
-        };
-        terminal.shell.program = "${config.host.shell}";
-        file_types."Shell Script" = [
-          "envrc"
-          ".envrc"
-          "*.envrc"
+        extensions = [
+          "html"
+          "toml"
+          "sql"
+          "make"
+          "nix"
+          "csharp"
+          "docker"
+          "dockerfile"
+          "git-firefly"
+          "material-icon-theme"
+          "terraform"
+          "ansible"
+          "proto"
         ];
-        ui_font_family = "JetBrainsMono Nerd Font";
-        ui_font_size = 16;
-        buffer_font_family = "JetBrainsMono Nerd Font";
-        buffer_font_size = 15;
-        theme = "One Dark";
-        icon_theme = "Material Icon Theme";
-        lsp = {
-          pyright = {
-            settings = {
-              python.analysis.typeCheckingMode = "basic";
+
+        userSettings = {
+          cli_default_open_behavior = "new_window";
+          file_finder.include_ignored = "all";
+          search.include_ignored = false;
+          soft_wrap = "editor_width";
+          autosave.after_delay.milliseconds = 1000;
+          languages = {
+            Nix.language_servers = [
+              "nixd"
+              "!nil"
+            ];
+            JSON.format_on_save = "off";
+            JSONC.format_on_save = "off";
+            Python.language_servers = [
+              "pyright"
+              "!ruff"
+            ];
+          };
+          terminal.shell.program = config.host.shell.path;
+          file_types."Shell Script" = [
+            "envrc"
+            ".envrc"
+            "*.envrc"
+          ];
+          ui_font_family = "JetBrainsMono Nerd Font";
+          ui_font_size = 16;
+          buffer_font_family = "JetBrainsMono Nerd Font";
+          buffer_font_size = 15;
+          theme = "One Dark";
+          icon_theme = "Material Icon Theme";
+          lsp = {
+            pyright = {
+              settings = {
+                python.analysis.typeCheckingMode = "basic";
+              };
             };
           };
         };
-      };
 
-      userKeymaps = [
-        {
-          context = "Workspace";
-          bindings = {
-            "ctrl-shift-enter" = "workspace::NewTerminal";
-            "ctrl-k f" = "workspace::CloseProject";
-            "ctrl-b" = "workspace::ToggleRightDock";
-            "ctrl-alt-b" = "workspace::ToggleLeftDock";
-          };
-        }
-      ];
+        userKeymaps = [
+          {
+            context = "Workspace";
+            bindings = {
+              "ctrl-shift-enter" = "workspace::NewTerminal";
+              "ctrl-k f" = "workspace::CloseProject";
+              "ctrl-b" = "workspace::ToggleRightDock";
+              "ctrl-alt-b" = "workspace::ToggleLeftDock";
+            };
+          }
+        ];
+      };
     };
-  };
 }
