@@ -13,7 +13,6 @@
           }
         ];
 
-        # The nix installer only wires nix-daemon.sh into zsh/bash, not fish
         shellInit = ''
           if not set -q __ETC_PROFILE_NIX_SOURCED
             set -gx __ETC_PROFILE_NIX_SOURCED 1
