@@ -9,7 +9,10 @@ let
           type = lib.types.str;
         };
         shell = lib.mkOption {
-          type = lib.types.enum [ "zsh" "fish" ];
+          type = lib.types.enum [
+            "zsh"
+            "fish"
+          ];
           default = "zsh";
         };
         user.name = lib.mkOption {
