@@ -29,6 +29,7 @@
           bindkey '^H' backward-kill-word
 
           export NIXPKGS_ALLOW_UNFREE=1
+          export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
 
           flake-lock-age() {
             git -C ${config.host.configDir} log -1 --format='%cd (%cr)' --date=short -- flake.lock

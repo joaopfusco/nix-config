@@ -38,6 +38,7 @@
           end
 
           set -gx NIXPKGS_ALLOW_UNFREE 1
+          set -gx NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM 1
         '';
 
         binds = {
