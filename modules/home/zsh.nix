@@ -51,7 +51,7 @@
         oh-my-zsh = {
           enable = true;
           plugins = [ ];
-          theme = "robbyrussell";
+          theme = "gentoo";
         };
       };
     };
