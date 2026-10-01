@@ -70,8 +70,6 @@
             bindings = {
               "ctrl-shift-enter" = "workspace::NewTerminal";
               "ctrl-k f" = "workspace::CloseProject";
-              "ctrl-b" = "workspace::ToggleRightDock";
-              "ctrl-alt-b" = "workspace::ToggleLeftDock";
             };
           }
         ];
